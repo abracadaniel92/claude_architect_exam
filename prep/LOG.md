@@ -18,6 +18,7 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | **Study period** | Monday 10 August – Monday 24 August (15 days) |
 | **Current day** | Not started. First study day is Mon 10 Aug |
 | **Next session** | Domain 1 notes, sections 1.1–1.4 |
+| **Study time** | About 2 hours per day |
 
 ---
 
@@ -26,15 +27,25 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | Date | Test | Score | Notes |
 |---|---|---|---|
 | 8 Aug | Set 1 (20, cold) | **11/20** | D1 2/3 · D2 2/2 · D3 4/6 · D4 **1/5** · D5 2/4 |
-| | Domain 1 drill (15) | | |
-| | Domain 2 drill (15) | | |
-| | Domain 3 drill (15) | | |
-| | `/cert-exam 30` (16 Aug) | | |
-| | Domain 4 drill (15) | | |
-| | Domain 5 drill (15) | | |
-| | Full mock (60, timed) | | |
+| 10 Aug | `/cert-exam 15` — D1 | | |
+| 11 Aug | Domain 1 drill (15) | | |
+| 12 Aug | `/cert-exam 15` — D2 | | |
+| 13 Aug | Domain 2 drill (15) | | |
+| 14 Aug | `/cert-exam 15` — D3 | | |
+| 15 Aug | Domain 3 drill (15) | | |
+| **16 Aug** | **Mock 1 — `/cert-exam 60`, timed** | | Record the score for every domain |
+| 17 Aug | `/cert-exam 15` — D4 | | |
+| 18 Aug | Domain 1 drill — **retake** | | Compare with 11 Aug |
+| 19 Aug | Domain 4 drill (15) | | |
+| 20 Aug | `/cert-exam 15` — D5 | | |
+| 21 Aug | Domain 5 drill (15) | | |
+| 22 Aug | Domain 2 + 3 drills — **retake** | | |
+| **23 Aug** | **Mock 2 — 60, timed, multi-response** | | The rehearsal |
 
 **Target before the exam:** 80%+ on practice sets, and no domain below 60%.
+
+**On the retakes:** the score matters less than *which* questions you miss twice. A question
+missed twice is a fact you have not learned. Put it on the cheat sheet.
 
 ---
 

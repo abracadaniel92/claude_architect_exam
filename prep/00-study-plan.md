@@ -15,34 +15,63 @@
 Domain 1 gets the most time because it is the biggest (27%). Domain 4 gets three days because it
 is your weakest (you scored 1 out of 5 on day 1).
 
-Every day also includes **5 minutes on the cheat sheet** and **5 minutes on the Domain 4 facts**.
-Those two are not listed below because they never change.
+## The daily shape — 2 hours
 
-| Date | Day | Main work |
+Use the same four blocks every day. The order matters: recall first, while you are fresh;
+practice last, when you are tired, because the exam is at the end of a long morning too.
+
+| Block | Time | What |
 |---|---|---|
-| **Sat 8 Aug** | ✅ | Done — `01-answer-patterns.md` + Set 1 (scored 11/20) |
-| Sun 9 Aug | — | Rest. Book the exam |
-| **Mon 10 Aug** | 1 | Domain 1 notes, sections 1.1–1.4 |
-| **Tue 11 Aug** | 2 | Domain 1 notes, sections 1.5–1.7 · **Domain 1 drill** (15) |
-| **Wed 12 Aug** | 3 | Domain 2 notes · start *Intro to MCP* |
-| **Thu 13 Aug** | 4 | **Domain 2 drill** (15) · finish *Intro to MCP* |
-| **Fri 14 Aug** | 5 | Domain 3 notes · *Claude Code in Action* (commands, context) |
-| **Sat 15 Aug** | 6 | Exercise 2 — configure a real repository · **Domain 3 drill** (15) |
-| **Sun 16 Aug** | 7 | **Checkpoint:** `/cert-exam 30`, all domains · review every mistake so far |
-| **Mon 17 Aug** | 8 | Domain 4 notes, sections 4.1–4.3 |
-| **Tue 18 Aug** | 9 | Domain 4 notes, sections 4.4–4.6 |
-| **Wed 19 Aug** | 10 | **Domain 4 drill** (15) |
-| **Thu 20 Aug** | 11 | Domain 5 notes · Exercise 4 |
-| **Fri 21 Aug** | 12 | **Domain 5 drill** (15) |
-| **Sat 22 Aug** | 13 | All six scenarios · your weakest domain · `/cert-exam 20` on it |
-| **Sun 23 Aug** | 14 | **Full mock: 60 questions, timed, 120 minutes** |
-| **Mon 24 Aug** | 15 | Review every mistake · read `03-cheat-sheet.md` right through |
-| **Tue 25 Aug** | — | **EXAM** |
+| **1. Recall** | 10 min | Cheat sheet (one section) + Domain 4 facts. Cover the answers. Say them out loud |
+| **2. New material** | 50 min | Domain notes, or a course module |
+| **3. Practice** | 45 min | Drill questions, or `/cert-exam` |
+| **4. Review** | 15 min | Go through every wrong answer. Add one line to `LOG.md` |
+
+Block 4 is the one people skip. Do not. Reviewing a mistake teaches more than answering a new
+question correctly.
+
+---
+
+## The calendar
+
+| Date | Day | Block 2 — new material | Block 3 — practice |
+|---|---|---|---|
+| **Sat 8 Aug** | ✅ | Done — answer patterns | ✅ Set 1: 11/20 |
+| Sun 9 Aug | — | Rest. Book the exam | — |
+| **Mon 10 Aug** | 1 | Domain 1 notes 1.1–1.4 · start *Claude Code in Action* | `/cert-exam 15` — Domain 1 |
+| **Tue 11 Aug** | 2 | Domain 1 notes 1.5–1.7 · *Claude Code in Action* (Agent SDK, hooks) | **Domain 1 drill** (15) |
+| **Wed 12 Aug** | 3 | Domain 2 notes · start *Intro to MCP* | `/cert-exam 15` — Domain 2 |
+| **Thu 13 Aug** | 4 | Finish *Intro to MCP* | **Domain 2 drill** (15) |
+| **Fri 14 Aug** | 5 | Domain 3 notes · *Claude Code in Action* (commands, context) | `/cert-exam 15` — Domain 3 |
+| **Sat 15 Aug** | 6 | **Exercise 2** — configure a real repository (2 h, replaces blocks 2 and 3) | **Domain 3 drill** (15) |
+| **Sun 16 Aug** | 7 | — | **Mock 1: `/cert-exam 60`, timed 120 min** + full review |
+| **Mon 17 Aug** | 8 | Domain 4 notes 4.1–4.3 | `/cert-exam 15` — Domain 4 |
+| **Tue 18 Aug** | 9 | Domain 4 notes 4.4–4.6 · *Building with the Claude API* (tool use) | **Retake Domain 1 drill** |
+| **Wed 19 Aug** | 10 | *Building with the Claude API* (prompt engineering, agents) | **Domain 4 drill** (15) |
+| **Thu 20 Aug** | 11 | Domain 5 notes · **Exercise 4** | `/cert-exam 15` — Domain 5 |
+| **Fri 21 Aug** | 12 | Re-read your two weakest domains | **Domain 5 drill** (15) |
+| **Sat 22 Aug** | 13 | All six scenarios · **Exercise 3** if time allows | **Retake Domain 2 + 3 drills** |
+| **Sun 23 Aug** | 14 | — | **Mock 2: 60 questions, timed, with multiple-response** + full review |
+| **Mon 24 Aug** | 15 | Read `03-cheat-sheet.md` right through, twice | Redo only the questions you have ever got wrong |
+| **Tue 25 Aug** | — | **EXAM** | — |
+
+### What the extra time bought you
+
+Compared with the 60-minute version:
+
+- **Two timed mocks instead of one.** Mock 1 on 16 Aug is early enough to change the plan;
+  Mock 2 on 23 Aug is the rehearsal.
+- **Drill retakes at 7-day intervals.** Domain 1 on 11 and 18 Aug, Domains 2 and 3 on 13/15 and
+  22 Aug. Spaced repetition is what converts recognition into recall — and it is the method you
+  already know from medical training.
+- **The courses get real time**, instead of being squeezed between other work.
+- **A `/cert-exam 15` on every domain** the day you study it, on top of my drills. That is roughly
+  170 practice questions in total.
 
 ### How the week is shaped
 
-Weekdays are about **60 minutes**. The heavy work sits on the weekends, where you have more time:
-Exercise 2 on Sat 15, the checkpoint on Sun 16, and the full timed mock on Sun 23.
+Weekdays are 2 hours. **Sat 15, Sun 16 and Sun 23 need 2–3 hours** — Exercise 2 and the two mocks
+do not fit in less.
 
 ### What was cut, and what was protected
 
