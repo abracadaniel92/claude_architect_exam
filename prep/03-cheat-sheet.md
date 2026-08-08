@@ -1,9 +1,25 @@
 # The Cheat Sheet — Everything You Must Recall Cold
 
-One page with every fact you need from memory. Use it two ways:
+Every fact you need from memory, in one file.
 
-1. **Daily**, from day 2: read one section, cover it, say it back.
-2. **On day 20**, read the whole thing once. Nothing else.
+> ### Screen version or paper version?
+>
+> **This file is the screen version.** Use it on a phone or laptop, where scrolling is easy and a
+> PDF is awkward.
+>
+> **[`CCAR-F-revision-card.pdf`](../CCAR-F-revision-card.pdf) is the paper version.** Same facts,
+> laid out for A4 and printed double-sided on 3 sheets. It also adds the exam-attack strategy
+> from [`01-answer-patterns.md`](01-answer-patterns.md) — the strength ladder, the five kinds of
+> wrong answer, and the signal-word table — which this file does not contain.
+>
+> If you are printing something, print the PDF. If you are revising on your phone, use this file.
+> To change the PDF, edit [`tools/make-revision-card.py`](../tools/make-revision-card.py) and run
+> it. Do not edit the PDF by hand, or the two will drift apart.
+
+## How to use it
+
+1. **Every day**: read one section, cover it, say it back out loud.
+2. **On 24 August**, the day before the exam: read the whole thing through, twice.
 
 You cannot take notes into the exam. Everything here must be in your head.
 

@@ -26,6 +26,16 @@ See [`prep/LOG.md`](prep/LOG.md) — current position, scores, and what is left 
 
 ---
 
+## Print this
+
+[**CCAR-F-revision-card.pdf**](CCAR-F-revision-card.pdf) — six A4 pages, three sheets
+double-sided. The question-attack method, signal words, file paths and flags, and the recall
+facts for all five domains. Space at the foot of each page for your own notes.
+
+Rebuild it with [`tools/make-revision-card.py`](tools/make-revision-card.py).
+
+---
+
 ## Domain notes
 
 | Domain | Weight | Notes |
