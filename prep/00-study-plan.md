@@ -1,36 +1,55 @@
-# CCAR-F — 20-Day Study Plan
+# CCAR-F — 17-Day Study Plan
 
 **Exam:** Claude Certified Architect – Foundations
 60 questions · 120 minutes · you pass at 720 out of 1000
-**Started:** 2026-08-08 · **Book the exam for:** 2026-08-28 or later
+
+**Exam date: Tuesday 25 August 2026.** Study period: Saturday 8 August to Monday 24 August.
+
+> **Book the exam now** if you have not yet. Pearson VUE slots fill up, and you can cancel or
+> move it free of charge up to 24 hours before. Booking early costs nothing and protects the date.
 
 ---
 
-## The 20 days
+## The calendar
 
-Domain 1 gets extra time because it is the biggest (27%). Domains 2 and 3 get hands-on work,
-because practice helps most there.
+Domain 1 gets the most time because it is the biggest (27%). Domain 4 gets three days because it
+is your weakest (you scored 1 out of 5 on day 1).
 
-| Days | Study | Practice | Hands-on |
-|---|---|---|---|
-| 1 | `01-answer-patterns.md`, then skim the notes | **Set 1** (20 questions) with no help | — |
-| 2–4 | Domain 1 notes | **Domain 1 drill** (15) | Claude Code in Action — Agent SDK + hooks |
-| 5–6 | Domain 2 notes | **Domain 2 drill** (15) | Intro to MCP course |
-| 7–9 | Domain 3 notes | **Domain 3 drill** (15) | Claude Code in Action — commands, context · Exercise 2 |
-| 10 | Review your mistakes | **Set 2** (30, mixed) | Write your weak-domain list |
-| 11–13 | Domain 4 notes | **Domain 4 drill** (15) | Building with the Claude API (selected parts) · Exercise 3 |
-| 14–15 | Domain 5 notes | **Domain 5 drill** (15) | Exercise 4 |
-| 16 | Read all 6 scenarios | Redo questions you got wrong | — |
-| 17 | Weak domains from day 10 | — | — |
-| 18 | — | **Set 3** (60, timed, 120 min) | Score it by domain |
-| 19 | Review every mistake. Re-read `01-answer-patterns.md` | — | — |
-| 20 | Light review only: the blueprint, the weights, the in-scope and out-of-scope lists | — | Rest |
+| Date | Study | Practice |
+|---|---|---|
+| **Sat 8 Aug** | ✅ Done — `01-answer-patterns.md` + Set 1 | ✅ Set 1: 11/20 |
+| **Sun 9 Aug** | Domain 1 notes, first half | Daily facts (5 min) |
+| **Mon 10 Aug** | Domain 1 notes, second half · Claude Code in Action (Agent SDK + hooks) | Daily facts |
+| **Tue 11 Aug** | Review Domain 1 | **Domain 1 drill** (15) |
+| **Wed 12 Aug** | Domain 2 notes · Intro to MCP course | Daily facts |
+| **Thu 13 Aug** | Review Domain 2 | **Domain 2 drill** (15) |
+| **Fri 14 Aug** | Domain 3 notes · Claude Code in Action (commands, context) | Daily facts |
+| **Sat 15 Aug** | Exercise 2 — configure a real repository | **Domain 3 drill** (15) |
+| **Sun 16 Aug** | **Checkpoint.** Review every mistake so far | `/cert-exam 30` — all domains |
+| **Mon 17 Aug** | Domain 4 notes, first half | Daily facts |
+| **Tue 18 Aug** | Domain 4 notes, second half · Exercise 3 | Daily facts |
+| **Wed 19 Aug** | Review Domain 4 | **Domain 4 drill** (15) |
+| **Thu 20 Aug** | Domain 5 notes · Exercise 4 | Daily facts |
+| **Fri 21 Aug** | Review Domain 5 | **Domain 5 drill** (15) |
+| **Sat 22 Aug** | All six scenarios + your weakest domain | `/cert-exam 20` on that domain |
+| **Sun 23 Aug** | — | **Full mock: 60 questions, timed, 120 minutes** |
+| **Mon 24 Aug** | Review every mistake · read `03-cheat-sheet.md` right through | — |
+| **Tue 25 Aug** | **EXAM** | — |
 
-**Practice total: 8 sets, about 185 questions.**
+### What changed from the 20-day version
 
-Sets 2 and 3 will be written **after** your Set 1 and drill results. Then they can focus on the
-domains where you actually lose points. A test written before we know your weak areas is just 60
-average questions.
+Three days were removed. Domain 3 now gets two days instead of three, because you already scored
+4 out of 6 there and it is memorisation you drill daily anyway. The scenarios day was merged with
+the weak-domain day. One review day was removed.
+
+Domain 4 kept all three days. Do not shorten it.
+
+### Practice questions
+
+- **Mine:** Set 1 (20) + five domain drills (75) = 95 questions
+- **The community exam:** `/cert-exam` gives you 77 more
+- **The final mock** on 23 Aug will include multiple-response questions, which `/cert-exam` does
+  not have
 
 ---
 
