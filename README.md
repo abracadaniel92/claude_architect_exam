@@ -21,7 +21,7 @@ See [`prep/LOG.md`](prep/LOG.md) — current position, scores, and what is left 
 | Order | File | Why |
 |---|---|---|
 | 1 | [`prep/01-answer-patterns.md`](prep/01-answer-patterns.md) | How the exam builds wrong answers. Read this before anything else |
-| 2 | [`prep/00-study-plan.md`](prep/00-study-plan.md) | The 20-day plan and what to do each day |
+| 2 | [`prep/00-study-plan.md`](prep/00-study-plan.md) | The day-by-day calendar to 25 August |
 | 3 | [`prep/03-cheat-sheet.md`](prep/03-cheat-sheet.md) | Every fact you must recall from memory. Read this on the last day |
 
 ---
