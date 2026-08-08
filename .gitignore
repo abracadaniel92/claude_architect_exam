@@ -1,5 +1,7 @@
 # Anthropic partner material - never publish
 *.pdf
 
-# except my own revision card
+# except my own generated study material
 !CCAR-F-revision-card.pdf
+!CCAR-F-study-pack.pdf
+!CCAR-F-practice-questions.pdf

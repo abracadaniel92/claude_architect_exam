@@ -28,11 +28,14 @@ See [`prep/LOG.md`](prep/LOG.md) — current position, scores, and what is left 
 
 ## Print this
 
-[**CCAR-F-revision-card.pdf**](CCAR-F-revision-card.pdf) — six A4 pages, three sheets
-double-sided. The question-attack method, signal words, file paths and flags, and the recall
-facts for all five domains. Space at the foot of each page for your own notes.
+| File | Pages | What |
+|---|---|---|
+| [**CCAR-F-revision-card.pdf**](CCAR-F-revision-card.pdf) | 6 | Carry this. Exam facts, the question-attack method, signal words, paths and flags, recall facts for all five domains |
+| [**CCAR-F-study-pack.pdf**](CCAR-F-study-pack.pdf) | 41 | The full binder. Calendar, strategy, all five domain notes, scenarios, exercises, course map |
+| [**CCAR-F-practice-questions.pdf**](CCAR-F-practice-questions.pdf) | 13 | 65 questions, **no answer keys**. Mark on screen against `prep/practice/` |
 
-Rebuild it with [`tools/make-revision-card.py`](tools/make-revision-card.py).
+Rebuild them with [`tools/make-revision-card.py`](tools/make-revision-card.py) and
+[`tools/make-study-pdfs.py`](tools/make-study-pdfs.py). Edit the markdown, not the PDFs.
 
 ---
 
