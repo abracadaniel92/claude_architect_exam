@@ -1,2 +1,5 @@
-# The official exam guide is Anthropic partner material — do not publish it
+# Anthropic partner material - never publish
 *.pdf
+
+# except my own revision card
+!CCAR-F-revision-card.pdf
