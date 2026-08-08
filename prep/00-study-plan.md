@@ -15,34 +15,52 @@
 Domain 1 gets the most time because it is the biggest (27%). Domain 4 gets three days because it
 is your weakest (you scored 1 out of 5 on day 1).
 
-| Date | Study | Practice |
+Every day also includes **5 minutes on the cheat sheet** and **5 minutes on the Domain 4 facts**.
+Those two are not listed below because they never change.
+
+| Date | Day | Main work |
 |---|---|---|
-| **Sat 8 Aug** | ✅ Done — `01-answer-patterns.md` + Set 1 | ✅ Set 1: 11/20 |
-| **Sun 9 Aug** | Domain 1 notes, first half | Daily facts (5 min) |
-| **Mon 10 Aug** | Domain 1 notes, second half · Claude Code in Action (Agent SDK + hooks) | Daily facts |
-| **Tue 11 Aug** | Review Domain 1 | **Domain 1 drill** (15) |
-| **Wed 12 Aug** | Domain 2 notes · Intro to MCP course | Daily facts |
-| **Thu 13 Aug** | Review Domain 2 | **Domain 2 drill** (15) |
-| **Fri 14 Aug** | Domain 3 notes · Claude Code in Action (commands, context) | Daily facts |
-| **Sat 15 Aug** | Exercise 2 — configure a real repository | **Domain 3 drill** (15) |
-| **Sun 16 Aug** | **Checkpoint.** Review every mistake so far | `/cert-exam 30` — all domains |
-| **Mon 17 Aug** | Domain 4 notes, first half | Daily facts |
-| **Tue 18 Aug** | Domain 4 notes, second half · Exercise 3 | Daily facts |
-| **Wed 19 Aug** | Review Domain 4 | **Domain 4 drill** (15) |
-| **Thu 20 Aug** | Domain 5 notes · Exercise 4 | Daily facts |
-| **Fri 21 Aug** | Review Domain 5 | **Domain 5 drill** (15) |
-| **Sat 22 Aug** | All six scenarios + your weakest domain | `/cert-exam 20` on that domain |
-| **Sun 23 Aug** | — | **Full mock: 60 questions, timed, 120 minutes** |
-| **Mon 24 Aug** | Review every mistake · read `03-cheat-sheet.md` right through | — |
-| **Tue 25 Aug** | **EXAM** | — |
+| **Sat 8 Aug** | ✅ | Done — `01-answer-patterns.md` + Set 1 (scored 11/20) |
+| Sun 9 Aug | — | Rest. Book the exam |
+| **Mon 10 Aug** | 1 | Domain 1 notes, sections 1.1–1.4 |
+| **Tue 11 Aug** | 2 | Domain 1 notes, sections 1.5–1.7 · **Domain 1 drill** (15) |
+| **Wed 12 Aug** | 3 | Domain 2 notes · start *Intro to MCP* |
+| **Thu 13 Aug** | 4 | **Domain 2 drill** (15) · finish *Intro to MCP* |
+| **Fri 14 Aug** | 5 | Domain 3 notes · *Claude Code in Action* (commands, context) |
+| **Sat 15 Aug** | 6 | Exercise 2 — configure a real repository · **Domain 3 drill** (15) |
+| **Sun 16 Aug** | 7 | **Checkpoint:** `/cert-exam 30`, all domains · review every mistake so far |
+| **Mon 17 Aug** | 8 | Domain 4 notes, sections 4.1–4.3 |
+| **Tue 18 Aug** | 9 | Domain 4 notes, sections 4.4–4.6 |
+| **Wed 19 Aug** | 10 | **Domain 4 drill** (15) |
+| **Thu 20 Aug** | 11 | Domain 5 notes · Exercise 4 |
+| **Fri 21 Aug** | 12 | **Domain 5 drill** (15) |
+| **Sat 22 Aug** | 13 | All six scenarios · your weakest domain · `/cert-exam 20` on it |
+| **Sun 23 Aug** | 14 | **Full mock: 60 questions, timed, 120 minutes** |
+| **Mon 24 Aug** | 15 | Review every mistake · read `03-cheat-sheet.md` right through |
+| **Tue 25 Aug** | — | **EXAM** |
 
-### What changed from the 20-day version
+### How the week is shaped
 
-Three days were removed. Domain 3 now gets two days instead of three, because you already scored
-4 out of 6 there and it is memorisation you drill daily anyway. The scenarios day was merged with
-the weak-domain day. One review day was removed.
+Weekdays are about **60 minutes**. The heavy work sits on the weekends, where you have more time:
+Exercise 2 on Sat 15, the checkpoint on Sun 16, and the full timed mock on Sun 23.
 
-Domain 4 kept all three days. Do not shorten it.
+### What was cut, and what was protected
+
+The plan started at 20 days. It is now 15. Domain 3 lost a day, because you already scored 4 out
+of 6 there and it is memorisation you drill daily anyway. The scenarios day was merged into the
+weak-domain day, and two review days were removed.
+
+**Domain 4 kept three days.** It is 20% of the exam and you scored 1 out of 5. Do not shorten it,
+even if you fall behind.
+
+### If you fall behind
+
+Drop things in this order:
+1. The hands-on exercises (except Exercise 2)
+2. The courses
+3. Domain 3 study — the cheat sheet covers it
+
+Never drop: the daily facts, the drills, or the Sunday 23 mock.
 
 ### Practice questions
 

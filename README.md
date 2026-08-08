@@ -10,6 +10,12 @@ Written in simple English. Exam terminology is kept exactly as it appears in the
 
 ---
 
+## Where am I?
+
+See [`prep/LOG.md`](prep/LOG.md) — current position, scores, and what is left to build.
+
+---
+
 ## Start here
 
 | Order | File | Why |
