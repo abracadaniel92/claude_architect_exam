@@ -1,4 +1,4 @@
-# CCAR-F — 17-Day Study Plan
+# CCAR-F — 15-Day Study Plan
 
 **Exam:** Claude Certified Architect – Foundations
 60 questions · 120 minutes · you pass at 720 out of 1000
@@ -9,11 +9,6 @@
 > move it free of charge up to 24 hours before. Booking early costs nothing and protects the date.
 
 ---
-
-## The calendar
-
-Domain 1 gets the most time because it is the biggest (27%). Domain 4 gets three days because it
-is your weakest (you scored 1 out of 5 on day 1).
 
 ## The daily shape — 2 hours
 
@@ -50,8 +45,8 @@ question correctly.
 | **Wed 19 Aug** | 10 | *Building with the Claude API* (prompt engineering, agents) | **Domain 4 drill** (15) |
 | **Thu 20 Aug** | 11 | Domain 5 notes · **Exercise 4** | `/cert-exam 15` — Domain 5 |
 | **Fri 21 Aug** | 12 | Re-read your two weakest domains | **Domain 5 drill** (15) |
-| **Sat 22 Aug** | 13 | All six scenarios · **Exercise 3** if time allows | **Retake Domain 2 + 3 drills** |
-| **Sun 23 Aug** | 14 | — | **Mock 2: 60 questions, timed, with multiple-response** + full review |
+| **Sat 22 Aug** | 13 | Skim the six scenarios (20 min, no memorising) · your two weakest domains | **Retake Domain 2 + 3 drills** |
+| **Sun 23 Aug** | 14 | — | **Mock 2: Purcell's 60-question set, timed 120 min** + full review |
 | **Mon 24 Aug** | 15 | Read `03-cheat-sheet.md` right through, twice | Redo only the questions you have ever got wrong |
 | **Tue 25 Aug** | — | **EXAM** | — |
 
@@ -93,24 +88,16 @@ Never drop: the daily facts, the drills, or the Sunday 23 mock.
 
 ### Practice questions
 
-- **Mine:** Set 1 (20) + five domain drills (75) = 95 questions
-- **The community exam:** `/cert-exam` gives you 77 more
-- **The final mock** on 23 Aug will include multiple-response questions, which `/cert-exam` does
-  not have
+| Source | Questions | Multiple-response? |
+|---|---|---|
+| Mine — Set 1 + five domain drills | 95 | Yes |
+| Community `/cert-exam` bank | 77 | No |
+| Purcell's practice set (`1784098676646.pdf`) | 60 | Yes — 11 of them |
 
----
-
-## What to do each day (60–90 minutes)
-
-1. **15 minutes** — re-read yesterday's notes. Repeating old material works better than reading
-   new material.
-2. **5 minutes** — `practice/daily-facts-domain-4.md`. Every day, without exception.
-3. **30–45 minutes** — new material or hands-on work.
-4. **15–20 minutes** — practice questions. For each one, say out loud **why each wrong answer is
-   wrong**.
-
-Step 4 is the one that raises your score. On this exam, all four answers look reasonable. You
-pass by removing three of them, not by recognising one.
+**Roughly 230 practice questions.** Purcell's set is the closest thing to the real exam: written
+by someone who sat and passed it, blueprint-weighted 16/11/12/12/9, and pitched at the difficulty
+he met on the day. Save it for 23 August and take it cold — reading it early destroys your only
+realistic rehearsal.
 
 ---
 
@@ -120,8 +107,14 @@ pass by removing three of them, not by recognising one.
 
 But each scenario has a story you read once and then reuse. So the real plan is:
 
-- About **4 minutes** to read each of the 4 scenario stories = 16 minutes
-- About **1 minute 45 seconds** per question = 105 minutes
+- **Skim** each scenario story, do not study it — about 1 minute each = 4 minutes
+- About **1 minute 55 seconds** per question = 116 minutes
+
+The questions are self-contained. Any detail you need is repeated inside the question, so reading
+the story carefully is wasted time. A candidate who passed finished in **90 of the 120 minutes**.
+
+**About 1 question in 5 asks for two answers.** In a 60-question exam that is roughly 11 of them.
+Read the line that tells you how many to select — it is the easiest mark to throw away.
 
 If a question takes more than 3 minutes, mark it and come back later. There is no penalty for
 guessing, so never leave a question empty.

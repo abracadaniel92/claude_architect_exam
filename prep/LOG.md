@@ -40,7 +40,7 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | 20 Aug | `/cert-exam 15` — D5 | | |
 | 21 Aug | Domain 5 drill (15) | | |
 | 22 Aug | Domain 2 + 3 drills — **retake** | | |
-| **23 Aug** | **Mock 2 — 60, timed, multi-response** | | The rehearsal |
+| **23 Aug** | **Mock 2 — Purcell's 60, timed** | | The rehearsal. Take it cold |
 
 **Target before the exam:** 80%+ on practice sets, and no domain below 60%.
 
@@ -79,6 +79,7 @@ is sound. The gap is recall.
 
 | Date | What happened |
 |---|---|
+| 10 Aug | Reviewed Matthew Purcell's LinkedIn exam review and his 60-question practice set. Confirmed three earlier calls (Bedrock/Vertex out of scope, Claude 101 and AI Fluency too basic, exam is memorisation-heavy). Downgraded the scenarios from "study" to "skim once". Adjusted exam-day timing. His set replaces the mock I was going to write for 23 Aug. |
 | 8 Aug | Identified two different exams (CCAR-F vs CCAR-P) and chose Foundations. Confirmed Foundations is accepted for Intertec partner tier. Built the full prep folder. Took Set 1 cold: 11/20. Converted everything to simple English. Found and installed the community 77-question practice exam as `/cert-exam`. Pushed everything to GitHub. |
 
 ---
@@ -89,7 +90,24 @@ is sound. The gap is recall.
 |---|---|
 | 19 Aug | Domain 4 drill (15 questions) |
 | 21 Aug | Domain 5 drill (15 questions) |
-| 23 Aug | Full mock — 60 questions, timed, **including multiple-response questions** (the community `/cert-exam` bank is single-answer only) |
+
+~~23 Aug: full mock~~ — **no longer needed.** Matthew Purcell's 60-question practice set
+(`1784098676646.pdf`, kept locally, not in the public repo) replaces it. Written by someone who
+passed CCAR-F, blueprint-weighted, and it includes 11 multiple-response questions.
+
+---
+
+## External resources
+
+| Resource | What it is | When |
+|---|---|---|
+| `/cert-exam` | 77 community questions by Olivier Legris, installed as a Claude Code skill. Single-answer only | Daily, 15 at a time |
+| `1784098676646.pdf` | Matthew Purcell's 60-question set. Blueprint-weighted, 11 multiple-response, answer key with rationales | **23 Aug only** — take it cold |
+| Matthew Purcell's LinkedIn review | He passed all four exams. Confirms: Bedrock/Vertex not tested, Claude 101 and AI Fluency too basic, CCAR-F is the hardest of the four, scenarios are "dressing", finished in 90 of 120 min | Read once |
+| Paul Larionov's GitHub repo | A study guide Purcell recommends. **Not yet evaluated** | Optional |
+
+**To check:** Purcell reports a 100% exam discount for Global Premier partners until 31 Aug 2026.
+The exam is 25 Aug, inside that window. Ask Intertec whether it is free.
 
 ---
 
@@ -102,7 +120,10 @@ is sound. The gap is recall.
 - **Take:** Claude Code in Action (covers Claude Code *and* the Agent SDK), Intro to MCP, and
   only the tool use / prompt engineering / agents modules of Building with the Claude API.
 - **The official exam guide PDF is not pushed to GitHub.** It is Anthropic partner material and
-  the repository is public. It is in `.gitignore`.
+  the repository is public. It is in `.gitignore`. The same applies to Purcell's practice set —
+  it is his copyrighted work.
+- **The scenarios are context, not content to memorise.** A candidate who passed calls them
+  "more dressing than anything substantive". Skim them once; do not study them.
 
 ---
 

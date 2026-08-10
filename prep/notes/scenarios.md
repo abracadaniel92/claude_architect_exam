@@ -1,10 +1,23 @@
 # The Six Exam Scenarios
 
-The exam gives you **4 of these 6**, chosen at random. Study all six.
+The exam gives you **4 of these 6**, chosen at random. Each one is a short story, followed by
+about 15 questions.
 
-Each scenario is a short story. Several questions are then asked about it. If you recognise the
-scenario, you already know which domains the questions come from — and which wrong answers to
-expect.
+> ### Read this once. Do not memorise it.
+>
+> A candidate who passed CCAR-F describes the scenarios as *"more dressing than anything
+> substantive... no different to an exam that just asked me a series of unrelated questions about
+> specific topics."*
+>
+> That matches the twelve sample questions in the official guide: every one of them is
+> **self-contained**. You never need to remember a detail from the scenario text to answer a
+> question.
+>
+> So this file has one job: **prediction, not memorisation.** When you recognise the scenario, you
+> know which domains the questions will come from and which wrong answers to expect. That is
+> worth 20 minutes of reading. It is not worth an hour of study.
+>
+> If you are short of time, skip this file and spend the time on `03-cheat-sheet.md` instead.
 
 ---
 
@@ -156,3 +169,14 @@ Reliability ideas connect everything.
 
 So if you are stuck between two answers, ask which one handles reliability better: structured
 errors, preserved facts, or calibrated human review. That often decides it.
+
+---
+
+## What this means on exam day
+
+Because the questions are self-contained, **do not spend four minutes reading each scenario
+story.** Skim it for the tool names and the goal, then go straight to the questions. If a question
+needs a detail from the story, that detail is repeated in the question itself.
+
+A candidate who passed finished the whole exam in **90 of the 120 minutes**. Time is adequate but
+not generous. Reading four stories carefully would spend a quarter of it for no gain.
