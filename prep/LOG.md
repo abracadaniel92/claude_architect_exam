@@ -88,7 +88,7 @@ is sound. The gap is recall.
 
 | Needed by | What |
 |---|---|
-| 19 Aug | Domain 4 drill (15 questions) |
+| ~~19 Aug~~ | ~~Domain 4 drill~~ — **built 10 Aug** |
 | 21 Aug | Domain 5 drill (15 questions) |
 
 ~~23 Aug: full mock~~ — **no longer needed.** Matthew Purcell's 60-question practice set
