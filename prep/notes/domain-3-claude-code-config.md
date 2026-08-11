@@ -49,6 +49,11 @@ This command shows which memory files are currently loaded.
 
 Use it when Claude Code behaves differently in different sessions.
 
+> **Product note.** The guide says exactly this ("verify which memory files are loaded"), so it
+> is the exam answer. In the shipping product `/memory` lists memory file *locations* and
+> `/context` shows what actually loaded. Likewise `@import` is the guide's name for the import
+> syntax; the shipping product uses a bare `@path/to/file.md`. Answer the guide's way.
+
 ---
 
 ## 3.2 Slash commands and skills
@@ -84,6 +89,12 @@ Three keys are tested:
 
 **Important:** `paths:` is **not** a SKILL.md key. It belongs to `.claude/rules/`. Mixing these
 two sets of keys is the most common mistake in this domain.
+
+> **Product note (checked against exam guide v1.0, July 2026 — answer the exam the guide's way).**
+> The guide confirms all three rows above, and lists exactly these three SKILL.md keys. In the
+> shipping product the behaviour has drifted: `allowed-tools` *pre-approves* tools rather than
+> hard-restricting them, `argument-hint` is only an autocomplete display hint and never prompts,
+> and current docs do list `paths` for SKILL.md. On the exam, use the table and the rule above.
 
 ### Personal versions of a shared skill
 

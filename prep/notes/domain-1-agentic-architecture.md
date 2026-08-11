@@ -27,8 +27,9 @@ send request → look at stop_reason
 
 The exam tests two: `"tool_use"` and `"end_turn"`.
 
-The real API has six: `end_turn`, `max_tokens`, `stop_sequence`, `tool_use`, `pause_turn`,
-`refusal`. Know all six. Answer with the two from the guide.
+The real API has seven: `end_turn`, `max_tokens`, `stop_sequence`, `tool_use`, `pause_turn`,
+`refusal`, `model_context_window_exceeded`. The guide names only the two above — answer with
+those.
 
 ### Rules for tool results
 
@@ -37,7 +38,7 @@ The real API has six: `end_turn`, `max_tokens`, `stop_sequence`, `tool_use`, `pa
 - Every `tool_use` block needs one matching `tool_result`, with the same `tool_use_id`.
 - Send **all** results from one Claude message back together, in **one** user message.
 
-### Three wrong ways to stop the loop
+### Four wrong ways to stop the loop
 
 The exam will offer these as answers. They are always wrong.
 
@@ -45,6 +46,8 @@ The exam will offer these as answers. They are always wrong.
 2. Using a maximum number of loops as the **main** way to stop. (Using it as a safety limit is
    fine. Using it as the mechanism is not.)
 3. Checking if the response contains text. Text and tool requests often appear together.
+4. Adding an explicit `task_complete` tool the model must call to end. `stop_reason: "end_turn"`
+   already signals completion — the extra tool is redundant and the model may forget to call it.
 
 ### Model-driven vs pre-configured
 
@@ -171,7 +174,8 @@ Main use: **normalise different data formats**. Example from the guide: one serv
 timestamps, another returns ISO 8601, another returns a numeric status code. The hook converts
 them all to one format first.
 
-**Tool call interception** — runs before a tool is called, and can block it.
+**Tool call interception** (the real event name is **`PreToolUse`**) — runs before a tool is
+called, and can block it.
 Main use: **stop actions that break a policy**. Example from the guide: block refunds above $500
 and send them to human escalation instead.
 
@@ -210,11 +214,12 @@ improve attention quality. Any answer suggesting a bigger model or bigger window
 
 | Situation | Do this |
 |---|---|
-| Earlier context is mostly still correct | Resume |
-| Earlier tool results are **stale** (out of date) | Start a **new** session and give it a written summary |
+| Earlier context is mostly still correct, a few known files changed | **Resume** and name the changed files |
+| Earlier tool results are **mostly stale** (out of date) | Start a **new** session and give it a written summary |
 
 The guide states this directly: starting fresh with a structured summary is more reliable than
-resuming with stale tool results.
+resuming with stale tool results. But the question is **how much** is stale — when only a few
+named files changed inside a wider analysis, resume and say which files changed.
 
 ---
 
@@ -226,6 +231,7 @@ resuming with stale tool results.
 4. Parallel = several Task calls in **one** response.
 5. Coverage is incomplete but every agent worked = the coordinator's split was too narrow.
 6. Money, identity, or policy limits = hooks or gates. Never prompts.
-7. `PostToolUse` changes results. Interception hooks block calls.
+7. `PostToolUse` changes results. `PreToolUse` (the interception hook) blocks calls.
 8. Big review = one pass per file + one pass across files.
-9. Stale tool results = new session with a summary, not `--resume`.
+9. Resume or fresh is decided by **how much** is stale. A few known files changed = resume and
+   name them. Most of the context stale = new session with a written summary.

@@ -90,7 +90,9 @@ Make the second one match by **file type across folders**: `paths: ["**/*.test.*
 
 **3. A project skill** in `.claude/skills/` using `context: fork` **and** `allowed-tools`.
 - ✅ Check the skill's output does not appear in the main conversation.
-- Add `argument-hint` and call the skill with no arguments, to see the prompt.
+- Add `argument-hint` and call the skill with no arguments, to see the prompt. (In the current
+  product this will not reproduce — `argument-hint` is only an autocomplete display hint. The
+  exam still expects "it prompts for the parameter", per the guide.)
 
 **4. A project slash command** in `.claude/commands/`.
 - ✅ Say why not `~/.claude/commands/`.

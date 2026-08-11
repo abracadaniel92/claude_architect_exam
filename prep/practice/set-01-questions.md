@@ -1,6 +1,6 @@
 # Practice Set 1 — Diagnostic (20 items)
 
-Blueprint-weighted: D1 ×5 · D2 ×4 · D3 ×4 · D4 ×4 · D5 ×3.
+Domain mix: D1 ×3 · D2 ×2 · D3 ×6 · D4 ×5 · D5 ×4 — heavier on D3/D4 than the real blueprint.
 Target time: **40 minutes** (2 min/item). Select one response unless stated otherwise.
 
 Write your answers down before checking `set-01-answers.md`. Score by domain — the point of

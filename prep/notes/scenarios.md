@@ -94,7 +94,8 @@ An agent helps engineers explore unfamiliar codebases, understand old systems, g
 boilerplate, and automate repetitive work. It uses the built-in tools (Read, Write, Bash, Grep,
 Glob) and MCP servers.
 
-**Domains:** 2 (Tool Design & MCP), 3 (Claude Code Configuration), 1 (Agentic Architecture)
+**Domains:** 2 (Tool Design & MCP), 3 (Claude Code Configuration), 1 (Agentic Architecture),
+5 (Context Management — scratchpads, `/compact`, subagents for long sessions)
 
 **Expect questions about:**
 - Grep or Glob?

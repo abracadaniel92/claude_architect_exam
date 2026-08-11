@@ -1,8 +1,9 @@
 # Domain 4 — Daily Fact Drill (5 minutes)
 
 **Why this file exists:** your day-1 diagnostic scored 1/5 in Domain 4, on 20% of the exam.
-The three misses (Q13, Q14, Q15) were flat recall failures, not reasoning failures — so the
-treatment is spaced repetition, not more study time.
+Three of the four misses (Q13, Q14, Q15) were flat recall failures — for those, the treatment is
+spaced repetition, not more study time. The fourth (Q17) was applying a rule too widely; this
+drill does not cover it, so re-read `01-answer-patterns.md` as well.
 
 **How to use it:** once a day, every day, from day 2 to day 19. Cover the right column, recite
 aloud, uncover. Under 5 minutes. Mark anything you miss twice in a row with a ✗ and drill only

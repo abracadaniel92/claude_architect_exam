@@ -256,15 +256,16 @@ S.append(tbl([
     ["The loop is controlled by <b>stop_reason</b>. Nothing else."],
     ["<b>\"tool_use\"</b>  ->  run the tools, add results to history, repeat"],
     ["<b>\"end_turn\"</b>  ->  stop"],
-    ["All six values: end_turn, max_tokens, stop_sequence, tool_use, pause_turn, refusal"],
+    ["All seven API values: end_turn, max_tokens, stop_sequence, tool_use, pause_turn, refusal, model_context_window_exceeded. The exam tests the first pair"],
     ["Every tool_use needs one tool_result with the same <b>tool_use_id</b>"],
     ["Send all results from one Claude message back in <b>ONE</b> user message"],
 ], [W]))
 sp(3)
-S.append(box("Three wrong ways to stop the loop", [
+S.append(box("Four wrong ways to stop the loop", [
     "1.  Reading Claude's text for a phrase like \"I have completed\"",
     "2.  A loop counter as the MAIN stopping method (as a safety limit it is fine)",
     "3.  Checking whether the response contains text  -  text and tool calls appear together",
+    "4.  An explicit task_complete tool  -  end_turn already signals completion",
 ]))
 
 h2("Subagents")
@@ -295,7 +296,7 @@ S.append(tbl([
 h2("The two hook types")
 S.append(tbl([
     ["<b>PostToolUse</b>", "Changes tool <b>RESULTS</b> before the model reads them.<br/>Use for normalising different data formats (Unix time / ISO 8601 / numeric codes)"],
-    ["<b>Interception hook</b>", "Blocks an outgoing tool <b>CALL</b>.<br/>Use for blocking refunds over $500 and redirecting to escalation"],
+    ["<b>PreToolUse</b><br/>(the interception hook)", "Blocks an outgoing tool <b>CALL</b>.<br/>Use for blocking refunds over $500 and redirecting to escalation"],
 ], [38 * mm, W - 38 * mm]))
 
 h2("Splitting up work")
@@ -308,9 +309,11 @@ S.append(Paragraph("A bigger context window does <b>NOT</b> fix attention diluti
 
 h2("Sessions")
 S.append(tbl([
-    ["Earlier context is mostly still correct", "--resume, and tell it which files changed"],
-    ["Earlier tool results are <b>stale</b>", "Start a NEW session with a written summary"],
+    ["A few known files changed", "--resume, and name the changed files"],
+    ["Earlier tool results are <b>mostly stale</b>", "Start a NEW session with a written summary"],
 ], [72 * mm, W - 72 * mm]))
+sp(2)
+S.append(Paragraph("The question is <b>HOW MUCH</b> is stale, not whether anything is stale.", BODY))
 
 S.append(PageBreak())
 
@@ -340,7 +343,7 @@ S.append(tbl([
 sp(3)
 S.append(tbl([
     ["Every error returns: <b>errorCategory</b> + <b>isRetryable</b> + a readable message"],
-    ["Business rules also need <b>retriable: false</b> and a customer-friendly explanation"],
+    ["Business rules also need <b>isRetryable: false</b> and a customer-friendly explanation"],
     ["An <b>access failure is NOT an empty result</b>. A timeout may need a retry; zero matches is a success"],
     ["Subagents fix transient failures <b>themselves</b>. They only report what they cannot fix"],
     ["When reporting: failure type + what was tried + partial results + alternatives"],

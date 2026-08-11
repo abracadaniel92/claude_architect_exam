@@ -1,7 +1,14 @@
 # Material Audit — 11 August 2026
 
-Findings from a review of the study material. Nothing here has been fixed yet except the
-answer-key rebalance (item 0), which is already applied.
+Findings from a review of the study material.
+
+**Status (updated later on 11 Aug):** **everything is closed.** All Verified items (0, 1, 2,
+4a–4e) are fixed, and item 3 was adjudicated directly against `exam guide.pdf` (v1.0, July 2026),
+which was in the folder — see item 3 below for the row-by-row verdicts. All three PDFs are
+regenerated from the corrected sources. A second review confirmed every Verified finding and
+found two extra instances of 4b the original audit missed (`LOG.md` and
+`practice/daily-facts-domain-4.md`), both fixed. Purcell's 60-question set was also cross-checked:
+zero contradictions with this repo's material.
 
 **How to read the confidence column:**
 
@@ -38,17 +45,14 @@ New distribution across 66 single-answer questions: **A 17 · B 14 · C 17 · D 
 | drill-domain-4 | 3 | 2 | 3 | 3 | B+D, A+D, B+C, A+C |
 | set-01 | 5 | 4 | 5 | 5 | B+D |
 
-### Consequence: the PDFs no longer match
+### Consequence: the PDFs no longer match — RESOLVED 11 Aug
 
-`CCAR-F-practice-questions.pdf` holds the **old** option order. The README says to mark it
-against `prep/practice/`, which now holds the **new** order. Every letter will mismatch.
-
-Either regenerate with `tools/make-study-pdfs.py`, or use the PDF only as a question source and
-never mark against the markdown keys.
+All three PDFs were regenerated from the corrected markdown, so the question booklet now matches
+the rebalanced keys in `prep/practice/`.
 
 ---
 
-## 1. `--json-schema` is taught as a fake flag in one place, real in four — **Verified**
+## 1. `--json-schema` is taught as a fake flag in one place, real in four — **Verified — FIXED 11 Aug**
 
 `practice/set-01-answers.md:235` — *"Note that three of the four options here describe things
 that **do not exist**."*
@@ -69,7 +73,7 @@ real flag that solves a different problem."*
 
 ---
 
-## 2. The retriable error field is spelled two ways — **Verified**
+## 2. The retriable error field is spelled two ways — **Verified — FIXED 11 Aug** (standardised on `isRetryable`, with a note that the guide's prose sometimes writes "retriable")
 
 | Spelling | Where |
 |---|---|
@@ -88,11 +92,31 @@ sometimes writes it the other way.
 
 ---
 
-## 3. Product drift — **Docs-only, needs the guide to adjudicate**
+## 3. Product drift — **ADJUDICATED 11 Aug against exam guide v1.0 (July 2026)**
 
-Seven places where the notes disagree with current public documentation. **Do not overwrite these
-without checking the guide.** Answer the exam the guide's way; annotate so the wrong mental model
-does not carry into real work.
+The guide PDF was in the repo folder all along (`exam guide.pdf`, gitignored). Checked directly.
+**Verdict: on every row the notes already matched the guide** — the "notes say" column *is* the
+exam answer. Product-drift annotations were added in the notes files (domain-3 ×2, domain-4
+batches, exercises README) so the wrong mental model does not carry into real work. Row-by-row:
+
+- **3a, 3b, 3c** — the guide states the notes' version verbatim ("restrict tool access",
+  "prompt developers for required parameters", and `paths` listed only under `.claude/rules/`,
+  never in the SKILL.md frontmatter set). Annotated, not changed.
+- **3d** — "`@import` syntax" is the guide's own wording. Annotated.
+- **3e** — "verify which memory files are loaded" is the guide's own wording for `/memory`. Annotated.
+- **3f** — the guide never names `PreToolUse`; it writes "tool call interception" throughout, and
+  its appendix lists "hooks (PostToolUse, tool call interception)". The asymmetry in the notes
+  faithfully mirrored the guide. The real name stays as an annotation (already added).
+- **3g** — the guide names only `tool_use`/`end_turn` and never counts API values, so the "six"
+  claim was this repo's own added fact. **Corrected to seven** (`model_context_window_exceeded`)
+  in the notes, cheat sheet, and revision card.
+- **3h** — "no multi-turn tool calling support" appears word-for-word in the guide's appendix.
+  Annotated with the docs' contrary position.
+
+Independent corroboration: Matthew Purcell's 60-question set (also written against guide v1.0)
+agrees with the guide on every one of these points, including using both `isRetryable` **and**
+`retriable` — the guide itself uses both spellings in the same task statement, which is where
+item 2's inconsistency originally came from.
 
 | # | Location | Notes say | Docs say |
 |---|---|---|---|
@@ -106,11 +130,18 @@ does not carry into real work.
 | 3h | `notes/domain-4-prompt-structured-output.md:249`, `03-cheat-sheet.md:218`, `daily-facts-domain-4.md:66`, `02-course-map.md:156` | Batches API: multi-turn tool calling **not supported** | Batch docs list tool use and multi-turn conversations as supported. The defensible point is that a batch request is one *stateless* call, so a client-side agentic loop cannot run inside it |
 
 **3f is the one worth adding unconditionally** — knowing the real event name costs nothing and
-protects against it appearing as an option.
+protects against it appearing as an option. **DONE 11 Aug:** `PreToolUse` is now named alongside
+"interception hook" in the domain-1 notes, the cheat sheet, and the revision card. The rest of
+item 3 is untouched, pending the guide. Treat 3a and 3c with extra care: the documented behaviour
+of `allowed-tools` and `paths:` in SKILL.md is less settled than this table implies.
 
 ---
 
-## 4. Smaller internal problems — **Verified**
+## 4. Smaller internal problems — **Verified — ALL FIXED 11 Aug**
+
+(4b also existed in two more locations the original audit missed — `LOG.md` weak point 1, which
+said "1 out of 5" and "all three misses" in the same paragraph, and
+`practice/daily-facts-domain-4.md:4`. Both fixed with the others.)
 
 **4a. Set 1's stated blueprint contradicts its own answer key.**
 `practice/set-01-questions.md:3` claims D1×5 · D2×4 · D3×4 · D4×4 · D5×3. Tallying the
@@ -150,10 +181,10 @@ no notes file mentions.
 
 ## Suggested order of work
 
-1. Item 1 — `--json-schema`. Breaks an answer technique.
-2. Item 2 — one spelling for the retriable field.
-3. Item 4c — add the "how much is stale" qualifier, and put the rule on the cheat sheet.
-4. Item 3f — add the name `PreToolUse`.
-5. Items 4a, 4b, 4d, 4e — small corrections.
-6. Item 3 (the rest) — only with the exam guide open. Annotate, do not overwrite.
-7. Decide about the PDFs.
+1. ~~Item 1 — `--json-schema`. Breaks an answer technique.~~ **Done.**
+2. ~~Item 2 — one spelling for the retriable field.~~ **Done — `isRetryable`.**
+3. ~~Item 4c — add the "how much is stale" qualifier, and put the rule on the cheat sheet.~~ **Done — also on the revision card.**
+4. ~~Item 3f — add the name `PreToolUse`.~~ **Done.**
+5. ~~Items 4a, 4b, 4d, 4e — small corrections.~~ **Done, plus the LOG.md instance of 4b.**
+6. ~~Item 3 (the rest) — only with the exam guide open. Annotate, do not overwrite.~~ **Done — adjudicated against the guide 11 Aug; notes matched the guide on every row, annotations added.**
+7. ~~Decide about the PDFs.~~ **Done — all three regenerated.**

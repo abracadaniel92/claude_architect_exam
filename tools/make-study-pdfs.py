@@ -191,6 +191,7 @@ build(
         ("Domain 2 drill - 15 questions", strip_answers(read("practice/drill-domain-2.md"))),
         ("Domain 3 drill - 15 questions", strip_answers(read("practice/drill-domain-3.md"))),
         ("Domain 4 drill - 15 questions", strip_answers(read("practice/drill-domain-4.md"))),
+        ("Domain 5 drill - 15 questions", strip_answers(read("practice/drill-domain-5.md"))),
     ],
     Q_INTRO,
 )

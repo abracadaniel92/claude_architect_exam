@@ -61,6 +61,7 @@ Also: [the six exam scenarios](prep/notes/scenarios.md).
 | [Domain 1 drill](prep/practice/drill-domain-1.md) | 15 |
 | [Domain 2 drill](prep/practice/drill-domain-2.md) | 15 |
 | [Domain 3 drill](prep/practice/drill-domain-3.md) | 15 |
+| [Domain 5 drill](prep/practice/drill-domain-5.md) | 15 |
 | [Domain 4 daily facts](prep/practice/daily-facts-domain-4.md) | 5-minute memory drill |
 
 The **questions** are written in exam-level English on purpose. The **explanations** are in simple

@@ -14,7 +14,7 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 |---|---|
 | **Exam** | Claude Certified Architect – Foundations (CCAR-F) |
 | **Exam date** | Tuesday 25 August 2026 |
-| **Booked?** | ☐ not yet — do this first |
+| **Booked?** | ☑ **booked 11 Aug**, for Tue 25 August |
 | **Study period** | Monday 10 August – Monday 24 August (15 days) |
 | **Current day** | Day 2 of 15 — Tue 11 Aug. Domains 1 and 2 both drilled, ahead of schedule |
 | **Next session** | Domain 3 — the memorisation domain. Also: work through `AUDIT.md` |
@@ -58,9 +58,11 @@ missed twice is a fact you have not learned. Put it on the cheat sheet.
 Updated as evidence appears. Right now, from Set 1 only:
 
 1. **Domain 4 is the big gap — 1 out of 5, on 20% of the exam.**
-   All three misses were flat facts, not reasoning: `tool_choice` values (`auto` allows text),
+   Three of the four misses were flat facts: `tool_choice` values (`auto` allows text),
    required schema fields causing invented values, and which errors a retry can fix.
    → Fixed by `daily-facts-domain-4.md`, 5 minutes every day.
+   The fourth (Q17, voting across passes) was applying a rule too widely — see point 2. So the
+   Domain 4 gap is not pure recall.
 
 2. **Applying a rule too widely.** Chose plan mode for a single-file fix (Q12). Chose voting
    across review passes (Q17), which is on the "never correct" list.
@@ -112,6 +114,9 @@ community vs custom servers, local recovery vs reporting upward.
 
 | Date | What happened |
 |---|---|
+| 11 Aug | **Booked the exam for Tue 25 August.** Built the Domain 5 drill (15 questions, all six task statements, balanced key) — every domain now has a drill. |
+| 11 Aug | Cross-checked Purcell's 60-question set and the official exam guide (both PDFs were already in the folder). Purcell's answer key agrees with this repo's material on **all 60 questions** — zero contradictions, though topical overlap is heavy since both are written against guide v1.0. The guide adjudicated every remaining docs-drift item in `AUDIT.md` in the notes' favour; annotations added, `stop_reason` count corrected to seven, `AUDIT.md` is now fully closed. Bonus finding: the guide itself uses both `isRetryable` and `retriable` in the same task statement — the origin of the spelling inconsistency. |
+| 11 Aug | A second review independently confirmed every verified `AUDIT.md` finding, then applied the fixes: the `--json-schema` contradiction, one spelling for the retriable field (`isRetryable`), the Set 1 blueprint header, the Domain 4 miss count (four, not three — in four files, including this one), the resume-vs-fresh "how much is stale" qualifier (now also on the cheat sheet and revision card), required-vs-nullable, Scenario 4's missing Domain 5, the fourth wrong-way-to-stop (`task_complete`), and the `PreToolUse` name. All three PDFs regenerated. Docs-only items 3a–3e/3g/3h left for a session with the exam guide open. |
 | 11 Aug | Domain 2: took the repo drill (14/15) then three balanced ad-hoc sets (13/15, 7/10, 9/10). **Discovered a severe answer-key bias in all five practice files** — 56 of 66 single-answer questions were B and D was never correct, so "always answer B" scored 56/66. Rebalanced every file and verified no option text changed. Ran a full audit of the material for contradictions and factual drift → **`AUDIT.md`**, nothing fixed yet. |
 | 10 Aug | Domain 1: took the repo drill cold (10/15), reviewed the whole domain by mental model rather than fact list, then 10/10 on a balanced ad-hoc set. Three weak spots identified and closed — see weak points 5–7 above. |
 | 10 Aug | Reviewed Matthew Purcell's LinkedIn exam review and his 60-question practice set. Confirmed three earlier calls (Bedrock/Vertex out of scope, Claude 101 and AI Fluency too basic, exam is memorisation-heavy). Downgraded the scenarios from "study" to "skim once". Adjusted exam-day timing. His set replaces the mock I was going to write for 23 Aug. |
@@ -124,9 +129,8 @@ community vs custom servers, local recovery vs reporting upward.
 | Needed by | What |
 |---|---|
 | ~~19 Aug~~ | ~~Domain 4 drill~~ — **built 10 Aug** |
-| 21 Aug | Domain 5 drill (15 questions) |
-| **Before revision day** | Work through **[`AUDIT.md`](AUDIT.md)** — two verified contradictions in the material, eight places where the notes drift from current product behaviour, and several smaller corrections. Nothing is fixed yet |
-| Decide | The PDFs no longer match the rebalanced markdown keys. Either regenerate `CCAR-F-practice-questions.pdf`, or stop marking it against `prep/practice/` |
+| ~~21 Aug~~ | ~~Domain 5 drill (15 questions)~~ — **built 11 Aug.** Balanced key, covers all six task statements, deliberately avoids Purcell's D5 framings so the 23 Aug mock stays cold |
+| ~~Before revision day~~ | ~~Work through `AUDIT.md`~~ — **fully closed 11 Aug.** Verified items fixed, docs-drift items adjudicated against the exam guide (the notes matched the guide on every row), annotations added, PDFs regenerated |
 
 ~~23 Aug: full mock~~ — **no longer needed.** Matthew Purcell's 60-question practice set
 (`1784098676646.pdf`, kept locally, not in the public repo) replaces it. Written by someone who
@@ -139,7 +143,7 @@ passed CCAR-F, blueprint-weighted, and it includes 11 multiple-response question
 | Resource | What it is | When |
 |---|---|---|
 | `/cert-exam` | 77 community questions by Olivier Legris, installed as a Claude Code skill. Single-answer only | Daily, 15 at a time |
-| `1784098676646.pdf` | Matthew Purcell's 60-question set. Blueprint-weighted, 11 multiple-response, answer key with rationales | **23 Aug only** — take it cold |
+| `1784098676646.pdf` | Matthew Purcell's 60-question set. Blueprint-weighted, 11 multiple-response, answer key with rationales. **Cross-checked 11 Aug: zero contradictions with the repo material.** Caveat: heavy topical overlap with the repo drills (same guide, same scenarios), so a high mock score partly reflects repetition — weight the domains you haven't drilled recently | **23 Aug only** — take it cold |
 | Matthew Purcell's LinkedIn review | He passed all four exams. Confirms: Bedrock/Vertex not tested, Claude 101 and AI Fluency too basic, CCAR-F is the hardest of the four, scenarios are "dressing", finished in 90 of 120 min | Read once |
 | Paul Larionov's GitHub repo | A study guide Purcell recommends. **Not yet evaluated** | Optional |
 

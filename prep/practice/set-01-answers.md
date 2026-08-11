@@ -232,8 +232,10 @@ temporarily, keep the security category running, and fix the prompt.
 
 `-p` (`--print`) is the documented non-interactive mode.
 
-Note that three of the four options here describe things that **do not exist**. Learning the real
-list of flags makes these questions easy.
+Note that two of the four options (`CLAUDE_HEADLESS=true` and `--no-interactive`) describe things
+that **do not exist**. `--json-schema` is a real flag, but it solves a different problem — forcing
+output to follow a schema, not fixing a job that hangs waiting for input. Learning the real list
+of flags makes these questions easy.
 
 ---
 
@@ -255,8 +257,10 @@ the agent does not prefer built-in tools like Grep over better MCP tools.
 
 ## What your results mean
 
-**Your three Domain 4 mistakes were facts, not reasoning.** Q13, Q14 and Q15 each test one flat
-fact. Facts are quick to learn. Use `daily-facts-domain-4.md` every day.
+**You missed four Domain 4 questions, and three of them were facts, not reasoning.** Q13, Q14 and
+Q15 each test one flat fact. Facts are quick to learn. Use `daily-facts-domain-4.md` every day.
+The fourth Domain 4 miss, Q17, was **not** a fact — see the next paragraph. The Domain 4 gap is
+not pure recall.
 
 **Two mistakes were about applying a rule too widely.** Q12 (plan mode) and Q17 (voting across
 passes) were both already answered in `01-answer-patterns.md`. Read that file slowly.

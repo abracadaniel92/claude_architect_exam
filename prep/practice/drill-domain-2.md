@@ -54,7 +54,7 @@ days. The `process_refund` MCP tool must reject this. What should it return?
 A. `{"isError": true, "message": "Operation failed"}`
 B. `{"isError": true, "errorCategory": "validation", "isRetryable": true, "message": "Invalid refund request"}`
 C. A successful response with `refund_amount: 0`, letting the agent infer the rejection.
-D. `{"isError": true, "errorCategory": "business", "retriable": false, "message": "Refunds are available within 90 days of purchase. This order was placed 95 days ago."}`
+D. `{"isError": true, "errorCategory": "business", "isRetryable": false, "message": "Refunds are available within 90 days of purchase. This order was placed 95 days ago."}`
 
 ---
 
@@ -205,7 +205,7 @@ keyword — "reports" appears in both the system prompt and the tool name.
 - **B** — the question does not mention a tool-count problem.
 - **D** — covers the prompt problem instead of fixing it.
 
-**Q4 — D.** A business rule violation needs `retriable: false` **and a customer-friendly
+**Q4 — D.** A business rule violation needs `isRetryable: false` **and a customer-friendly
 explanation**, so the agent can explain the policy. Both parts are named skills in the guide.
 - **A** — the generic error the guide rejects.
 - **B** — wrongly labelled as validation **and** marked retryable. The agent will retry forever.

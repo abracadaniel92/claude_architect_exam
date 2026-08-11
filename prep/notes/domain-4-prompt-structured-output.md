@@ -2,9 +2,10 @@
 
 About 12 of the 60 questions come from here. There are 6 task statements.
 
-**This is your weakest domain.** You scored 1 out of 5 in the day-1 test. The three questions you
-missed were all facts, not reasoning. Facts are quick to fix. Use
-`practice/daily-facts-domain-4.md` every day.
+**This is your weakest domain.** You scored 1 out of 5 in the day-1 test — four misses. Three
+(Q13, Q14, Q15) were flat facts, and facts are quick to fix: use
+`practice/daily-facts-domain-4.md` every day. The fourth (Q17) was applying a rule too widely,
+which is reasoning, not recall — so daily facts alone will not close this domain.
 
 Two ideas run through this domain:
 
@@ -110,6 +111,10 @@ Any answer claiming schemas guarantee correct content is wrong.
 This is the most tested schema fact. A **required** field forces the model to produce something.
 If the value is not in the document, the model invents one.
 
+The rule cuts both ways: **required is right when the source always contains the value** — then it
+guarantees the field cannot be omitted. **Nullable is right when the source may not contain it.**
+The exam uses both as correct answers, in different scenarios.
+
 Other rules:
 - Use an enum with an **`"other"` value plus a detail string** for categories that may grow.
 - Add an **`"unclear"`** enum value for ambiguous cases.
@@ -171,6 +176,11 @@ Learn this table.
 **Good for:** work that can wait — overnight reports, weekly audits, nightly test generation.
 
 **Bad for:** work that blocks someone — a pre-merge check where a developer is waiting.
+
+> **Product note.** "No multi-turn tool calling" is stated word-for-word in the exam guide's
+> appendix, so it is the exam answer. Current public batch docs describe tool use as supported —
+> the defensible reading is that one batch request is a single stateless call, so a client-side
+> agentic loop cannot run inside it. Answer the guide's way.
 
 ### Sample Q11
 

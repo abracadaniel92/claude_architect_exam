@@ -2,9 +2,10 @@
 
 **20% of the exam**, about 12 of 60 questions.
 
-**This is your weakest domain.** You scored 1 out of 5 in Set 1. All three misses were flat facts:
-`tool_choice` values, required schema fields, and which errors a retry can fix. Those three facts
-are tested again here, in different clothes.
+**This is your weakest domain.** You scored 1 out of 5 in Set 1 — four misses. Three were flat
+facts: `tool_choice` values, required schema fields, and which errors a retry can fix. Those three
+facts are tested again here, in different clothes. The fourth miss (Q17, voting across review
+passes) was applying a rule too widely — watch for that shape here too.
 
 Four questions ask for **two answers**. The real exam is about one in five, so this matches.
 

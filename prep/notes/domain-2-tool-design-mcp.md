@@ -90,8 +90,9 @@ On the exam, any answer offering a single generic error message is wrong.
 }
 ```
 
-For a business rule violation, include `retriable: false` **and a customer-friendly
-explanation**, so the agent can explain the policy to the user.
+For a business rule violation, include `isRetryable: false` **and a customer-friendly
+explanation**, so the agent can explain the policy to the user. (The guide's prose sometimes
+spells the field "retriable" — same field, same meaning.)
 
 ### Local recovery in subagents
 

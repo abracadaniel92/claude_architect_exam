@@ -95,12 +95,13 @@ You cannot take notes into the exam. Everything here must be in your head.
 - The loop is controlled by **`stop_reason`**. Nothing else.
 - `"tool_use"` → run the tools, add results to history, repeat.
 - `"end_turn"` → stop.
-- All six values: `end_turn`, `max_tokens`, `stop_sequence`, `tool_use`, `pause_turn`, `refusal`.
+- All seven API values: `end_turn`, `max_tokens`, `stop_sequence`, `tool_use`, `pause_turn`,
+  `refusal`, `model_context_window_exceeded`. The guide tests only the first pair above.
 - Every `tool_use` needs one `tool_result` with the same `tool_use_id`.
 - Send all results from one Claude message back in **one** user message.
 
-**Three wrong ways to stop:** reading the text · a loop counter as the main method · checking if
-text exists.
+**Four wrong ways to stop:** reading the text · a loop counter as the main method · checking if
+text exists · a `task_complete` tool.
 
 ---
 
@@ -113,6 +114,10 @@ text exists.
 - **`fork_session`** = branches from one shared analysis, to compare approaches.
 - All messages go **through the coordinator**. Subagents never talk to each other.
 - Coverage is incomplete but every agent worked → **the coordinator's split was too narrow.**
+
+**Resume or start fresh?** Decided by **how much** is stale. A few known files changed →
+`--resume` and name the changed files. Most of the earlier context stale → **new** session with a
+written summary.
 
 ---
 
@@ -127,8 +132,8 @@ text exists.
 **Two hook types:**
 - `PostToolUse` — changes tool **results** before the model reads them. Use for normalising
   different data formats.
-- **Interception hook** — blocks an outgoing tool **call**. Use for blocking refunds over $500 and
-  redirecting to escalation.
+- **`PreToolUse`** (the interception hook) — blocks an outgoing tool **call**. Use for blocking
+  refunds over $500 and redirecting to escalation.
 
 ---
 
@@ -137,7 +142,8 @@ text exists.
 **Four categories:** transient · validation · business · permission
 
 **Every error returns:** `errorCategory` + `isRetryable` + a readable message.
-For business rules, add `retriable: false` and a customer-friendly explanation.
+For business rules, add `isRetryable: false` and a customer-friendly explanation.
+(The guide's prose sometimes spells the field "retriable" — same field, same meaning.)
 
 **An access failure is not an empty result.** A timeout may need a retry. Zero matches is a
 success.
