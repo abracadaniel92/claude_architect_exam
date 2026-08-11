@@ -16,8 +16,8 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | **Exam date** | Tuesday 25 August 2026 |
 | **Booked?** | ☐ not yet — do this first |
 | **Study period** | Monday 10 August – Monday 24 August (15 days) |
-| **Current day** | Not started. First study day is Mon 10 Aug |
-| **Next session** | Domain 1 notes, sections 1.1–1.4 |
+| **Current day** | Day 2 of 15 — Tue 11 Aug. Domains 1 and 2 both drilled, ahead of schedule |
+| **Next session** | Domain 3 — the memorisation domain. Also: work through `AUDIT.md` |
 | **Study time** | About 2 hours per day |
 
 ---
@@ -27,10 +27,14 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | Date | Test | Score | Notes |
 |---|---|---|---|
 | 8 Aug | Set 1 (20, cold) | **11/20** | D1 2/3 · D2 2/2 · D3 4/6 · D4 **1/5** · D5 2/4 |
-| 10 Aug | `/cert-exam 15` — D1 | | |
-| 11 Aug | Domain 1 drill (15) | | |
+| 10 Aug | Domain 1 drill (15) | **10/15** | Missed Q7, Q9, Q13, Q14, Q15. Taken before the rebalance — see note below |
+| 10 Aug | D1 ad-hoc set (15) | ~~10/15~~ | **Void.** 14 of 15 answers were B. Discarded |
+| 10 Aug | D1 ad-hoc set, balanced (10) | **10/10** | Cleared both traps missed earlier: unknown-scope decomposition, and resume-vs-fresh |
+| 11 Aug | Domain 2 drill (15) | **14/15** | Missed Q15 (Grep/Glob/semantic). Taken before the rebalance — 12 of 13 singles were B, so treat as ~12 |
+| 11 Aug | D2 ad-hoc set, balanced (15) | **13/15** | Missed Q1 (error category), Q10 (tool granularity) |
+| 11 Aug | D2 ad-hoc set, balanced (10) | **7/10** | Rushed — read the questions too fast. Missed Q2, Q4 (half), Q10 |
+| 11 Aug | D2 ad-hoc set, balanced (10) | **9/10** | Missed Q7 (`tool_choice` values). Error categories and search triad all clean |
 | 12 Aug | `/cert-exam 15` — D2 | | |
-| 13 Aug | Domain 2 drill (15) | | |
 | 14 Aug | `/cert-exam 15` — D3 | | |
 | 15 Aug | Domain 3 drill (15) | | |
 | **16 Aug** | **Mock 1 — `/cert-exam 60`, timed** | | Record the score for every domain |
@@ -73,12 +77,43 @@ Updated as evidence appears. Right now, from Set 1 only:
 two-layer context management, conflicting sources, batch vs real-time. The architecture reasoning
 is sound. The gap is recall.
 
+### Added 10–11 Aug, from the Domain 1 and 2 drills
+
+5. **Rules stored where the guide has a threshold.** Three Domain 1 misses were all this shape:
+   *stale → fresh session* (it is actually "how much is stale"), *audit → per-file passes* (it is
+   actually "do I know the shape before I start"), and `!= end_turn` *→ continue* (it is actually
+   "continue only on `tool_use`"). Each rule works most of the time, which is why it sticks.
+   → Convert each into a question you ask the scenario. All three came out clean afterwards.
+
+6. **Stopping at the first correct answer on select-two questions.** Happened three times.
+   → Reliable tell: **if the scenario names two distinct symptoms, the two answers map onto
+   them.** One answer cannot be complete.
+
+7. **Error categories decided by feel rather than by test.** Two misses. The test, in order:
+   did the system fail and might a retry succeed → *transient*; is the input malformed →
+   *validation*; input and system both fine but a rule says no → *business*; caller lacks access
+   → *permission*. Only transient is retriable.
+
+8. **Grep / Glob / semantic search.** Missed three times before it stuck. **Glob = file paths.
+   Grep = text you can spell exactly. Semantic = concepts with no literal to search for.**
+   If the question prints the string you are looking for, it is Grep.
+
+9. **`tool_choice` values.** `auto` = may call a tool *or answer directly*. `any` = must call
+   some tool, model picks which. `{"type": "tool", "name": ...}` = must call that one.
+   "any" reads like "anything permitted"; it means "one of them, mandatory."
+
+**Confirmed strong in Domain 2:** programmatic enforcement, scope partitioning vs iterative
+refinement, MCP resources vs tools, `.mcp.json` vs `~/.claude.json`, `${VAR}` expansion,
+community vs custom servers, local recovery vs reporting upward.
+
 ---
 
 ## Session history
 
 | Date | What happened |
 |---|---|
+| 11 Aug | Domain 2: took the repo drill (14/15) then three balanced ad-hoc sets (13/15, 7/10, 9/10). **Discovered a severe answer-key bias in all five practice files** — 56 of 66 single-answer questions were B and D was never correct, so "always answer B" scored 56/66. Rebalanced every file and verified no option text changed. Ran a full audit of the material for contradictions and factual drift → **`AUDIT.md`**, nothing fixed yet. |
+| 10 Aug | Domain 1: took the repo drill cold (10/15), reviewed the whole domain by mental model rather than fact list, then 10/10 on a balanced ad-hoc set. Three weak spots identified and closed — see weak points 5–7 above. |
 | 10 Aug | Reviewed Matthew Purcell's LinkedIn exam review and his 60-question practice set. Confirmed three earlier calls (Bedrock/Vertex out of scope, Claude 101 and AI Fluency too basic, exam is memorisation-heavy). Downgraded the scenarios from "study" to "skim once". Adjusted exam-day timing. His set replaces the mock I was going to write for 23 Aug. |
 | 8 Aug | Identified two different exams (CCAR-F vs CCAR-P) and chose Foundations. Confirmed Foundations is accepted for Intertec partner tier. Built the full prep folder. Took Set 1 cold: 11/20. Converted everything to simple English. Found and installed the community 77-question practice exam as `/cert-exam`. Pushed everything to GitHub. |
 
@@ -90,6 +125,8 @@ is sound. The gap is recall.
 |---|---|
 | ~~19 Aug~~ | ~~Domain 4 drill~~ — **built 10 Aug** |
 | 21 Aug | Domain 5 drill (15 questions) |
+| **Before revision day** | Work through **[`AUDIT.md`](AUDIT.md)** — two verified contradictions in the material, eight places where the notes drift from current product behaviour, and several smaller corrections. Nothing is fixed yet |
+| Decide | The PDFs no longer match the rebalanced markdown keys. Either regenerate `CCAR-F-practice-questions.pdf`, or stop marking it against `prep/practice/` |
 
 ~~23 Aug: full mock~~ — **no longer needed.** Matthew Purcell's 60-question practice set
 (`1784098676646.pdf`, kept locally, not in the public repo) replaces it. Written by someone who
