@@ -17,33 +17,33 @@ the wrong reason will cost you on the real exam.
 
 ---
 
-**Q1 — B** · Domain 2
+**Q1 — A** · Domain 2
 
 A generic error stops the agent from deciding what to do next. With
 `errorCategory: "transient"` and `isRetryable: true`, the agent retries instead of telling the
 customer the order does not exist.
 
-- **A** — a longer timeout only delays the problem. The error message is still useless.
-- **C** — the agent is not disobeying. It genuinely cannot tell "service is down" apart from "no
-  such order."
-- **D** — this **hides the error**, which is worse. It treats an access failure as an empty
+- **B** — this **hides the error**, which is worse. It treats an access failure as an empty
   result.
+- **C** — a longer timeout only delays the problem. The error message is still useless.
+- **D** — the agent is not disobeying. It genuinely cannot tell "service is down" apart from "no
+  such order."
 
 ---
 
-**Q2 — C** · Domain 1
+**Q2 — B** · Domain 1
 
 Money plus a hard requirement ("must never") means programmatic enforcement. Prompts and context
 flags both fail sometimes.
 
-- **A** — few-shot examples are probabilistic. Level 2 for a level 4 problem.
-- **B** — still depends on the agent choosing to check the flag. Same weakness, more code.
-- **D** — this is about which tools are **available**, not about the verification **requirement**.
+- **A** — this is about which tools are **available**, not about the verification **requirement**.
   It also adds a classifier, which is too big a solution.
+- **C** — few-shot examples are probabilistic. Level 2 for a level 4 problem.
+- **D** — still depends on the agent choosing to check the flag. Same weakness, more code.
 
 ---
 
-**Q3 — B** ❌ *(you answered A)* · Domain 5
+**Q3 — C** ❌ *(you answered B)* · Domain 5
 
 **This is the most valuable question in the set.**
 
@@ -51,184 +51,184 @@ The customer said "just give me a human." That is an explicit request. Escalate 
 without investigating first. Also include a structured handoff summary, because the human cannot
 see the conversation.
 
-- **A** — your answer. It is correct behaviour for a **frustrated** customer whose problem the
+- **A** — sentiment is never an escalation signal on this exam.
+- **B** — your answer. It is correct behaviour for a **frustrated** customer whose problem the
   agent can solve. It becomes wrong the moment the customer clearly asks for a human.
 
 The guide draws this exact line, so expect it on the real exam. The test is: **did the customer
 explicitly ask?**
 
-- **C** — ignores a clear request.
-- **D** — sentiment is never an escalation signal on this exam.
+- **D** — ignores a clear request.
 
 ---
 
-**Q4 — A and B** ✅ · Domain 5
+**Q4 — B and D** ✅ · Domain 5
 
-Two different layers. **A** stops the problem at the source, by trimming the output before it
-enters the context. **B** protects the facts that summarising would destroy.
+Two different layers. **B** stops the problem at the source, by trimming the output before it
+enters the context. **D** protects the facts that summarising would destroy.
 
-- **C** — the tokens are already used by the time the agent "ignores" them.
-- **D** — a bigger context window does not fix degradation. This is never the right answer.
+- **A** — the tokens are already used by the time the agent "ignores" them.
+- **C** — a bigger context window does not fix degradation. This is never the right answer.
 
 Notice the shape of a two-answer question: the two correct answers are **different layers**, not
 two ways of saying the same thing.
 
 ---
 
-**Q5 — B** ❌ *(you answered C)* · Domain 5
+**Q5 — D** ❌ *(you answered A)* · Domain 5
 
 Source information is lost during **summarisation**, when findings are compressed without keeping
 the link between each claim and its source. The subagent must output structured mappings: claim,
 evidence excerpt, source name, publication date.
 
-- **C** — your answer. It blames the coordinator. But the question says the subagent returns
+- **A** — your answer. It blames the coordinator. But the question says the subagent returns
   **prose summaries**. The coordinator cannot pass on source links that it never received.
-- **A** and **D** — both blame agents further down the chain. Same mistake.
+- **B** and **C** — both blame agents further down the chain. Same mistake.
 
 **The pattern:** the question told you what the subagent produces. Read that clause carefully.
 
 ---
 
-**Q6 — B** ✅ · Domain 1
+**Q6 — A** ✅ · Domain 1
 
 The Task tool starts subagents, and `allowedTools` must include `"Task"`. Without it there is no
 mechanism, no matter what the prompt says.
 
-- **C** — stronger wording cannot create a missing capability.
-- **D** — `.mcp.json` configures MCP servers, not subagents.
+- **B** — `.mcp.json` configures MCP servers, not subagents.
+- **D** — stronger wording cannot create a missing capability.
 
 ---
 
-**Q7 — B** ✅ · Domain 5
+**Q7 — C** ✅ · Domain 5
 
 Record both numbers with their sources, and include the **methodology**. The two figures differ
 by year *and* by region, so they may not actually disagree.
 
-- **A** — an average is a number no source supports, and it hides the real difference.
-- **C** — still picks one value. The guide says never choose one at random.
-- **D** — a third source cannot settle a difference in definitions.
+- **A** — a third source cannot settle a difference in definitions.
+- **B** — an average is a number no source supports, and it hides the real difference.
+- **D** — still picks one value. The guide says never choose one at random.
 
 ---
 
-**Q8 — B** ❌ *(you answered C)* · Domain 1
+**Q8 — D** ❌ *(you answered A)* · Domain 1
 
 Parallel means **several Task calls in one single response**.
 
-- **C** — your answer. `fork_session` creates branches from **one shared analysis**, to compare
+- **A** — your answer. `fork_session` creates branches from **one shared analysis**, to compare
   different approaches. It is a real feature, used for the wrong purpose here.
-- **A** — no such flag exists.
-- **D** — `allowedTools` is a permission list, not a concurrency setting.
+- **B** — `allowedTools` is a permission list, not a concurrency setting.
+- **C** — no such flag exists.
 
 **Learn the difference:** parallel subtasks = several Task calls. Comparing approaches from one
 starting point = `fork_session`.
 
 ---
 
-**Q9 — A** ❌ *(you answered B)* · Domain 3
+**Q9 — B** ❌ *(you answered C)* · Domain 3
 
 `@import` lets each package include the shared standards that apply to it, chosen by its
 maintainer, without copying anything.
 
-- **B** — your answer, and a reasonable one. Path globs are correct when conventions apply to
+- **A** — skills must be called; standards must always apply.
+- **C** — your answer, and a reasonable one. Path globs are correct when conventions apply to
   files **by type across many folders**. Here the boundaries are clean folders, and the
   requirement is choosing between shared documents.
 
 **The deciding phrase:** "maintainers control which shared documents apply, without duplicating
 them." That points to import.
 
-- **C** — copies content and gives maintainers no control.
-- **D** — skills must be called; standards must always apply.
+- **D** — copies content and gives maintainers no control.
 
 This was the hardest question in the set. It appears again as Q2 in the Domain 3 drill.
 
 ---
 
-**Q10 — B** ✅ · Domain 3
+**Q10 — C** ✅ · Domain 3
 
 `/memory` shows which memory files are loaded.
 
 ---
 
-**Q11 — C** ✅ · Domain 3
+**Q11 — A** ✅ · Domain 3
 
 `context: fork` runs the skill in a separate context, so its long output does not fill the main
 conversation.
 
 ---
 
-**Q12 — B** ❌ *(you answered C)* · Domain 3
+**Q12 — D** ❌ *(you answered A)* · Domain 3
 
 One file, clear scope, and the stack trace already gives you the line. Direct execution.
 
-- **C** — your answer. A shared utility does **not** make a null check architectural. Plan mode is
+- **A** — your answer. A shared utility does **not** make a null check architectural. Plan mode is
   triggered by unclear scope or unclear design, not by how many files import something.
-- **A** — expands the work beyond what was asked.
-- **D** — the Explore subagent is for noisy discovery in multi-phase work.
+- **B** — the Explore subagent is for noisy discovery in multi-phase work.
+- **C** — expands the work beyond what was asked.
 
 This appears again as Q11 in the Domain 3 drill, with the same bait. Watch for it.
 
 ---
 
-**Q13 — C** ❌ *(you answered A)* · Domain 4
+**Q13 — B** ❌ *(you answered C)* · Domain 4
 
 A **required** field forces the model to produce a value. If the document does not contain one,
 the model invents it. Make the field optional and nullable.
 
-- **A** — your answer. A checksum check happens **after** the value is invented. A fabricated tax
+- **A** — an instruction fighting against a structural pressure. The weakest option.
+- **C** — your answer. A checksum check happens **after** the value is invented. A fabricated tax
   ID may even pass the checksum.
-- **B** — examples might help, but the schema still demands a value. Fix the schema.
-- **D** — an instruction fighting against a structural pressure. The weakest option.
+- **D** — examples might help, but the schema still demands a value. Fix the schema.
 
 ---
 
-**Q14 — B** ❌ *(you answered A)* · Domain 4
+**Q14 — A** ❌ *(you answered C)* · Domain 4
 
 `"any"` forces the model to call a tool, while letting it choose which one. That is exactly right
 when the document type is unknown.
 
-- **A** — your answer. `auto` **allows the model to reply with text**. That is the bug described
+- **B** — `none` blocks tools completely.
+- **C** — your answer. `auto` **allows the model to reply with text**. That is the bug described
   in the question.
-- **C** — forcing one tool defeats the purpose when you do not know the type.
-- **D** — `none` blocks tools completely.
+- **D** — forcing one tool defeats the purpose when you do not know the type.
 
 **Memorise:** auto may talk · any must act · forced picks the actor.
 
 ---
 
-**Q15 — B** ❌ *(you answered D)* · Domain 4
+**Q15 — C** ❌ *(you answered A)* · Domain 4
 
 Retries fix **format and structure** problems. Retries cannot find information that is **not in
 the document**.
 
-- **D** — your answer, which is the reverse. Format errors are the ones retries fix.
-- **A** — assumes retries always work.
-- **C** — says retries never work.
+- **A** — your answer, which is the reverse. Format errors are the ones retries fix.
+- **B** — assumes retries always work.
+- **D** — says retries never work.
 
 ---
 
-**Q16 — B** ✅ · Domain 4
+**Q16 — D** ✅ · Domain 4
 
 Up to 24 hours and no speed guarantee, so batch is wrong for a blocking pre-commit hook and right
 for an overnight job.
 
-- **C** — a misunderstanding. `custom_id` matches results correctly.
+- **A** — a misunderstanding. `custom_id` matches results correctly.
 
 ---
 
-**Q17 — B** ❌ *(you answered C)* · Domain 4
+**Q17 — A** ❌ *(you answered B)* · Domain 4
 
 A category with many false alarms damages trust in the accurate categories too. Turn it off
 temporarily, keep the security category running, and fix the prompt.
 
-- **C** — your answer. Voting across passes **hides real bugs** that are only found sometimes.
+- **B** — your answer. Voting across passes **hides real bugs** that are only found sometimes.
   This is on the "never correct" list in `01-answer-patterns.md`.
-- **A** — "only report what you are confident about" is exactly the vague instruction the guide
+- **C** — a confidence threshold. Not calibrated, and it does not fix the category.
+- **D** — "only report what you are confident about" is exactly the vague instruction the guide
   says does not work.
-- **D** — a confidence threshold. Not calibrated, and it does not fix the category.
 
 ---
 
-**Q18 — A** ✅ · Domain 3
+**Q18 — C** ✅ · Domain 3
 
 `-p` (`--print`) is the documented non-interactive mode.
 
@@ -243,12 +243,12 @@ Include the earlier findings and tell Claude to report only new or still-unfixed
 
 ---
 
-**Q20 — B** ✅ · Domain 2
+**Q20 — D** ✅ · Domain 2
 
 "Searches code." is a very short description. The guide says to improve MCP tool descriptions so
 the agent does not prefer built-in tools like Grep over better MCP tools.
 
-- **C** — strong wording in the system prompt causes over-triggering, and the guide warns that
+- **A** — strong wording in the system prompt causes over-triggering, and the guide warns that
   prompt wording can create unwanted tool links.
 
 ---
