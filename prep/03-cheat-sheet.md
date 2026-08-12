@@ -55,6 +55,18 @@ You cannot take notes into the exam. Everything here must be in your head.
 
 **Rule:** anything starting with `~/` is personal and is **not** shared through version control.
 
+**Which mechanism holds which content** — this decides several questions:
+
+| The content is | Use | Because |
+|---|---|---|
+| Universal standards, must always apply | **CLAUDE.md** | Always loaded |
+| Shared documents, and each package's **maintainer picks** which apply — no duplication | **`@import`** in each package's CLAUDE.md | Selective inclusion by reference, nothing copied |
+| Conventions that follow a **file type across many folders** (`**/*.test.*`) | **`.claude/rules/`** with `paths:` | Loads only when a matching file is edited |
+| An on-demand, task-specific **workflow** (quarterly migration, release notes) | **a skill** | Called when needed |
+
+**Skills must be invoked.** So a skill can *never* be the answer for something that must always
+apply, or must load automatically. If a question says "automatic" or "always", skills are out.
+
 ---
 
 ## 3. Frontmatter keys — do not mix these up
@@ -134,6 +146,11 @@ written summary.
   different data formats.
 - **`PreToolUse`** (the interception hook) — blocks an outgoing tool **call**. Use for blocking
   refunds over $500 and redirecting to escalation.
+
+**Before answering ANY question:** does it say **select two**? If yes, count the symptoms in the
+scenario and check you have one answer per symptom. Mechanical step, every time.
+
+---
 
 **Splitting up work (Domain 1)**
 

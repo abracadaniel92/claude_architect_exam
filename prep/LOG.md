@@ -16,8 +16,8 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | **Exam date** | Tuesday 25 August 2026 |
 | **Booked?** | ☑ **booked 11 Aug**, for Tue 25 August |
 | **Study period** | Monday 10 August – Monday 24 August (15 days) |
-| **Current day** | Day 3 of 15 — Wed 12 Aug. Domains 1 and 2 confirmed (12/15 mixed, balanced) |
-| **Next session** | **Domain 3 — the memorisation domain.** Read the three cheat-sheet items from weak point 10 first; they take two minutes |
+| **Current day** | Day 3 of 15 — Wed 12 Aug. **Domains 1, 2 and 3 all done and above target.** Well ahead of schedule |
+| **Next session** | Domain 4 — the weakest domain (1/5 cold). Notes then drill. Mock 1 stays on 16 Aug |
 | **Study time** | About 2 hours per day |
 
 ---
@@ -36,8 +36,9 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | 11 Aug | D2 ad-hoc set, balanced (10) | **9/10** | Missed Q7 (`tool_choice` values). Error categories and search triad all clean |
 | 12 Aug | Mixed D1+D2 set (15, balanced) | **12/15** | D1 8/9 · D2 4/6. Missed Q4 (tool granularity), Q11 (decomposition threshold), Q13 (semantic search). **All three are repeat misses** — see weak point 10 |
 | 12 Aug | `/cert-exam 15` — D2 | | |
+| 12 Aug | **Domain 3 drill (15)** — pulled forward from 15 Aug | **13/15** | Missed Q2 (`@import` — 2nd time) and Q12 (gave one answer where two were asked). Memorisation core clean: all paths, frontmatter keys and flags correct |
 | 14 Aug | `/cert-exam 15` — D3 | | |
-| 15 Aug | Domain 3 drill (15) | | |
+| ~~15 Aug~~ | ~~Domain 3 drill (15)~~ — **taken 12 Aug** | | Retake on 22 Aug as planned |
 | **16 Aug** | **Mock 1 — `/cert-exam 60`, timed** | | Record the score for every domain |
 | 17 Aug | `/cert-exam 15` — D4 | | |
 | 18 Aug | Domain 1 drill — **retake** | | Compare with 10 Aug (10/15, pre-rebalance). First honest score on these questions |
@@ -127,9 +128,26 @@ community vs custom servers, local recovery vs reporting upward.
     **Evidence the rule itself is known:** Q12 (same rule, known 22-file list) was correct in the
     same sitting. What fails is the discriminator, not the rule.
 
-**What is working:** all three select-two questions clean — weak point 6 looks closed. Weak
-point 5's resume half is closed too (Q10 correct, the exact trap that cost a mark on 10 Aug).
-`fork_session` vs parallel Task calls clean (Q6), so weak point 3 is closing.
+**What is working:** all three select-two questions clean. Weak point 5's resume half is closed
+too (Q10 correct, the exact trap that cost a mark on 10 Aug). `fork_session` vs parallel Task
+calls clean (Q6), so weak point 3 is closing.
+
+### Added 12 Aug, from the Domain 3 drill (13/15)
+
+11. **Weak point 6 is improved but NOT closed — this is now its 4th occurrence.**
+    Domain 3 Q12 asked for two answers and got one. Three of the four multi-answer questions in
+    that drill were right, and all three were right in the mixed set earlier the same day, so the
+    habit is mostly there. But the failure mode has not changed shape once.
+    → **Exam-day rule: before answering any question, look at whether it says "select two".**
+    If it does, count the symptoms in the scenario, then check you have one answer per symptom.
+    Do this as a mechanical step, not as a judgement.
+
+12. **`@import` is a positive rule that has not anchored — missed twice.**
+    Set 1 Q9 and Domain 3 Q2 are the same decision. The improvement: the old wrong answer
+    (path globs) was correctly rejected this time; a new wrong answer (skills) replaced it.
+    → **`@import` = the maintainer selects which shared documents apply, with no duplication.**
+    Skills must be **invoked**, so they can never hold standards that must always apply.
+    Path globs are for conventions that follow **file type across many folders**.
 
 ---
 
@@ -137,6 +155,7 @@ point 5's resume half is closed too (Q10 correct, the exact trap that cost a mar
 
 | Date | What happened |
 |---|---|
+| 12 Aug | Domain 3 drill, pulled forward from 15 Aug: **13/15**, clearing the drill's own "done with this domain" bar. The memorisation core — file paths, frontmatter keys, CLI flags — was fully clean, which is the bulk of this domain. Two misses, both recurrences: `@import` (2nd time) and a select-two answered with one answer (4th time). Added two things to the cheat sheet in response: a "which mechanism holds which content" table, and a mechanical select-two check. |
 | 12 Aug | Confirmation set before starting Domain 3: 15 mixed D1+D2 questions, balanced key, all new. **12/15** (D1 8/9, D2 4/6) — clears the 80% target with both domains above the 60% floor. The three misses were all repeat misses, so they went onto the cheat sheet; one of them (decomposition) exposed a real gap in the cheat sheet itself, now fixed. Select-two habit confirmed closed. Cleared to start Domain 3. |
 | 11 Aug | **Booked the exam for Tue 25 August.** Built the Domain 5 drill (15 questions, all six task statements, balanced key) — every domain now has a drill. |
 | 11 Aug | Cross-checked Purcell's 60-question set and the official exam guide (both PDFs were already in the folder). Purcell's answer key agrees with this repo's material on **all 60 questions** — zero contradictions, though topical overlap is heavy since both are written against guide v1.0. The guide adjudicated every remaining docs-drift item in `AUDIT.md` in the notes' favour; annotations added, `stop_reason` count corrected to seven, `AUDIT.md` is now fully closed. Bonus finding: the guide itself uses both `isRetryable` and `retriable` in the same task statement — the origin of the spelling inconsistency. |
