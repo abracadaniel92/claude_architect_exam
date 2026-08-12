@@ -300,10 +300,16 @@ S.append(tbl([
 ], [38 * mm, W - 38 * mm]))
 
 h2("Splitting up work")
+S.append(Paragraph("Ask first: <b>do I know the shape of the work before I start?</b>", BODY))
+sp(2)
 S.append(tbl([
-    ["<b>Prompt chaining</b><br/>fixed steps", "The work is predictable.<br/>Large code review = <b>one pass per file + one pass across files</b>"],
-    ["<b>Dynamic decomposition</b><br/>steps depend on findings", "The work is open-ended.<br/>Example: add tests to a legacy codebase"],
+    ["<b>Prompt chaining</b><br/>YES - shape known", "The file list is known and the criteria are fixed.<br/>Large review = <b>one pass per file + one pass across files</b>"],
+    ["<b>Dynamic decomposition</b><br/>NO - shape unknown", "Structure unknown; each step depends on the last.<br/>Map first, then a plan that adapts. Example: add tests to a legacy codebase"],
 ], [45 * mm, W - 45 * mm]))
+sp(2)
+S.append(Paragraph("\"Audit\", \"large\" and \"comprehensive\" do <b>NOT</b> decide this. "
+                   "900 files, nobody knows where the code lives = <b>dynamic</b>. "
+                   "22 files, known list = <b>chaining</b>. Same size, opposite answers.", BODY))
 sp(2)
 S.append(Paragraph("A bigger context window does <b>NOT</b> fix attention dilution.", BODY))
 

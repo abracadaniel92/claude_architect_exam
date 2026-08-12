@@ -16,8 +16,8 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | **Exam date** | Tuesday 25 August 2026 |
 | **Booked?** | ☑ **booked 11 Aug**, for Tue 25 August |
 | **Study period** | Monday 10 August – Monday 24 August (15 days) |
-| **Current day** | Day 2 of 15 — Tue 11 Aug. Domains 1 and 2 both drilled, ahead of schedule |
-| **Next session** | Domain 3 — the memorisation domain. Also: work through `AUDIT.md` |
+| **Current day** | Day 3 of 15 — Wed 12 Aug. Domains 1 and 2 confirmed (12/15 mixed, balanced) |
+| **Next session** | **Domain 3 — the memorisation domain.** Read the three cheat-sheet items from weak point 10 first; they take two minutes |
 | **Study time** | About 2 hours per day |
 
 ---
@@ -34,12 +34,13 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | 11 Aug | D2 ad-hoc set, balanced (15) | **13/15** | Missed Q1 (error category), Q10 (tool granularity) |
 | 11 Aug | D2 ad-hoc set, balanced (10) | **7/10** | Rushed — read the questions too fast. Missed Q2, Q4 (half), Q10 |
 | 11 Aug | D2 ad-hoc set, balanced (10) | **9/10** | Missed Q7 (`tool_choice` values). Error categories and search triad all clean |
+| 12 Aug | Mixed D1+D2 set (15, balanced) | **12/15** | D1 8/9 · D2 4/6. Missed Q4 (tool granularity), Q11 (decomposition threshold), Q13 (semantic search). **All three are repeat misses** — see weak point 10 |
 | 12 Aug | `/cert-exam 15` — D2 | | |
 | 14 Aug | `/cert-exam 15` — D3 | | |
 | 15 Aug | Domain 3 drill (15) | | |
 | **16 Aug** | **Mock 1 — `/cert-exam 60`, timed** | | Record the score for every domain |
 | 17 Aug | `/cert-exam 15` — D4 | | |
-| 18 Aug | Domain 1 drill — **retake** | | Compare with 11 Aug |
+| 18 Aug | Domain 1 drill — **retake** | | Compare with 10 Aug (10/15, pre-rebalance). First honest score on these questions |
 | 19 Aug | Domain 4 drill (15) | | |
 | 20 Aug | `/cert-exam 15` — D5 | | |
 | 21 Aug | Domain 5 drill (15) | | |
@@ -108,12 +109,35 @@ is sound. The gap is recall.
 refinement, MCP resources vs tools, `.mcp.json` vs `~/.claude.json`, `${VAR}` expansion,
 community vs custom servers, local recovery vs reporting upward.
 
+### Added 12 Aug, from the mixed D1+D2 set (12/15)
+
+10. **Three facts are now missed twice or more. These are the cheat-sheet items.**
+
+    | Fact | Missed | Now on the cheat sheet as |
+    |---|---|---|
+    | Chaining vs dynamic decomposition | **3×** (10 Aug, and Q11 here) | "Do I know the shape before I start?" — with the note that *audit / large / comprehensive do not decide it* |
+    | Grep / Glob / **semantic** | **4×** | "If the question says you do not know what it is called → semantic" |
+    | Tool granularity (`mode` enum → split) | **2×** | "Merging the modes into fewer modes is the wrong answer" |
+
+    On Q11 the material was partly at fault: the cheat sheet had **no** chaining-vs-dynamic entry
+    at all, and its one line on the subject ("large review → one pass per file") sat in the
+    Domain 4 section with no qualifier, priming exactly the wrong answer. Fixed 12 Aug in both
+    the cheat sheet and the revision card.
+
+    **Evidence the rule itself is known:** Q12 (same rule, known 22-file list) was correct in the
+    same sitting. What fails is the discriminator, not the rule.
+
+**What is working:** all three select-two questions clean — weak point 6 looks closed. Weak
+point 5's resume half is closed too (Q10 correct, the exact trap that cost a mark on 10 Aug).
+`fork_session` vs parallel Task calls clean (Q6), so weak point 3 is closing.
+
 ---
 
 ## Session history
 
 | Date | What happened |
 |---|---|
+| 12 Aug | Confirmation set before starting Domain 3: 15 mixed D1+D2 questions, balanced key, all new. **12/15** (D1 8/9, D2 4/6) — clears the 80% target with both domains above the 60% floor. The three misses were all repeat misses, so they went onto the cheat sheet; one of them (decomposition) exposed a real gap in the cheat sheet itself, now fixed. Select-two habit confirmed closed. Cleared to start Domain 3. |
 | 11 Aug | **Booked the exam for Tue 25 August.** Built the Domain 5 drill (15 questions, all six task statements, balanced key) — every domain now has a drill. |
 | 11 Aug | Cross-checked Purcell's 60-question set and the official exam guide (both PDFs were already in the folder). Purcell's answer key agrees with this repo's material on **all 60 questions** — zero contradictions, though topical overlap is heavy since both are written against guide v1.0. The guide adjudicated every remaining docs-drift item in `AUDIT.md` in the notes' favour; annotations added, `stop_reason` count corrected to seven, `AUDIT.md` is now fully closed. Bonus finding: the guide itself uses both `isRetryable` and `retriable` in the same task statement — the origin of the spelling inconsistency. |
 | 11 Aug | A second review independently confirmed every verified `AUDIT.md` finding, then applied the fixes: the `--json-schema` contradiction, one spelling for the retriable field (`isRetryable`), the Set 1 blueprint header, the Domain 4 miss count (four, not three — in four files, including this one), the resume-vs-fresh "how much is stale" qualifier (now also on the cheat sheet and revision card), required-vs-nullable, Scenario 4's missing Domain 5, the fourth wrong-way-to-stop (`task_complete`), and the `PreToolUse` name. All three PDFs regenerated. Docs-only items 3a–3e/3g/3h left for a session with the exam guide open. |

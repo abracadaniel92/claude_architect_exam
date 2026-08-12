@@ -135,6 +135,19 @@ written summary.
 - **`PreToolUse`** (the interception hook) — blocks an outgoing tool **call**. Use for blocking
   refunds over $500 and redirecting to escalation.
 
+**Splitting up work (Domain 1)**
+
+Ask one question first: **do I know the shape of the work before I start?**
+
+| Answer | Pattern |
+|---|---|
+| **Yes** — the file list is known, the criteria are fixed | **Prompt chaining.** Large review = one pass per file + one pass across files |
+| **No** — the structure is unknown, each step depends on the last | **Dynamic decomposition.** Map first, then a plan that adapts |
+
+The words "audit", "large" and "comprehensive" do **not** decide this. A 900-file audit where you
+do not know where the relevant code lives is **dynamic**. A 22-file review with a known list is
+**chaining**. Same size, opposite answers.
+
 ---
 
 ## 8. Error handling (Domains 2 and 5)
@@ -167,6 +180,21 @@ possible alternatives.
 - Give a small cross-role tool for a common need (example: `verify_fact` for the synthesis agent).
 - Replace general tools with limited ones (`fetch_url` → `load_document`).
 - Check the system prompt for words that create unwanted tool links.
+- **One tool with a `mode` / `action` enum → split into purpose-specific tools**, each with its
+  own contract. **Merging the modes into fewer modes is the wrong answer** — it keeps the
+  overloaded design and only reduces how many wrong choices exist.
+
+**Grep · Glob · semantic:**
+
+| Need | Tool |
+|---|---|
+| File **paths** by pattern | `Glob` |
+| Text you **can spell exactly** | `Grep` |
+| A **concept** with no literal to search for | Semantic search |
+
+If the question prints the string → `Grep`. If the question says **you do not know what it is
+called** (several candidate names, none confirmed) → **semantic**. "Widen the pattern until
+something matches" is a description of not having a string.
 
 **`tool_choice`:**
 
@@ -238,7 +266,8 @@ A 24-hour window and a 30-hour SLA means submitting every **4 hours**.
 - **Few-shot: 2 to 4 examples**, aimed at the **unclear** cases.
 - Self-review is weak, because the model remembers its own reasoning → use an **independent
   instance**.
-- Large review → **one pass per file + one pass across files**.
+- Large review **with a known file list** → one pass per file + one pass across files. (Unknown
+  structure → map first instead. See "Splitting up work" above.)
 - **A bigger context window does not fix attention dilution.**
 - **Voting across runs hides real bugs.**
 
