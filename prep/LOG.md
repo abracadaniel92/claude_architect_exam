@@ -38,6 +38,7 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | 12 Aug | `/cert-exam 15` — D2 | | |
 | 12 Aug | **Domain 3 drill (15)** — pulled forward from 15 Aug | **13/15** | Missed Q2 (`@import` — 2nd time) and Q12 (gave one answer where two were asked). Memorisation core clean: all paths, frontmatter keys and flags correct |
 | 14 Aug | `/cert-exam 15` — D3 | | |
+| 14 Aug | Mixed D1+D2+D3 set (20, balanced) | **17/20** | D1 6/8 · D2 **6/6** · D3 5/6. Missed Q1 (stopping the loop on "text and no tool_use"), Q5 (one answer where two were asked — **5th time**), Q15 (`@import` — **3rd time, same wrong answer as 12 Aug**) |
 | ~~15 Aug~~ | ~~Domain 3 drill (15)~~ — **taken 12 Aug** | | Retake on 22 Aug as planned |
 | **16 Aug** | **Mock 1 — `/cert-exam 60`, timed** | | Record the score for every domain |
 | 17 Aug | `/cert-exam 15` — D4 | | |
@@ -149,12 +150,43 @@ calls clean (Q6), so weak point 3 is closing.
     Skills must be **invoked**, so they can never hold standards that must always apply.
     Path globs are for conventions that follow **file type across many folders**.
 
+### Added 14 Aug, from the mixed D1+D2+D3 set (17/20)
+
+13. **`@import` is now missed three times, twice with the same wrong answer (skills).**
+    This is the most reliable predictor of a lost mark in the whole repo. The pattern of the miss
+    has stabilised: the wrong answer is always *skills*, chosen because the question describes a
+    person **choosing** which documents apply, and "choosing" feels like "invoking".
+    → **The discriminator is WHO chooses and WHEN.** `@import`: the *maintainer* chooses once,
+    when writing the file, and the content then loads **always**. A skill: the *model or
+    developer* chooses at run time, every time, and the content loads **only when invoked**.
+    If the question says the standards must apply to all work in that package, a skill cannot
+    do it — no matter who selected it.
+
+14. **A new shape of weak point 5: substituting an inference for the actual signal.**
+    Q1 chose "exit when the response has a text block and no `tool_use` blocks". That condition
+    is *usually true* at the end of a turn, which is exactly why it is attractive — same failure
+    shape as the three misses in weak point 5. But the guide names "checking whether the response
+    contains text" as one of the four wrong ways to stop.
+    → **The loop reads `stop_reason` and nothing else.** Inspecting block types is a proxy, and
+    the exam offers proxies as wrong answers on purpose. Note the second half of the trap: the
+    replacement in the question was *also* wrong (`task_complete`), so the question was testing
+    whether you would swap one wrong mechanism for another.
+
+15. **Weak point 6 is at its 5th occurrence — but the failure has moved.**
+    Q5 was answered with one letter; Q10, Q14 and Q20 were all answered with two, correctly.
+    So the counting habit works when the two symptoms are *the same kind of thing*. Q5's two
+    symptoms were different kinds — a policy breach and a data-format problem — and the second
+    one was found while the first was dropped.
+    → **Extend the exam-day rule:** after finding one answer, do not ask "is this right?" but
+    "which symptom did this answer solve, and what solves the other one?"
+
 ---
 
 ## Session history
 
 | Date | What happened |
 |---|---|
+| 14 Aug | Mixed set across all three completed domains: 20 new questions, blueprint-weighted, balanced key. **17/20** (D1 6/8, D2 6/6, D3 5/6) — clears the 80% target with every domain above the floor, and Domain 2 is now clean twice running. All three misses were traps aimed at the repeat-miss list: `@import` (3rd time, same wrong answer as 12 Aug), a select-two answered with one (5th time, but 3 of 4 select-twos were right), and a *new* variant of weak point 5 — stopping the loop on "text and no tool_use" instead of on `stop_reason`. Weak points 13–15 added. Notable: Grep-vs-semantic and tool granularity, both long-running repeat misses, were correct when asked from the reverse direction. |
 | 12 Aug | Domain 3 drill, pulled forward from 15 Aug: **13/15**, clearing the drill's own "done with this domain" bar. The memorisation core — file paths, frontmatter keys, CLI flags — was fully clean, which is the bulk of this domain. Two misses, both recurrences: `@import` (2nd time) and a select-two answered with one answer (4th time). Added two things to the cheat sheet in response: a "which mechanism holds which content" table, and a mechanical select-two check. |
 | 12 Aug | Confirmation set before starting Domain 3: 15 mixed D1+D2 questions, balanced key, all new. **12/15** (D1 8/9, D2 4/6) — clears the 80% target with both domains above the 60% floor. The three misses were all repeat misses, so they went onto the cheat sheet; one of them (decomposition) exposed a real gap in the cheat sheet itself, now fixed. Select-two habit confirmed closed. Cleared to start Domain 3. |
 | 11 Aug | **Booked the exam for Tue 25 August.** Built the Domain 5 drill (15 questions, all six task statements, balanced key) — every domain now has a drill. |

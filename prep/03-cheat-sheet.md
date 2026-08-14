@@ -67,6 +67,18 @@ You cannot take notes into the exam. Everything here must be in your head.
 **Skills must be invoked.** So a skill can *never* be the answer for something that must always
 apply, or must load automatically. If a question says "automatic" or "always", skills are out.
 
+> ⚠️ **`@import` — missed three times, twice by choosing skills.** The trap is the word
+> **"chooses"**. These questions always say a maintainer *chooses* or *decides* which documents
+> apply, and choosing feels like invoking. It is not.
+>
+> | | Who chooses | When | Then it loads |
+> |---|---|---|---|
+> | **`@import`** | the **maintainer**, once, while writing the file | at authoring time | **always** |
+> | **a skill** | the **model or developer**, at run time | every single use | **only when invoked** |
+>
+> Ask: *after the choice is made, does the content apply to everything, or only when someone
+> calls it?* Applies to everything → `@import`.
+
 ---
 
 ## 3. Frontmatter keys — do not mix these up
