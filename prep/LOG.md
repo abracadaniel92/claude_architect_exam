@@ -16,8 +16,9 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | **Exam date** | Tuesday 25 August 2026 |
 | **Booked?** | ☑ **booked 11 Aug**, for Tue 25 August |
 | **Study period** | Monday 10 August – Monday 24 August (15 days) |
-| **Current day** | Day 3 of 15 — Wed 12 Aug. **Domains 1, 2 and 3 all done and above target.** Well ahead of schedule |
-| **Next session** | Domain 4 — the weakest domain (1/5 cold). Notes then drill. Mock 1 stays on 16 Aug |
+| **Current day** | Day 5 of 15 — Fri 14 Aug. **All five domains covered and above target**, seven days ahead of the plan |
+| **Next session** | Sat 15 Aug — `/cert-exam 15` on D4 and D5. Independent questions, not written from these notes. Then Mock 1 on 16 Aug, timed and cold |
+| **What is still untested** | Retention across a gap · 60 questions in 120 minutes · questions not derived from these notes. See weak point 21 |
 | **Study time** | About 2 hours per day |
 
 ---
@@ -38,6 +39,8 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | 12 Aug | `/cert-exam 15` — D2 | | |
 | 12 Aug | **Domain 3 drill (15)** — pulled forward from 15 Aug | **13/15** | Missed Q2 (`@import` — 2nd time) and Q12 (gave one answer where two were asked). Memorisation core clean: all paths, frontmatter keys and flags correct |
 | 14 Aug | `/cert-exam 15` — D3 | | |
+| 14 Aug | D5 ad-hoc set, balanced (15) | **14/15** | Missed Q4 only (subagent metadata — chose *both* wrong options). Both escalation directions clean in one sitting |
+| 14 Aug | D4 ad-hoc set, balanced (15) | **13/15** | Missed Q6 (required-vs-nullable, reverse direction) and Q11 (format normalisation in the prompt). Both are Block A schema facts. All three select-twos clean |
 | 14 Aug | Mixed D1+D2+D3 set (20, balanced) | **17/20** | D1 6/8 · D2 **6/6** · D3 5/6. Missed Q1 (stopping the loop on "text and no tool_use"), Q5 (one answer where two were asked — **5th time**), Q15 (`@import` — **3rd time, same wrong answer as 12 Aug**) |
 | ~~15 Aug~~ | ~~Domain 3 drill (15)~~ — **taken 12 Aug** | | Retake on 22 Aug as planned |
 | **16 Aug** | **Mock 1 — `/cert-exam 60`, timed** | | Record the score for every domain |
@@ -60,7 +63,9 @@ missed twice is a fact you have not learned. Put it on the cheat sheet.
 
 Updated as evidence appears. Right now, from Set 1 only:
 
-1. **Domain 4 is the big gap — 1 out of 5, on 20% of the exam.**
+1. ~~**Domain 4 is the big gap — 1 out of 5, on 20% of the exam.**~~ **Largely closed 14 Aug
+   (13/15).** Kept here because the diagnosis below still explains what to keep doing — see
+   weak points 16 and 17 for what remains.
    Three of the four misses were flat facts: `tool_choice` values (`auto` allows text),
    required schema fields causing invented values, and which errors a retry can fix.
    → Fixed by `daily-facts-domain-4.md`, 5 minutes every day.
@@ -180,12 +185,80 @@ calls clean (Q6), so weak point 3 is closing.
     → **Extend the exam-day rule:** after finding one answer, do not ask "is this right?" but
     "which symptom did this answer solve, and what solves the other one?"
 
+### Added 14 Aug, from the D4 ad-hoc set (13/15)
+
+16. **Domain 4 is no longer the weakest domain — 1/5 cold on 8 Aug, 13/15 now.**
+    Everything the daily fact drill targets came out clean: `tool_choice`, the batch table
+    (including no multi-turn tool calling), what a retry request contains, few-shot count and
+    targeting, and both confidence traps in the same sitting — confidence **next to** a finding
+    for triage is correct, confidence as a **filter** on what gets reported is not.
+    → Keep the daily drill running; do not declare this closed until the 16 Aug mock agrees.
+
+17. **Both misses were Block A schema design, and both were the same error: taking a rule in one
+    direction only.**
+    - *Required vs nullable.* The learned rule is "required makes the model invent values → use
+      nullable". The scenario was the reverse case — a machine-generated document that **always**
+      contains the field, where the failure was the field being **omitted**. The answer is
+      **required**. The chosen answer, "nullable plus a validation rule rejecting null", gets the
+      failure mode of required with none of the guarantee.
+      → **Discriminator: does the source always contain this value?** Yes → required. Might not →
+      nullable. Both are correct answers on this exam. Added to the cheat sheet and revision card.
+    - *Format normalisation.* Chose a post-processing layer over normalisation rules in the
+      prompt. Defensible engineering, wrong exam answer. → **The schema fixes the type, the prompt
+      fixes the format.** The cheat sheet was missing this line entirely — the revision card had
+      it, the cheat sheet did not. Fixed. Same class of material gap as the one Q11 exposed on
+      12 Aug, so re-check the two files against each other rather than assuming they match.
+
+    Note what this is **not**: Q3 (`"unclear"`) and Q9 (`conflict_detected` plus extracting both
+    readings) came from the same block and were right. It is two specific rows, not the block.
+
+18. **Weak point 6 is clean twice running.** All three select-two questions correct here, after
+    3 of 4 on 14 Aug's mixed set. The mechanical "count the symptoms" step is working, including
+    on Q14, where the two symptoms were **different kinds** — the shape that failed on 14 Aug.
+
+### Added 14 Aug, from the D5 ad-hoc set (14/15) — and this is the one to carry to the exam
+
+19. **All five domains are covered, and one error shape now accounts for every recent miss:
+    repairing a symptom downstream instead of requiring the right structure upstream.**
+    Three misses across 30 questions, in three different domains, all the same:
+
+    | Domain | The failure | Chose (late fix) | Correct (early fix) |
+    |---|---|---|---|
+    | D4 | A field the source always has goes missing | nullable + reject null | **required** |
+    | D4 | Dates and currency arrive inconsistent | a post-processing layer | **normalisation rules in the prompt** |
+    | D5 | Synthesis cannot judge a source's age or type | re-fetch at synthesis; weigh credibility | **subagents record dates, location, methodology** |
+
+    Every late fix is **defensible engineering**, which is exactly why it is offered. The exam is
+    testing whether you locate the component that held the information at the moment it was lost.
+    → Now step 6 of the 30-second method, in the cheat sheet and on the revision card.
+
+    **Note the failure mode on D5 Q4:** both selected answers were wrong, and both mapped cleanly
+    onto the two symptoms in the scenario. So the select-two counting habit worked and produced
+    two answers from the wrong family. Counting symptoms and judging content are separate steps;
+    the first being right says nothing about the second.
+
+20. **Domain 5 is covered: 14/15, with both escalation directions correct in one sitting.**
+    No progress possible + calm customer → escalate (Q2). Explicit request for a human mid
+    investigation → escalate **immediately**, do not finish the diagnosis first (Q13). Criteria
+    plus few-shot rather than a classifier (Q8). The Set 1 escalation trap is closed. Q15 was an
+    over-application trap — a vague answer in a *fresh* session, where nothing has degraded and
+    the agent simply never read the file — and it was not taken, which is weak point 2 improving.
+
+21. **Read the two 14 Aug scores with their caveat.** Both sets were written from these notes and
+    taken in the same sitting as the review, so they measure recall at zero delay from material
+    just read. The cold numbers are still Set 1 (11/20) and whatever Mock 1 returns. More
+    generally: every question answered well so far traces back to one source — these notes, from
+    guide v1.0, and questions written from these notes. **Purcell's set is the only independent
+    measure, which is the strongest argument for keeping it sealed until 23 Aug.**
+
 ---
 
 ## Session history
 
 | Date | What happened |
 |---|---|
+| 14 Aug | Domain 5 straight after Domain 4: 15 new questions, balanced key, all six task statements, avoiding `drill-domain-5.md` so it stays cold for 21 Aug. **14/15** — one miss. **All five domains are now covered, seven days ahead of the plan.** Reworked the calendar from 15 Aug onward: the four days reserved for domains already finished go to independent question sources and timed practice instead, because coverage is no longer the gap — independence of source and time pressure are. Added weak points 19–21; 19 is the one to carry to the exam and is now step 6 of the 30-second method. |
+| 14 Aug | Started Domain 4, the weakest domain. Ad-hoc set of 15 new questions, balanced key, all six task statements, deliberately avoiding the framings in `drill-domain-4.md` so that drill stays cold for 19 Aug. **13/15** — up from 1/5 cold on 8 Aug, and above the drill's own "done with this domain" bar. Both misses were Block A schema design, both the same shape: applying a rule in one direction only (weak point 17). Fixed the cheat sheet, which stated "make it optional and nullable" with no qualifier and had no format-normalisation line at all; the revision card had the second but not the first. Both regenerated. |
 | 14 Aug | Mixed set across all three completed domains: 20 new questions, blueprint-weighted, balanced key. **17/20** (D1 6/8, D2 6/6, D3 5/6) — clears the 80% target with every domain above the floor, and Domain 2 is now clean twice running. All three misses were traps aimed at the repeat-miss list: `@import` (3rd time, same wrong answer as 12 Aug), a select-two answered with one (5th time, but 3 of 4 select-twos were right), and a *new* variant of weak point 5 — stopping the loop on "text and no tool_use" instead of on `stop_reason`. Weak points 13–15 added. Notable: Grep-vs-semantic and tool granularity, both long-running repeat misses, were correct when asked from the reverse direction. |
 | 12 Aug | Domain 3 drill, pulled forward from 15 Aug: **13/15**, clearing the drill's own "done with this domain" bar. The memorisation core — file paths, frontmatter keys, CLI flags — was fully clean, which is the bulk of this domain. Two misses, both recurrences: `@import` (2nd time) and a select-two answered with one answer (4th time). Added two things to the cheat sheet in response: a "which mechanism holds which content" table, and a mechanical select-two check. |
 | 12 Aug | Confirmation set before starting Domain 3: 15 mixed D1+D2 questions, balanced key, all new. **12/15** (D1 8/9, D2 4/6) — clears the 80% target with both domains above the 60% floor. The three misses were all repeat misses, so they went onto the cheat sheet; one of them (decomposition) exposed a real gap in the cheat sheet itself, now fixed. Select-two habit confirmed closed. Cleared to start Domain 3. |

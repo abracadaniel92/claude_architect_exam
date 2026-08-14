@@ -130,7 +130,16 @@ S.append(tbl([
     ["3", "Remove any answer describing a feature that <b>does not exist</b>."],
     ["4", "Remove any answer blaming a part the question says is <b>working correctly</b>."],
     ["5", "From what is left, choose the <b>weakest fix that still meets the requirement</b>."],
+    ["6", "Ask <b>where the information should have been PRODUCED</b>, not where the failure showed up."],
 ], [8 * mm, W - 8 * mm]))
+sp(2)
+S.append(Paragraph("<b>Step 6 - your one cross-domain weakness.</b> The failure appears late; the "
+                   "fix belongs early. Field missing that the source always has &rarr; <b>required</b>, "
+                   "not nullable-plus-a-null-check. Inconsistent dates and currency &rarr; "
+                   "<b>normalisation rules in the prompt</b>, not a post-processing layer. Synthesis "
+                   "cannot judge a source &rarr; <b>subagents record dates, location and methodology</b>, "
+                   "not re-fetching later. The late fix is defensible engineering - that is why it is "
+                   "the distractor. Which component held the information when it was lost?", BODY))
 
 h2("The strength ladder  -  choose the lowest level that meets the requirement")
 S.append(tbl([
@@ -398,7 +407,10 @@ sec("5  -  Domain 4: Prompts and Structured Output (20%)",
 
 h2("Schema design")
 S.append(tbl([
-    ["A <b>required</b> field makes the model <b>INVENT</b> a value. Make it <b>optional and nullable</b>"],
+    ["<b>Required or nullable? Ask: does the source ALWAYS contain this value?</b><br/>"
+     "Source may NOT contain it &rarr; <b>nullable</b>, or a required field makes the model <b>INVENT</b> one.<br/>"
+     "Source ALWAYS contains it &rarr; <b>required</b>, so the field cannot be <b>OMITTED</b>.<br/>"
+     "Never \"nullable + reject null\" - that fails documents and still does not stop fabrication"],
     ["Enum + <b>\"other\"</b> + a detail string, for categories that may grow"],
     ["Enum value <b>\"unclear\"</b> for ambiguous cases"],
     ["Tool use + schema removes <b>SYNTAX</b> errors. It does NOT remove <b>SEMANTIC</b> errors"],
@@ -513,6 +525,8 @@ S.append(tbl([
     ["Attribution is lost during <b>summarisation</b>, when claim-source links are not preserved"],
     ["Subagents output <b>claim-source mappings</b>: source URL, document name, relevant excerpt"],
     ["Subagents must include <b>publication dates</b>, or old and new numbers look like a contradiction"],
+    ["Also <b>source location</b> and <b>methodology</b>  -  nobody downstream can recover these.<br/>"
+     "Never \"weigh credibility\" or \"re-fetch at synthesis time\": provenance travels as <b>structure</b>"],
     ["Two credible sources disagree -> <b>record BOTH with their sources</b>. Never pick one"],
     ["Separate <b>well-established</b> findings from <b>contested</b> ones in the report"],
     ["Format by content type: financial data = <b>tables</b>, news = <b>prose</b>, technical = <b>lists</b>"],

@@ -37,18 +37,38 @@ question correctly.
 | **Tue 11 Aug** | 2 | Domain 1 notes 1.5–1.7 · *Claude Code in Action* (Agent SDK, hooks) | **Domain 1 drill** (15) |
 | **Wed 12 Aug** | 3 | Domain 2 notes · start *Intro to MCP* | `/cert-exam 15` — Domain 2 |
 | **Thu 13 Aug** | 4 | Finish *Intro to MCP* | **Domain 2 drill** (15) |
-| **Fri 14 Aug** | 5 | Domain 3 notes · *Claude Code in Action* (commands, context) | `/cert-exam 15` — Domain 3 |
-| **Sat 15 Aug** | 6 | **Exercise 2** — configure a real repository (2 h, replaces blocks 2 and 3) | **Domain 3 drill** (15) |
-| **Sun 16 Aug** | 7 | — | **Mock 1: `/cert-exam 60`, timed 120 min** + full review |
-| **Mon 17 Aug** | 8 | Domain 4 notes 4.1–4.3 | `/cert-exam 15` — Domain 4 |
-| **Tue 18 Aug** | 9 | Domain 4 notes 4.4–4.6 · *Building with the Claude API* (tool use) | **Retake Domain 1 drill** |
-| **Wed 19 Aug** | 10 | *Building with the Claude API* (prompt engineering, agents) | **Domain 4 drill** (15) |
-| **Thu 20 Aug** | 11 | Domain 5 notes · **Exercise 4** | `/cert-exam 15` — Domain 5 |
-| **Fri 21 Aug** | 12 | Re-read your two weakest domains | **Domain 5 drill** (15) |
-| **Sat 22 Aug** | 13 | Skim the six scenarios (20 min, no memorising) · your two weakest domains | **Retake Domain 2 + 3 drills** |
+| **Fri 14 Aug** | 5 | ✅ Domain 3 · **Domain 4 and Domain 5 both pulled forward** | ✅ D4 ad-hoc **13/15** · D5 ad-hoc **14/15** |
+
+> ### Replanned 14 August — all five domains covered, 7 days early
+>
+> The original calendar spent days 8–12 on first passes through Domains 4 and 5. Both are done,
+> at 13/15 and 14/15. **Coverage is no longer the gap.** Two things are:
+>
+> 1. **Independence of source.** Every question answered well so far came from these notes, or was
+>    written from them. Purcell's set is the only measure that is not — keep it sealed until 23 Aug.
+> 2. **Time pressure.** 60 questions in 120 minutes has never been rehearsed.
+>
+> The freed days go to those two, and the drills stay where they are so they land as spaced
+> retrieval rather than first passes.
+
+| Date | Day | Block 2 — new material | Block 3 — practice |
+|---|---|---|---|
+| **Sat 15 Aug** | 6 | **Exercise 2** — configure a real repository (2 h, replaces blocks 2 and 3) | `/cert-exam 15` — **Domain 4**, then **Domain 5**. Independent questions. Record both scores |
+| **Sun 16 Aug** | 7 | — | **Mock 1: `/cert-exam 60`, timed 120 min** + full review. Cold. First honest cross-domain number |
+| **Mon 17 Aug** | 8 | React to Mock 1 — re-read whatever it exposed, nothing else | `/cert-exam 15` — the weakest domain in Mock 1 |
+| **Tue 18 Aug** | 9 | *Building with the Claude API* (tool use, prompt engineering) | **Retake Domain 1 drill** — the stalest domain, untouched since 10 Aug |
+| **Wed 19 Aug** | 10 | *Building with the Claude API* (agents) | **Domain 4 drill** (15) — cold, 5 days after the ad-hoc set |
+| **Thu 20 Aug** | 11 | **Exercise 4** | `/cert-exam 15` — any domain not yet covered by a `/cert-exam` block |
+| **Fri 21 Aug** | 12 | Re-read the two weakest domains from Mock 1 | **Domain 5 drill** (15) — cold, 7 days after the ad-hoc set |
+| **Sat 22 Aug** | 13 | Skim the six scenarios (20 min, no memorising) | **Retake Domain 2 + 3 drills** |
 | **Sun 23 Aug** | 14 | — | **Mock 2: Purcell's 60-question set, timed 120 min** + full review |
 | **Mon 24 Aug** | 15 | Read `03-cheat-sheet.md` right through, twice | Redo only the questions you have ever got wrong |
 | **Tue 25 Aug** | — | **EXAM** | — |
+
+**Two things to hold on to through the last ten days.** The daily Domain 4 facts do not stop just
+because Domain 4 now scores well — that drill is why it does. And **step 6 of the 30-second
+method** (ask where the information should have been produced, not where the failure showed up)
+is the single pattern behind every recent miss, across three domains.
 
 ### What the extra time bought you
 
@@ -76,6 +96,10 @@ weak-domain day, and two review days were removed.
 
 **Domain 4 kept three days.** It is 20% of the exam and you scored 1 out of 5. Do not shorten it,
 even if you fall behind.
+
+> **Superseded 14 Aug.** Domain 4 was covered in one sitting and scored 13/15, so those three days
+> were released in the replan above. The daily fact drill is what made that possible and **still
+> runs every day** — it is not what was cut.
 
 ### If you fall behind
 
@@ -155,8 +179,8 @@ prep/
     drill-domain-1.md         15, questions and answers in one file (days 2–4)
     drill-domain-2.md         15 (days 5–6)
     drill-domain-3.md         15 (days 7–9)
-    drill-domain-4.md         to be written (days 11–13)
-    drill-domain-5.md         to be written (days 14–15)
+    drill-domain-4.md         15 — written 10 Aug, still cold. Take it 19 Aug
+    drill-domain-5.md         15 — written 11 Aug, still cold. Take it 21 Aug
     daily-facts-domain-4.md   5 minutes, EVERY DAY from day 2
     set-02-*.md               30, mixed — written after your day-1 results
     set-03-*.md               60, full test — written after your day-10 results

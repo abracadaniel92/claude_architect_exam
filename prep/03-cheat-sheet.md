@@ -251,13 +251,28 @@ workflows.
 
 ## 10. Schemas and extraction (Domain 4)
 
-- A **required** field makes the model invent a value. **Make it optional and nullable.**
+**Required or nullable? Ask: does the source always contain this value?**
+
+| The source | Use | Because |
+|---|---|---|
+| **May not** contain it (open-ended contract, optional clause) | **nullable / optional** | A required field forces the model to produce something, so it **invents** a value |
+| **Always** contains it (machine-generated confirmation, fixed layout) | **required** | It guarantees the field cannot be **omitted** from the output |
+
+> ⚠️ **Missed 14 Aug by choosing "nullable, plus a validation rule rejecting null".** That is the
+> worst of both: it does not stop fabrication, and it now **fails** documents that would have
+> extracted fine. Both directions are correct answers on this exam, in different scenarios —
+> decide it from the *source*, never from which failure you saw last.
+
 - Enum + `"other"` + a detail string, for categories that may grow.
 - `"unclear"` for ambiguous cases.
 - Tool use + schema removes **syntax** errors. It does **not** remove **semantic** errors.
 - `calculated_total` next to `stated_total` — to catch totals that do not add up.
 - `conflict_detected` — a boolean for contradictory source data.
 - `detected_pattern` — to analyse which findings developers dismiss.
+- Inconsistent dates and currency in the source → **format normalisation rules in the prompt**,
+  next to the strict schema. The schema fixes the **type**; the prompt fixes the **format**. A
+  post-processing layer is the wrong answer — it needs a branch per variant and breaks on the
+  first layout you did not anticipate.
 
 **Retries:**
 
@@ -329,6 +344,17 @@ type and field.
 
 **Conflicting sources** → record both with their sources. Dates are required.
 
+**Metadata the subagent must record, because nobody downstream can recover it:** publication or
+collection **dates** · **source location** · the **methodology** behind the finding. Missing this,
+the synthesis agent cannot tell a 2021 survey from a 2026 one, or a peer-reviewed study from a
+vendor page.
+
+> ⚠️ **Missed 14 Aug.** Both wrong answers tried to repair it downstream — *"have the synthesis
+> agent weigh sources by credibility"* (it cannot see what it needs to weigh) and *"re-fetch each
+> source at synthesis time"* (what you find later is not reliably where the claim came from).
+> **Provenance travels as structure from the agent that held the source.** It is never restored by
+> instruction and never reconstructed afterwards.
+
 ---
 
 ## 14. The 30-second method for each question
@@ -338,3 +364,16 @@ type and field.
 3. Remove any answer blaming a part the question says is working.
 4. Choose the **weakest fix that still meets the requirement**.
 5. If money, identity, or "must never" appear → choose programmatic enforcement.
+6. **Ask where the information should have been produced, not where the failure showed up.**
+
+**Step 6 is your one cross-domain weakness** — every miss on 14 Aug was the same shape, in three
+different domains. The failure appears late; the fix belongs early.
+
+| Where the failure shows up | The tempting late fix | The correct early fix |
+|---|---|---|
+| Extraction omits a field the source always has (D4) | nullable + a rule rejecting null | **required** in the schema |
+| Dates and currency arrive inconsistent (D4) | a post-processing normalisation layer | **normalisation rules in the prompt** |
+| Synthesis cannot judge a source (D5) | re-fetch the sources, or tell it to weigh credibility | **subagents record dates, location, methodology** |
+
+The late fix is usually *defensible engineering*, which is why it is the distractor. Ask: which
+component was holding the information at the moment it was lost? That component is the answer.

@@ -1,7 +1,8 @@
 """Build printable PDFs from the markdown study material.
 
-Produces two files in the repository root:
-  CCAR-F-study-pack.pdf          notes, plan, strategy, scenarios, exercises, drills
+Produces three files in the repository root:
+  CCAR-F-study-plan.pdf          the calendar and the progress log - the desk companion
+  CCAR-F-study-pack.pdf          notes, plan, strategy, cheat sheet, scenarios, exercises
   CCAR-F-practice-questions.pdf  questions only - answer keys are deliberately excluded
 
 Run:  python tools/make-study-pdfs.py
@@ -26,7 +27,9 @@ SUBS = {
     "─": "-", "│": "|", "└": "\\", "├": "|",
     # marks and boxes
     "✓": "[y]", "✗": "[n]", "✅": "[done]", "❌": "[no]",
-    "☐": "[ ]", "⚠": "!", "️": "",
+    "☐": "[ ]", "☑": "[x]", "⚠": "!", "️": "",
+    # currency outside Latin-1
+    "€": "EUR",
     # punctuation and maths
     "—": " - ", "–": "-", "·": "-", "…": "...",
     "≤": "&lt;=", "≥": "&gt;=", "×": "x",
@@ -111,6 +114,15 @@ def strip_answers(md_text):
     return re.split(r"\n#\s+Answers", md_text)[0].rstrip().rstrip("-").rstrip()
 
 
+def questions_only(rel):
+    """A practice file with its answer key removed. Fails loudly if the key is missing,
+    so a new file can never leak its answers into the questions booklet."""
+    text = read(rel)
+    if not re.search(r"\n#\s+Answers", text):
+        raise SystemExit("no answer-key heading in %s - refusing to build the booklet" % rel)
+    return strip_answers(text)
+
+
 def build(outfile, title, subtitle, sections, intro_html=""):
     """sections: list of (heading, markdown_text)."""
     toc_rows = "".join(
@@ -136,6 +148,29 @@ def build(outfile, title, subtitle, sections, intro_html=""):
     print("written: %-34s %6.0f KB" % (outfile, os.path.getsize(path) / 1024.0))
 
 
+# --------------------------------------------------------------- study plan
+PLAN_INTRO = """
+<div class="note">
+<b>The desk companion.</b> Two documents that change as you go: the calendar, and the record of
+what you have actually scored and where you keep going wrong. Reprint it whenever either
+changes - the markdown files are the source of truth, never this PDF.<br/><br/>
+<b>Read section 2 before every practice set.</b> The weak-point list is the whole value of it:
+each entry is a mark you have already lost at least once, written down so you do not lose it
+again. Weak point 19 is the one to carry into the exam.
+</div>
+"""
+
+build(
+    "CCAR-F-study-plan.pdf",
+    "Study Plan and Progress",
+    "Claude Certified Architect - Foundations &nbsp;|&nbsp; exam Tue 25 August 2026",
+    [
+        ("The calendar", read("00-study-plan.md")),
+        ("Progress log, scores and weak points", read("LOG.md")),
+    ],
+    PLAN_INTRO,
+)
+
 # --------------------------------------------------------------- study pack
 STUDY_INTRO = """
 <div class="note">
@@ -154,6 +189,7 @@ build(
     [
         ("The 15-day calendar", read("00-study-plan.md")),
         ("How the exam builds its questions", read("01-answer-patterns.md")),
+        ("The cheat sheet - everything to recall cold", read("03-cheat-sheet.md")),
         ("Domain 1 - Agentic Architecture (27%)", read("notes/domain-1-agentic-architecture.md")),
         ("Domain 2 - Tool Design and MCP (18%)", read("notes/domain-2-tool-design-mcp.md")),
         ("Domain 3 - Claude Code Configuration (20%)", read("notes/domain-3-claude-code-config.md")),
@@ -187,11 +223,15 @@ build(
     "Claude Certified Architect - Foundations &nbsp;|&nbsp; no answer keys",
     [
         ("Set 1 - mixed, 20 questions", read("practice/set-01-questions.md")),
-        ("Domain 1 drill - 15 questions", strip_answers(read("practice/drill-domain-1.md"))),
-        ("Domain 2 drill - 15 questions", strip_answers(read("practice/drill-domain-2.md"))),
-        ("Domain 3 drill - 15 questions", strip_answers(read("practice/drill-domain-3.md"))),
-        ("Domain 4 drill - 15 questions", strip_answers(read("practice/drill-domain-4.md"))),
-        ("Domain 5 drill - 15 questions", strip_answers(read("practice/drill-domain-5.md"))),
+        ("Domain 1 drill - 15 questions", questions_only("practice/drill-domain-1.md")),
+        ("Domain 2 drill - 15 questions", questions_only("practice/drill-domain-2.md")),
+        ("Domain 3 drill - 15 questions", questions_only("practice/drill-domain-3.md")),
+        ("Domain 4 drill - 15 questions", questions_only("practice/drill-domain-4.md")),
+        ("Domain 5 drill - 15 questions", questions_only("practice/drill-domain-5.md")),
+        ("Mixed D1 + D2 - 15 questions", questions_only("practice/mixed-d1-d2.md")),
+        ("Mixed D1 + D2 + D3 - 20 questions", questions_only("practice/mixed-d1-d2-d3.md")),
+        ("Domain 4 ad-hoc, 14 Aug - 15 questions", questions_only("practice/adhoc-d4-14aug.md")),
+        ("Domain 5 ad-hoc, 14 Aug - 15 questions", questions_only("practice/adhoc-d5-14aug.md")),
     ],
     Q_INTRO,
 )
