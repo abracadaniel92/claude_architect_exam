@@ -16,9 +16,10 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | **Exam date** | Tuesday 25 August 2026 |
 | **Booked?** | ☑ **booked 11 Aug**, for Tue 25 August |
 | **Study period** | Monday 10 August – Monday 24 August (15 days) |
-| **Current day** | Day 5 of 15 — Fri 14 Aug. **All five domains covered and above target**, seven days ahead of the plan |
-| **Next session** | Sat 15 Aug — `/cert-exam 15` on D4 and D5. Independent questions, not written from these notes. Then Mock 1 on 16 Aug, timed and cold |
-| **What is still untested** | Retention across a gap · 60 questions in 120 minutes · questions not derived from these notes. See weak point 21 |
+| **Current day** | Day 7 of 15 — Sat 16 Aug. **Mock 1 done: 50/60 (83%) in under 30 of the 120 minutes**, every domain above the floor |
+| **Next session** | Sun 17 Aug — `/cert-exam 15` on D4, **deliberately slow: 75 seconds a question, flag and return.** Then cover-and-recite on cheat sheet §2, §5, §6, §10, §11 and §14 |
+| **The one thing to change** | **Slow down.** 90 of the 120 minutes went unused, and the misses are what recognition-speed answering produces, not gaps. See weak point 29 |
+| **What is still untested** | Questions not derived from these notes (`/cert-exam`, then Purcell on 23 Aug) · **whether a deliberate 75-minute pass converts the speed misses.** See weak points 21, 29 |
 | **Study time** | About 2 hours per day |
 
 ---
@@ -43,7 +44,8 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | 14 Aug | D4 ad-hoc set, balanced (15) | **13/15** | Missed Q6 (required-vs-nullable, reverse direction) and Q11 (format normalisation in the prompt). Both are Block A schema facts. All three select-twos clean |
 | 14 Aug | Mixed D1+D2+D3 set (20, balanced) | **17/20** | D1 6/8 · D2 **6/6** · D3 5/6. Missed Q1 (stopping the loop on "text and no tool_use"), Q5 (one answer where two were asked — **5th time**), Q15 (`@import` — **3rd time, same wrong answer as 12 Aug**) |
 | ~~15 Aug~~ | ~~Domain 3 drill (15)~~ — **taken 12 Aug** | | Retake on 22 Aug as planned |
-| **16 Aug** | **Mock 1 — `/cert-exam 60`, timed** | | Record the score for every domain |
+| **16 Aug** | **Mock 1 — repo set, 60 questions** | **50/60 (83%)** | D1 13/15 · D2 10/11 · D3 9/12 · D4 9/12 · D5 9/10. All ten misses are on the cheat sheet; six are in warning boxes written on 14 Aug. See weak points 22–24 |
+| 16 Aug | `/cert-exam 60` — still unused as an independent 60 | | Purcell's set stays sealed for 23 Aug |
 | 17 Aug | `/cert-exam 15` — D4 | | |
 | 18 Aug | Domain 1 drill — **retake** | | Compare with 10 Aug (10/15, pre-rebalance). First honest score on these questions |
 | 19 Aug | Domain 4 drill (15) | | |
@@ -251,12 +253,116 @@ calls clean (Q6), so weak point 3 is closing.
     guide v1.0, and questions written from these notes. **Purcell's set is the only independent
     measure, which is the strongest argument for keeping it sealed until 23 Aug.**
 
+### Added 16 Aug, from Mock 1 (50/60)
+
+> **Read weak point 29 first. It reframes the other six.** The mock was finished in **under 30
+> minutes** of the 120 available — about 30 seconds per question. The misses below are best read as
+> what recognition-speed answering produces, not as gaps in knowledge.
+
+22. **Every one of the ten misses was already on the cheat sheet, six of them inside a warning
+    box.** This is the most useful thing the mock produced. The material is complete; what fails is
+    recall under time. Two consequences:
+    → **Stop writing material.** Nothing found here needs a new note, a new table, or a new
+    warning. Adding more would dilute the file that already contains the answers.
+    → **Change the drill.** Reading the cheat sheet is what has been happening, and the facts are
+    not surviving into a question. Cover the right-hand column and say it out loud, and do it on
+    the sections that produced misses: §2 (mechanism table), §10 and §14 (step 6), §11 (SLA
+    arithmetic), §5 and §6 (loop and subagent mechanics).
+
+23. **Weak point 19 is NOT closed. Both rows of the step-6 table were missed again, with the same
+    distractor chosen both times.**
+
+    | | 14 Aug chose | 16 Aug chose | Correct |
+    |---|---|---|---|
+    | Q47 — field the source always contains | nullable + reject null | **nullable + reject null** | **required** |
+    | Q53 — inconsistent dates and currency | post-processing layer | **post-processing layer** | **normalisation rules in the prompt** |
+
+    Identical answers two days apart, both after the warning boxes were written. The rule is
+    understood in the abstract — the same idea was applied correctly on Q28 (subagents record dates
+    upstream) in the same sitting. What fails is recognising the *shape* of a late fix while
+    reading four plausible options.
+    → On exam day, before choosing any answer that repairs, validates, post-processes or
+    re-fetches: **name the component that was holding the information when it was lost.** If the
+    answer you like is not that component, it is the distractor.
+
+24. **`@import` has changed shape, and the Domain 3 mechanism table is now the problem instead.**
+    Q32 was the fourth `@import` miss — but the first one where **skills were not chosen**. That
+    trap is closed. The wrong answer this time was `.claude/rules/` with `paths` globs. And in the
+    very next question, Q33, `.claude/rules/` with globs was the correct answer and the root
+    CLAUDE.md was chosen instead.
+    → The two mechanisms were **swapped inside one scenario**, so neither fact is missing. They are
+    being matched by feel. The discriminator, in one line: **`@import` selects whole documents by
+    package · `.claude/rules/` selects by file type across folders.** If the grouping is "which
+    package", it is `@import`. If the grouping is "which kind of file", it is a glob rule.
+
+25. **Reaching past the cheap fix — weak point 2, twice, in the strength-ladder direction.**
+    Q26 forced `tool_choice` on every turn where the answer was *improve the tool description*
+    (level 4 for a level 1 problem). Q41 built a skill where the answer was *two or three concrete
+    input/output examples*. Note that Q41 is skills being attractive again, one question after
+    correctly rejecting them on Q32.
+    → The question said "first" in neither case, so the guard has to be the ladder itself: **choose
+    the weakest fix that still meets the requirement, and only climb when money, identity, a policy
+    limit, or the words guaranteed / must / never appear.** None of them appeared in Q26 or Q41.
+
+26. **Two flat mechanics slipped, and one of them was removable without any knowledge.**
+    Q2 (`tool_result` protocol — one block per `tool_use`, same `tool_use_id`, all in one user
+    message) was answered with "a text summary of all three results". Q17 chose a `parallel: true`
+    field in the AgentDefinition, **which does not exist** — step 2 of the 30-second method deletes
+    that option on sight. Invented-feature answers have not been a failure mode before; watch
+    whether it recurs.
+
+27. **Weak point 6 is clean for the third sitting running.** All ten select-two questions were
+    answered with two letters. The two that were wrong (Q33, Q58) were content errors with correct
+    counting, which is the same split seen on 14 Aug. Treat the counting habit as learned, and keep
+    the mechanical check anyway — it costs nothing.
+
+28. **Q58 and Q59 were answered in opposite directions in the same sitting.** Q58 routed review by
+    the model's self-reported low-confidence flag; Q59, two lines later, correctly required
+    confidence **calibrated against labelled data**. The rule is known and did not fire when the
+    wrong version was dressed as a sampling strategy.
+    → **Uncalibrated confidence is never an answer, in any disguise** — not for escalation, not for
+    filtering findings, and not for deciding what stops being reviewed.
+
+29. **THE ONE TO CARRY TO THE EXAM: the mock was finished in under 30 minutes of 120. Pacing is not
+    a risk. Over-speed is the whole problem.**
+    Thirty seconds per question, including reading four scenario stems, is first-instinct
+    answering. A candidate who passed used 90 of the 120 minutes. Three pieces of evidence that the
+    misses are speed, not knowledge:
+
+    | Correct in the same sitting | Missed | The rule involved |
+    |---|---|---|
+    | Q59 — confidence must be calibrated with labelled data | Q58, two questions earlier | uncalibrated confidence |
+    | Q28 — subagents record dates upstream | Q47 and Q53 | step 6, upstream vs downstream |
+    | — | Q17 — chose a `parallel: true` field | step 2 deletes non-existent features on sight |
+
+    Nobody forgets a rule and re-learns it ninety seconds later. The six-step method is not being
+    run; the questions are being pattern-matched. That yields 83%, which passes, and the residue is
+    exactly what the exam is designed to catch: the defensible-engineering distractor, the
+    plausible flag, the adjacent-feeling mechanism.
+
+    Also note **Q56 was self-flagged with a "?", answered anyway, and wrong** — with 90 minutes
+    unused and the answer written verbatim in cheat sheet §11. The uncertainty signal is accurate;
+    it is just not being acted on.
+
+    → **Exam-day plan. Budget 75 minutes for the first pass (75 seconds per question), finishing
+    with 45 minutes spare, then a second pass over flagged questions only.** Two mechanical
+    triggers:
+    1. **Flag and return.** Anything that earns a "?" gets marked and revisited. Never committed on
+       the first pass.
+    2. **Stop on repair verbs.** If an option contains *post-process, validation layer, re-fetch,
+       reject, reconcile, downstream* — halt and name the component that held the information at
+       the moment it was lost. This one trigger covers Q47 and Q53, the two hardest repeat misses.
+
+    Q17, Q56, Q58 and Q2 all look recoverable by slowing down alone — 54/60 without learning a new
+    fact.
+
 ---
 
 ## Session history
 
 | Date | What happened |
 |---|---|
+| 16 Aug | **Mock 1: 60 new questions, four scenarios, 10 select-two, blueprint-weighted, balanced key (A 13 · B 12 · C 13 · D 12 across the singles). 50/60 (83%) in under 30 minutes of the 120.** The time is the headline, not the score — 30 seconds a question is first-instinct answering, and the misses read as speed rather than gaps: the same rule was applied correctly and incorrectly two questions apart, three separate times. Weak point 29 has the exam-day fix: a 75-minute first pass, flag-and-return, and a hard stop on repair verbs. — clears the 80% target with every domain above the 60% floor, and the first 60-question sitting. Marked against the cheat sheet afterwards: **all ten misses were already in it**, six inside warning boxes written two days earlier. Both rows of the step-6 table were missed again with the *same* distractors as 14 Aug, so weak point 19 is reopened, not closed. `@import` changed shape — fourth miss but the first without choosing skills; the confusion has moved to `@import` vs `.claude/rules/`, which were swapped inside one scenario. Select-two counting clean 10 for 10. Weak points 22–28 added. **Decision: write no new material before the exam. The gap is retrieval, so the remaining sessions are cover-and-recite on the cheat sheet plus timed questions from independent sources.** |
 | 14 Aug | Domain 5 straight after Domain 4: 15 new questions, balanced key, all six task statements, avoiding `drill-domain-5.md` so it stays cold for 21 Aug. **14/15** — one miss. **All five domains are now covered, seven days ahead of the plan.** Reworked the calendar from 15 Aug onward: the four days reserved for domains already finished go to independent question sources and timed practice instead, because coverage is no longer the gap — independence of source and time pressure are. Added weak points 19–21; 19 is the one to carry to the exam and is now step 6 of the 30-second method. |
 | 14 Aug | Started Domain 4, the weakest domain. Ad-hoc set of 15 new questions, balanced key, all six task statements, deliberately avoiding the framings in `drill-domain-4.md` so that drill stays cold for 19 Aug. **13/15** — up from 1/5 cold on 8 Aug, and above the drill's own "done with this domain" bar. Both misses were Block A schema design, both the same shape: applying a rule in one direction only (weak point 17). Fixed the cheat sheet, which stated "make it optional and nullable" with no qualifier and had no format-normalisation line at all; the revision card had the second but not the first. Both regenerated. |
 | 14 Aug | Mixed set across all three completed domains: 20 new questions, blueprint-weighted, balanced key. **17/20** (D1 6/8, D2 6/6, D3 5/6) — clears the 80% target with every domain above the floor, and Domain 2 is now clean twice running. All three misses were traps aimed at the repeat-miss list: `@import` (3rd time, same wrong answer as 12 Aug), a select-two answered with one (5th time, but 3 of 4 select-twos were right), and a *new* variant of weak point 5 — stopping the loop on "text and no tool_use" instead of on `stop_reason`. Weak points 13–15 added. Notable: Grep-vs-semantic and tool granularity, both long-running repeat misses, were correct when asked from the reverse direction. |
