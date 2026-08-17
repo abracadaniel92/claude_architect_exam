@@ -16,9 +16,10 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | **Exam date** | Tuesday 25 August 2026 |
 | **Booked?** | ☑ **booked 11 Aug**, for Tue 25 August |
 | **Study period** | Monday 10 August – Monday 24 August (15 days) |
-| **Current day** | Day 7 of 15 — Sat 16 Aug. **Mock 1 done: 50/60 (83%) in under 30 of the 120 minutes**, every domain above the floor |
-| **Next session** | Sun 17 Aug — `/cert-exam 15` on D4, **deliberately slow: 75 seconds a question, flag and return.** Then cover-and-recite on cheat sheet §2, §5, §6, §10, §11 and §14 |
-| **The one thing to change** | **Slow down.** 90 of the 120 minutes went unused, and the misses are what recognition-speed answering produces, not gaps. See weak point 29 |
+| **Current day** | Day 7 of 15 — Sat 16 Aug. **Two mocks in one day: 50/60 then 46/60.** The second was reverse-direction and put D3 (6/12) and D5 (4/9) under the floor |
+| **Next session** | Sun 17 Aug — **D3 and D5 only.** Recite the mechanism table in cheat sheet §2 by *grouping*, then the D5 never-list. No new questions until both come back clean |
+| **The one thing to change** | **Slow down.** 90 of the 120 minutes went unused on Mock 1, and Mock 2 chose two never-list answers that were correct nine hours earlier. See weak point 29 |
+| **Outstanding** | Regenerate the revision card — it is missing the interview pattern and the CI/CLAUDE.md line. Edit `tools/make-revision-card.py`, do not edit the PDF |
 | **What is still untested** | Questions not derived from these notes (`/cert-exam`, then Purcell on 23 Aug) · **whether a deliberate 75-minute pass converts the speed misses.** See weak points 21, 29 |
 | **Study time** | About 2 hours per day |
 
@@ -45,6 +46,7 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | 14 Aug | Mixed D1+D2+D3 set (20, balanced) | **17/20** | D1 6/8 · D2 **6/6** · D3 5/6. Missed Q1 (stopping the loop on "text and no tool_use"), Q5 (one answer where two were asked — **5th time**), Q15 (`@import` — **3rd time, same wrong answer as 12 Aug**) |
 | ~~15 Aug~~ | ~~Domain 3 drill (15)~~ — **taken 12 Aug** | | Retake on 22 Aug as planned |
 | **16 Aug** | **Mock 1 — repo set, 60 questions** | **50/60 (83%)** | D1 13/15 · D2 10/11 · D3 9/12 · D4 9/12 · D5 9/10. All ten misses are on the cheat sheet; six are in warning boxes written on 14 Aug. See weak points 22–24 |
+| 16 Aug | **Mock 2 — repo set, 60 questions, reverse-direction** | **46/60 (77%)** | D1 14/16 · D2 **11/11** · D3 **6/12** ⚠ · D4 11/12 · D5 **4/9** ⚠. Below the 80% target, two domains under the floor. Three select-twos answered with one letter. See weak points 30–33 |
 | 16 Aug | `/cert-exam 60` — still unused as an independent 60 | | Purcell's set stays sealed for 23 Aug |
 | 17 Aug | `/cert-exam 15` — D4 | | |
 | 18 Aug | Domain 1 drill — **retake** | | Compare with 10 Aug (10/15, pre-rebalance). First honest score on these questions |
@@ -356,12 +358,70 @@ calls clean (Q6), so weak point 3 is closing.
     Q17, Q56, Q58 and Q2 all look recoverable by slowing down alone — 54/60 without learning a new
     fact.
 
+### Added 16 Aug, from Mock 2 (46/60) — the reverse-direction paper
+
+30. **Weak point 22 was wrong as general advice, and Mock 2 disproved it. Four marks came from
+    three facts that were not on the cheat sheet.**
+    Mock 1's misses were all documented, so "stop writing material" looked right. It was right
+    about *those* misses only. Today:
+
+    | Fact | Cost | Where it was |
+    |---|---|---|
+    | **Coverage annotations** — declare which findings are supported and which topics have gaps | **2 marks** (Q15, Q60) | on the revision card, **not** in the cheat sheet |
+    | **The interview pattern** — unfamiliar domain, let Claude ask questions first | 1 mark (Q21) | in neither file |
+    | **CLAUDE.md as the CI project context** (testing standards, fixture conventions) | 1 mark (Q18) | in neither file |
+
+    → **The cheat sheet and the revision card have now drifted apart three times** (12 Aug, 14 Aug,
+    16 Aug). Stop assuming they match. All four facts added to the cheat sheet; the card needs
+    regenerating for the interview pattern and the CI/CLAUDE.md line.
+
+31. **Two of the three single-letter select-twos were not counting lapses — they were content gaps
+    hiding behind the counting habit.**
+    Q27, Q34 and Q59 were answered with one letter, and in every case the letter given was correct
+    (49/60 if counted). But the *omitted* letters were:
+    - **Q34 → B, "parallel = several Task calls in one response"** — also missed in Mock 1 Q17, by
+      choosing a `parallel: true` field that does not exist. **Twice.**
+    - **Q59 → C, "stratified random sample of the high-confidence group"** — also missed in Mock 1
+      Q58. **Twice.**
+
+    → The habit of stopping at one answer is masking which facts are absent. When a select-two is
+    answered with one letter, **the missing letter is the diagnostic**, not the counting error.
+    Both facts now carry warning boxes.
+
+32. **Domain 3 collapsed to 6/12, entirely on mechanism selection, and `.claude/rules/` has become
+    the reflex answer.**
+    Three questions, three different correct mechanisms, each answered with another row of the
+    same table: Q7 a **directory CLAUDE.md** was right → chose `.claude/rules/`; Q8 **`@import`**
+    was right → chose **skills** (fifth `@import` miss, and the skills answer is back after Mock 1
+    finally rejected it); Q9 **`argument-hint`** was right → chose **`paths`**, the key correctly
+    identified as *not* a SKILL.md key in Mock 1 Q36.
+    → New rule on the cheat sheet: **choose by what the content is grouped by** — package →
+    `@import`; file pattern → `.claude/rules/`; one folder → directory CLAUDE.md; always →
+    root CLAUDE.md; on request → skill. `.claude/rules/` is correct **only** for a file pattern.
+
+33. **Two never-list answers were chosen in Domain 5, both correct in Mock 1 nine hours earlier.**
+    Q44 escalated on **sentiment**. Q30 returned an **empty result marked successful**. Both are on
+    the "never the right answer" list, both were clean on Mock 1.
+    → This is the strongest evidence yet for weak point 29. Facts that are genuinely known are not
+    surviving contact with a plausible distractor at speed. The never-list is not a knowledge
+    problem; it is a **stop-and-check** problem.
+
+34. **What is confirmed closed — do not spend more time here.**
+    - **Domain 2: 11/11**, including every Grep / Glob / semantic question. That was a four-time
+      repeat miss (weak point 8). Closed.
+    - **Required vs nullable, both directions in one paper** (Q46 required, Q52 nullable). That was
+      missed twice with the identical wrong answer. Weak point 23's first row is closed.
+    - **Resume→fresh (Q12), chaining with a known list (Q53), direct execution (Q20)** — all three
+      are the opposite direction from Mock 1, all three correct. Those rules are genuinely learned,
+      not shape-matched.
+
 ---
 
 ## Session history
 
 | Date | What happened |
 |---|---|
+| 16 Aug | **Mock 2, same day, deliberately built against the Mock 1 failure mode** — every question offering a defensible late fix, a plausible non-existent feature, or a known rule running in the opposite direction. **46/60 (77%)**, below target, with **D3 at 6/12 and D5 at 4/9**, both under the floor. Three findings. First, **weak point 22 was wrong**: four marks came from three facts absent from the cheat sheet (coverage annotations, twice; the interview pattern; CLAUDE.md as CI context) — the cheat sheet and revision card have drifted apart for the third time, and all four are now added. Second, the three single-letter select-twos were **not** counting lapses: two of the omitted letters (parallel Task calls, stratified high-confidence sampling) are Mock 1 repeat misses, so the counting habit was concealing content gaps. Third, D3 mechanism selection has degraded into a reflex for `.claude/rules/`. Against that, D2 scored **11/11** and required-vs-nullable came out clean in both directions, so weak point 8 and the first row of 23 are closed. Weak points 30–34 added. |
 | 16 Aug | **Mock 1: 60 new questions, four scenarios, 10 select-two, blueprint-weighted, balanced key (A 13 · B 12 · C 13 · D 12 across the singles). 50/60 (83%) in under 30 minutes of the 120.** The time is the headline, not the score — 30 seconds a question is first-instinct answering, and the misses read as speed rather than gaps: the same rule was applied correctly and incorrectly two questions apart, three separate times. Weak point 29 has the exam-day fix: a 75-minute first pass, flag-and-return, and a hard stop on repair verbs. — clears the 80% target with every domain above the 60% floor, and the first 60-question sitting. Marked against the cheat sheet afterwards: **all ten misses were already in it**, six inside warning boxes written two days earlier. Both rows of the step-6 table were missed again with the *same* distractors as 14 Aug, so weak point 19 is reopened, not closed. `@import` changed shape — fourth miss but the first without choosing skills; the confusion has moved to `@import` vs `.claude/rules/`, which were swapped inside one scenario. Select-two counting clean 10 for 10. Weak points 22–28 added. **Decision: write no new material before the exam. The gap is retrieval, so the remaining sessions are cover-and-recite on the cheat sheet plus timed questions from independent sources.** |
 | 14 Aug | Domain 5 straight after Domain 4: 15 new questions, balanced key, all six task statements, avoiding `drill-domain-5.md` so it stays cold for 21 Aug. **14/15** — one miss. **All five domains are now covered, seven days ahead of the plan.** Reworked the calendar from 15 Aug onward: the four days reserved for domains already finished go to independent question sources and timed practice instead, because coverage is no longer the gap — independence of source and time pressure are. Added weak points 19–21; 19 is the one to carry to the exam and is now step 6 of the 30-second method. |
 | 14 Aug | Started Domain 4, the weakest domain. Ad-hoc set of 15 new questions, balanced key, all six task statements, deliberately avoiding the framings in `drill-domain-4.md` so that drill stays cold for 19 Aug. **13/15** — up from 1/5 cold on 8 Aug, and above the drill's own "done with this domain" bar. Both misses were Block A schema design, both the same shape: applying a rule in one direction only (weak point 17). Fixed the cheat sheet, which stated "make it optional and nullable" with no qualifier and had no format-normalisation line at all; the revision card had the second but not the first. Both regenerated. |

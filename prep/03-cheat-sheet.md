@@ -62,7 +62,23 @@ You cannot take notes into the exam. Everything here must be in your head.
 | Universal standards, must always apply | **CLAUDE.md** | Always loaded |
 | Shared documents, and each package's **maintainer picks** which apply — no duplication | **`@import`** in each package's CLAUDE.md | Selective inclusion by reference, nothing copied |
 | Conventions that follow a **file type across many folders** (`**/*.test.*`) | **`.claude/rules/`** with `paths:` | Loads only when a matching file is edited |
+| Conventions for **one folder and nothing outside it** (`services/billing/`) | **a CLAUDE.md inside that folder** | Covers exactly that subtree |
 | An on-demand, task-specific **workflow** (quarterly migration, release notes) | **a skill** | Called when needed |
+
+> ⚠️ **16 Aug: three questions, three mechanisms, each answered with a different row of this
+> table.** The table is known and is being matched by feel. Choose by **what the content is
+> grouped by**, and nothing else:
+>
+> | The grouping is | Answer |
+> |---|---|
+> | by **package or component**, maintainer picks which documents | **`@import`** |
+> | by **file type**, wherever the file lives (`**/*.test.*`) | **`.claude/rules/` + `paths:`** |
+> | by **one folder**, everything in it, nothing outside | **a directory CLAUDE.md** |
+> | by **nothing — it always applies** | **the root CLAUDE.md** |
+> | by **the moment someone asks for it** | **a skill** |
+>
+> `.claude/rules/` has become the reflex answer for anything about scoping. It is only correct
+> when the grouping is a **file pattern**.
 
 **Skills must be invoked.** So a skill can *never* be the answer for something that must always
 apply, or must load automatically. If a question says "automatic" or "always", skills are out.
@@ -134,7 +150,9 @@ text exists · a `task_complete` tool.
 - Started with the **Task tool**.
 - The coordinator's **`allowedTools` must include `"Task"`**.
 - Subagents receive **nothing** automatically. Put everything in the prompt.
-- **Parallel** = several Task calls in **one response**.
+- **Parallel** = several Task calls in **one response**. ⚠️ **Missed twice (16 Aug):** once by
+  choosing a `parallel: true` field that **does not exist**, once by not selecting it at all on a
+  select-two. Separate turns run sequentially. There is no flag, no setting, no config key.
 - **`fork_session`** = branches from one shared analysis, to compare approaches.
 - All messages go **through the coordinator**. Subagents never talk to each other.
 - Coverage is incomplete but every agent worked → **the coordinator's split was too narrow.**
@@ -194,6 +212,14 @@ success.
 possible alternatives.
 
 **Never:** a generic message · hiding the error as success · stopping the whole workflow.
+
+**Coverage annotations.** When a source or tool was unavailable, the output must say **which
+findings are well supported and which topics have gaps.** A report that reads as complete when two
+sources never answered is the same failure as hiding an error.
+
+> ⚠️ **Missed twice in one paper (16 Aug), and it was on the revision card but not here.** The two
+> wrong answers were *"retry until the sources respond"* and *"summarise more aggressively"* —
+> both treat a coverage gap as something to remove rather than something to **declare**.
 
 **Subagents fix transient failures themselves.** They only report what they cannot fix.
 
@@ -314,6 +340,16 @@ A 24-hour window and a 30-hour SLA means submitting every **4 hours**.
   structure → map first instead. See "Splitting up work" above.)
 - **A bigger context window does not fix attention dilution.**
 - **Voting across runs hides real bugs.**
+- **Prose description giving inconsistent results → 2–3 concrete input/output examples.** The
+  guide calls this the most effective way to show an expected transformation.
+- **Unfamiliar domain, and you are not sure what to specify → the interview pattern.** Let Claude
+  ask you questions first, so it raises what you did not think of (cache invalidation, failure
+  modes). Not plan mode — plan mode designs against a specification you do not yet have.
+- **Problems that affect each other → one detailed message.** Independent problems → one at a time.
+- **In CI, CLAUDE.md is how Claude Code learns the project:** testing standards, fixture
+  conventions, review criteria. Writing them there is what stops low-value test suggestions —
+  not appending them to the prompt in the pipeline script. To stop duplicate tests, **supply the
+  existing test files.**
 
 ---
 
@@ -339,6 +375,12 @@ specific classes it found → use **scratchpad files**.
 
 **97% average accuracy can hide one broken document type** → stratified sampling + analysis by
 type and field.
+
+> ⚠️ **The sampling half has now been missed twice (16 Aug), both times as the second answer on a
+> select-two.** "Analyse by document type and field" is being found; **"stratified random sample
+> of the HIGH-CONFIDENCE extractions"** is not. Why that group: it is the group you are about to
+> **stop reviewing**, so its true error rate is the only number that matters. Sampling uniformly,
+> or sampling what the model already flagged as low confidence, tells you nothing about it.
 
 **Confidence is usable only when calibrated with labelled data, and only for routing review work.**
 

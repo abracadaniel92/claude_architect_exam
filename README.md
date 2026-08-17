@@ -58,6 +58,7 @@ Also: [the six exam scenarios](prep/notes/scenarios.md).
 | File | Questions |
 |---|---|
 | [**Mock 1** — questions](prep/practice/mock-01-questions.md) · [answers](prep/practice/mock-01-answers.md) | **60, full exam simulation.** 4 scenarios, 10 select-two, 120 minutes |
+| [**Mock 2** — questions](prep/practice/mock-02-questions.md) · [answers](prep/practice/mock-02-answers.md) | **60, reverse-direction.** Same format, built so that recognising the question shape is not enough |
 | [Set 1 — questions](prep/practice/set-01-questions.md) · [answers](prep/practice/set-01-answers.md) | 20, mixed |
 | [Domain 1 drill](prep/practice/drill-domain-1.md) | 15 |
 | [Domain 2 drill](prep/practice/drill-domain-2.md) | 15 |
