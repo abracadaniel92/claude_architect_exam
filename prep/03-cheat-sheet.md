@@ -79,6 +79,18 @@ You cannot take notes into the exam. Everything here must be in your head.
 >
 > `.claude/rules/` has become the reflex answer for anything about scoping. It is only correct
 > when the grouping is a **file pattern**.
+>
+> **17 Aug — the table is not the problem. Reading the grouping off the wrong words is.** A question
+> that asked for this discriminator in the abstract was answered correctly, in the same sitting as
+> two wrong applications of it. Both misses came from the sentence, not the content: *"they exist in
+> nine packages"* was read as a package grouping when the content governs `**/*.stories.tsx`, and
+> *"each lead decides which apply"* was read as invoking when the documents then govern all work in
+> that service.
+>
+> **Ask one question, and only this one: what set of files does this content govern?**
+> A pattern → `.claude/rules/`. One package or service → `@import`. One folder → a directory
+> CLAUDE.md. Everything → the root CLAUDE.md. Only when someone asks → a skill.
+> Never decide it from which nouns appear in the question, and never from the word "chooses".
 
 **Skills must be invoked.** So a skill can *never* be the answer for something that must always
 apply, or must load automatically. If a question says "automatic" or "always", skills are out.

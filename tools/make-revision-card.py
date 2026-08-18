@@ -1,4 +1,18 @@
-"""Build a printable A4 revision card for the CCAR-F exam."""
+"""Build a printable A4 revision card for the CCAR-F exam.
+
+Revision 17 Aug 2026. Changes since 14 Aug, all from the weak-point list in prep/LOG.md:
+  - page 2: the "which mechanism holds which content" grouping table, which was missing entirely,
+    plus the grouping cue from weak point 40 (what SET OF FILES does this content govern)
+  - page 2: parallel: true, "disabled by default" MCP servers and API session state added to the
+    list of features that do not exist
+  - page 3: continue on tool_use ONLY, never on "anything that is not end_turn" (weak point 38);
+    no parallel flag; the coordinator selects subagents by complexity
+  - page 4: the business-vs-permission discriminator
+  - page 5: format normalisation boxed as the leading repeat miss (weak point 42); the interview
+    pattern and CLAUDE.md-as-CI-context, both of which were in neither file (weak point 30);
+    prose -> 2-3 examples; the general SLA formula
+  - page 6: the four context mechanisms as one discrimination table (weak point 41)
+"""
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.lib import colors
@@ -21,11 +35,11 @@ SUB = ParagraphStyle("SUB", fontName="Helvetica", fontSize=8, leading=10,
                      textColor=MID, spaceAfter=5)
 H2 = ParagraphStyle("H2", fontName="Helvetica-Bold", fontSize=9.5, leading=11,
                     textColor=INK, spaceBefore=7, spaceAfter=3)
-BODY = ParagraphStyle("BODY", fontName="Helvetica", fontSize=8.2, leading=10,
+BODY = ParagraphStyle("BODY", fontName="Helvetica", fontSize=7.7, leading=9.2,
                       textColor=INK, alignment=TA_LEFT, spaceAfter=2)
-CELL = ParagraphStyle("CELL", fontName="Helvetica", fontSize=8, leading=9.6,
+CELL = ParagraphStyle("CELL", fontName="Helvetica", fontSize=7.5, leading=8.9,
                       textColor=INK)
-CELLB = ParagraphStyle("CELLB", fontName="Helvetica-Bold", fontSize=8, leading=9.6,
+CELLB = ParagraphStyle("CELLB", fontName="Helvetica-Bold", fontSize=7.5, leading=8.9,
                        textColor=INK)
 
 W = A4[0] - 24 * mm  # usable width
@@ -41,8 +55,8 @@ def tbl(rows, widths, header=False):
     t = Table(data, colWidths=widths, hAlign="LEFT")
     style = [
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("TOPPADDING", (0, 0), (-1, -1), 2.5),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 2.5),
+        ("TOPPADDING", (0, 0), (-1, -1), 1.8),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 1.8),
         ("LEFTPADDING", (0, 0), (-1, -1), 4),
         ("RIGHTPADDING", (0, 0), (-1, -1), 4),
         ("LINEBELOW", (0, 0), (-1, -2), 0.25, RULE),
@@ -68,8 +82,8 @@ def box(title, lines):
     t = Table(inner, colWidths=[W], hAlign="LEFT")
     t.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
-        ("TOPPADDING", (0, 0), (-1, -1), 2.5),
-        ("BOTTOMPADDING", (0, 0), (-1, -1), 2.5),
+        ("TOPPADDING", (0, 0), (-1, -1), 1.8),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 1.8),
         ("LEFTPADDING", (0, 0), (-1, -1), 5),
         ("RIGHTPADDING", (0, 0), (-1, -1), 5),
         ("BOX", (0, 0), (-1, -1), 1.1, INK),
@@ -84,7 +98,8 @@ def header_footer(canvas, doc):
     canvas.setFillColor(MID)
     canvas.drawString(12 * mm, A4[1] - 8 * mm,
                       "CCAR-F  -  Claude Certified Architect, Foundations  -  revision card")
-    canvas.drawRightString(A4[0] - 12 * mm, A4[1] - 8 * mm, "Exam: Tue 25 Aug 2026")
+    canvas.drawRightString(A4[0] - 12 * mm, A4[1] - 8 * mm,
+                           "rev 17 Aug  -  exam: Tue 25 Aug 2026")
     canvas.setStrokeColor(RULE)
     canvas.setLineWidth(0.4)
     canvas.line(12 * mm, A4[1] - 10 * mm, A4[0] - 12 * mm, A4[1] - 10 * mm)
@@ -133,6 +148,12 @@ S.append(tbl([
     ["6", "Ask <b>where the information should have been PRODUCED</b>, not where the failure showed up."],
 ], [8 * mm, W - 8 * mm]))
 sp(2)
+S.append(Paragraph("<b>Two mechanical triggers, both proved necessary on 17 Aug.</b> "
+                   "<b>(1)</b> On a Domain 3 mechanism question, ask <i>what set of files does this "
+                   "content govern</i>  -  never which nouns the question mentions (page 3). "
+                   "<b>(2)</b> <b>Halt on repair verbs</b>  -  post-process, validate, reconcile, "
+                   "re-fetch, reverse. That distractor has taken four marks (page 6).", BODY))
+sp(2)
 S.append(Paragraph("<b>Step 6 - your one cross-domain weakness.</b> The failure appears late; the "
                    "fix belongs early. Field missing that the source always has &rarr; <b>required</b>, "
                    "not nullable-plus-a-null-check. Inconsistent dates and currency &rarr; "
@@ -163,7 +184,7 @@ h2("The five kinds of wrong answer")
 S.append(tbl([
     ["<b>Too big a solution</b>", "Builds new systems before trying simple fixes. Signals: train a classifier, deploy a model, add a routing layer, build a service"],
     ["<b>Blames a working part</b>", "The question names the broken part. Any answer pointing elsewhere is wrong"],
-    ["<b>Feature does not exist</b>", "Sounds confident, describes a flag or file that is not real (see page 2)"],
+    ["<b>Feature does not exist</b>", "Sounds confident, describes a flag or file that is not real (see page 3)"],
     ["<b>Solves another problem</b>", "Reasonable, but fixes something the question did not ask about"],
     ["<b>Moves work to people</b>", "Asks developers or customers to do more, or hides real problems"],
 ], [42 * mm, W - 42 * mm]))
@@ -184,8 +205,8 @@ S.append(tbl([
 S.append(PageBreak())
 
 # ---------------------------------------------------------------- PAGE 2
-sec("2  -  Signal words, paths, and flags",
-    "Domain 3 is 20% of the exam and almost entirely memorisation. These are the cheapest points.")
+sec("2  -  Signal words and file paths",
+    "Pure memorisation, and the cheapest points on the exam. This half has been clean 8 for 8.")
 
 h2("Signal words in the question")
 S.append(tbl([
@@ -222,6 +243,34 @@ sp(2)
 S.append(Paragraph("Rule: anything starting with <b>~/</b> is personal and is NOT shared through "
                    "version control.", BODY))
 
+S.append(PageBreak())
+
+# ---------------------------------------------------------------- PAGE 3
+sec("3  -  Domain 3: choosing the mechanism",
+    "Every Domain 3 miss on 16 and 17 August was on this page. None was a forgotten path.")
+
+h2("Which mechanism holds which content  -  choose by the GROUPING, nothing else")
+S.append(tbl([
+    [p("<b>The content is grouped by</b>", CELLB), p("<b>Use</b>", CELLB), p("<b>Because</b>", CELLB)],
+    ["<b>nothing</b>  -  it always applies", "the <b>root CLAUDE.md</b>", "Always loaded, no maintainer action"],
+    ["<b>package or service</b>, maintainer picks<br/>which shared documents apply",
+     "<b>@import</b> in that package's CLAUDE.md", "Selective inclusion by reference, nothing duplicated"],
+    ["<b>file type</b>, wherever the file lives<br/>(**/*.test.tsx, **/*.stories.tsx)",
+     "<b>.claude/rules/</b> with paths:", "Loads only when a matching file is edited"],
+    ["<b>one folder</b>, everything in it,<br/>nothing outside", "a <b>CLAUDE.md inside that folder</b>", "Covers exactly that subtree"],
+    ["<b>the moment someone asks</b>", "a <b>skill</b>", "Must be invoked, so it can never always apply"],
+], [58 * mm, 44 * mm, W - 102 * mm], header=True))
+
+sp(4)
+S.append(box("Ask ONE question: what SET OF FILES does this content govern?", [
+    "This is the single most expensive decision on the paper  -  four marks on 16 Aug, four more on 17 Aug.",
+    "Do <b>not</b> read the grouping off the nouns in the question. \"They exist in nine packages\" is "
+    "still a <b>file pattern</b> if the content governs *.stories.tsx. \"Each lead <b>decides</b> which "
+    "apply\" is still <b>@import</b>, not a skill, because after the decision they govern ALL work there.",
+    "<b>.claude/rules/</b> is the reflex answer and is correct <b>only</b> for a file pattern. "
+    "<b>Skills</b> are never the answer for anything that must always apply.",
+]))
+
 h2("Frontmatter keys  -  do not mix these two")
 S.append(tbl([
     [p("<b>SKILL.md</b>  (in .claude/skills/)", CELLB), p("<b>.claude/rules/ files</b>", CELLB)],
@@ -252,12 +301,16 @@ S.append(box("These DO NOT EXIST  -  they appear as wrong answers", [
     "--batch            CLAUDE_HEADLESS=true            --no-interactive",
     ".claude/config.json with a commands list",
     "Redirecting stdin from /dev/null as the \"correct approach\"",
+    "<b>parallel: true</b> in an AgentDefinition  -  parallel is several Task calls in one response",
+    "A committed .mcp.json <b>\"disabled by default\"</b>, or a personal servers block in "
+    ".claude/settings.json  -  personal servers live in <b>~/.claude.json</b>",
+    "Server-side session state on the API  -  it is <b>stateless</b>; send the whole history",
 ]))
 
 S.append(PageBreak())
 
-# ---------------------------------------------------------------- PAGE 3
-sec("3  -  Domain 1: Agentic Architecture (27%)",
+# ---------------------------------------------------------------- PAGE 4
+sec("4  -  Domain 1: Agentic Architecture (27%)",
     "The biggest domain. About 16 of the 60 questions.")
 
 h2("The agentic loop")
@@ -265,6 +318,8 @@ S.append(tbl([
     ["The loop is controlled by <b>stop_reason</b>. Nothing else."],
     ["<b>\"tool_use\"</b>  ->  run the tools, add results to history, repeat"],
     ["<b>\"end_turn\"</b>  ->  stop"],
+    ["Continue on <b>tool_use ONLY</b>  -  never on \"anything that is not end_turn\". "
+     "max_tokens, refusal and pause_turn all fail that test and would loop with nothing to execute"],
     ["All seven API values: end_turn, max_tokens, stop_sequence, tool_use, pause_turn, refusal, model_context_window_exceeded. The exam tests the first pair"],
     ["Every tool_use needs one tool_result with the same <b>tool_use_id</b>"],
     ["Send all results from one Claude message back in <b>ONE</b> user message"],
@@ -282,10 +337,13 @@ S.append(tbl([
     ["Started with the <b>Task tool</b>"],
     ["The coordinator's <b>allowedTools must include \"Task\"</b>  -  without it, no delegation is possible"],
     ["Subagents receive <b>NOTHING</b> automatically. No history, no memory. Put it all in the prompt"],
-    ["<b>Parallel</b> = several Task calls in <b>ONE response</b>"],
+    ["<b>Parallel</b> = several Task calls in <b>ONE response</b>. Separate turns run sequentially. "
+     "There is <b>no flag, no setting, no parallel: true</b>"],
     ["<b>fork_session</b> = branches from ONE shared analysis, to compare approaches"],
     ["All messages go <b>through the coordinator</b>. Subagents never talk to each other"],
     ["<b>AgentDefinition</b> = each subagent's description, system prompt, and tool restrictions"],
+    ["A good coordinator <b>chooses which subagents to invoke</b> by the complexity of the request. "
+     "Running five unnecessary subagents faster is still running five unnecessary subagents"],
 ], [W]))
 sp(3)
 S.append(box("The failure to remember", [
@@ -332,8 +390,8 @@ S.append(Paragraph("The question is <b>HOW MUCH</b> is stale, not whether anythi
 
 S.append(PageBreak())
 
-# ---------------------------------------------------------------- PAGE 4
-sec("4  -  Domain 2: Tool Design and MCP (18%)",
+# ---------------------------------------------------------------- PAGE 5
+sec("5  -  Domain 2: Tool Design and MCP (18%)",
     "About 11 of the 60 questions.")
 
 h2("Tool descriptions  -  the core fact")
@@ -362,6 +420,8 @@ S.append(tbl([
     ["An <b>access failure is NOT an empty result</b>. A timeout may need a retry; zero matches is a success"],
     ["Subagents fix transient failures <b>themselves</b>. They only report what they cannot fix"],
     ["When reporting: failure type + what was tried + partial results + alternatives"],
+    ["<b>business vs permission</b>  -  a <b>policy limit</b> exceeded is business (input and system "
+     "are both fine, a RULE says no). The <b>caller lacking access</b> is permission"],
 ], [W]))
 
 h2("tool_choice")
@@ -401,8 +461,8 @@ S.append(tbl([
 
 S.append(PageBreak())
 
-# ---------------------------------------------------------------- PAGE 5
-sec("5  -  Domain 4: Prompts and Structured Output (20%)",
+# ---------------------------------------------------------------- PAGE 6
+sec("6  -  Domain 4: Prompts and Structured Output (20%)",
     "Your weakest domain on the day-1 test. Read this page every day.")
 
 h2("Schema design")
@@ -417,8 +477,18 @@ S.append(tbl([
     ["<b>calculated_total</b> next to <b>stated_total</b>  -  catches totals that do not add up"],
     ["<b>conflict_detected</b>  -  boolean for contradictory source data"],
     ["<b>detected_pattern</b>  -  to analyse which findings developers dismiss"],
-    ["Put format normalisation rules in the <b>prompt</b>, next to the strict schema"],
 ], [W]))
+
+sp(4)
+S.append(box("The most expensive line on this card  -  missed FOUR times, always the same distractor", [
+    "Source states dates, currency or quantities in several formats  ->  <b>format normalisation "
+    "rules in the PROMPT</b>, next to the strict schema.",
+    "<b>The schema fixes the TYPE. The prompt fixes the FORMAT.</b>",
+    "A <b>post-processing layer</b> is the wrong answer: it needs a branch per variant and breaks on "
+    "the first layout nobody anticipated. Same for a \"validation check against the source\".",
+    "<b>Halt on repair verbs</b>  -  post-process, validate, reconcile, re-fetch, reverse, downstream. "
+    "Then name the component that held the information when it was lost. That component is the answer.",
+]))
 
 h2("Retries")
 S.append(tbl([
@@ -440,7 +510,8 @@ S.append(tbl([
     ["Good for", "Overnight reports, weekly audits, nightly test generation"],
     ["Bad for", "Anything where a person is waiting (pre-merge, pre-commit)"],
     ["Failures", "Resubmit <b>only</b> the failures, found by custom_id. Split long documents"],
-    ["SLA maths", "24-hour window + 30-hour SLA  ->  submit every <b>4 hours</b>"],
+    ["SLA maths", "Worst case = <b>gap between submissions + 24h</b>. It must be under the SLA.<br/>"
+                  "30-hour SLA -> every <b>4 hours</b> (28).  36-hour -> every <b>8</b> (32)"],
 ], [46 * mm, W - 46 * mm]))
 
 h2("Prompts and criteria")
@@ -451,6 +522,15 @@ S.append(tbl([
     ["Severity levels need <b>concrete code examples</b> for each level"],
     ["<b>Few-shot: 2 to 4 examples</b>, aimed at the <b>unclear</b> cases, not the obvious ones"],
     ["Few-shot lets the model <b>generalise</b> to new situations, not just copy"],
+    ["A <b>prose description</b> giving inconsistent results  ->  <b>2-3 concrete input/output "
+     "examples</b>. The guide's most effective way to show an expected transformation. Not a skill"],
+    ["<b>Unfamiliar domain, you do not know what to specify  ->  the INTERVIEW pattern.</b> Let Claude "
+     "ask the questions first, so it raises invalidation, failure modes, the things you forgot. "
+     "<b>Not plan mode</b>  -  plan mode designs against a specification you do not yet have"],
+    ["Problems that <b>affect each other</b>  ->  ONE detailed message. Independent problems  ->  one at a time"],
+    ["<b>In CI, CLAUDE.md is how Claude Code learns the project</b>: testing standards, fixture "
+     "conventions, review criteria. Not appended to the prompt by the pipeline script each run.<br/>"
+     "Duplicate test suggestions  ->  <b>supply the existing test files</b>"],
 ], [W]))
 
 h2("Review architecture")
@@ -464,8 +544,8 @@ S.append(tbl([
 
 S.append(PageBreak())
 
-# ---------------------------------------------------------------- PAGE 6
-sec("6  -  Domain 5: Context and Reliability (15%)",
+# ---------------------------------------------------------------- PAGE 7
+sec("7  -  Domain 5: Context and Reliability (15%)",
     "Only 15%, but it appears in four of the six exam scenarios.")
 
 h2("Three context problems and their fixes")
@@ -503,13 +583,23 @@ S.append(tbl([
     ["Synthesis output should mark which topics have <b>coverage gaps</b>"],
 ], [W]))
 
-h2("Long codebase exploration")
+h2("Four mechanisms that all sound like \"keep the context clean\". They are NOT interchangeable")
 S.append(tbl([
-    ["Symptom of <b>context degradation</b>", "The model talks about \"<b>typical patterns</b>\" instead of the specific classes it found"],
-    ["Fix", "<b>Scratchpad files</b>  -  save key findings, read them later"],
-    ["Also", "Subagent delegation, phase summaries, /compact"],
-    ["Crash recovery", "<b>Manifests</b>  -  each agent exports state; the coordinator loads it on resume"],
-], [46 * mm, W - 46 * mm]))
+    [p("<b>The problem</b>", CELLB), p("<b>The one mechanism</b>", CELLB)],
+    ["Noisy discovery whose output has no value once the answer exists",
+     "an <b>Explore subagent</b>  -  keeps it out in the first place"],
+    ["A live session is nearly full and you want to carry on in it",
+     "<b>/compact</b>"],
+    ["A long multi-agent job <b>crashed</b> and the work was lost",
+     "<b>MANIFESTS</b>  -  each agent writes state to a known location, the coordinator loads it on resume"],
+    ["The model talks about \"<b>typical patterns</b>\" instead of the specific classes it found "
+     "(context degradation, nothing crashed)",
+     "<b>Scratchpad files</b>  -  key findings written down as they are established"],
+], [W / 2, W / 2], header=True))
+sp(2)
+S.append(Paragraph("Missed twice, with a <b>different</b> wrong answer each time (/compact, then "
+                   "scratchpads), which is the signal for a fact that is absent rather than "
+                   "out-competed. <b>Crashed = manifest.</b> Nothing else recovers lost work.", BODY))
 
 h2("Human review and confidence")
 S.append(tbl([

@@ -59,7 +59,10 @@ Also: [the six exam scenarios](prep/notes/scenarios.md).
 |---|---|
 | [**Mock 1** — questions](prep/practice/mock-01-questions.md) · [answers](prep/practice/mock-01-answers.md) | **60, full exam simulation.** 4 scenarios, 10 select-two, 120 minutes |
 | [**Mock 2** — questions](prep/practice/mock-02-questions.md) · [answers](prep/practice/mock-02-answers.md) | **60, reverse-direction.** Same format, built so that recognising the question shape is not enough |
+| [**Mock 3** — questions](prep/practice/mock-03-questions.md) · [answers](prep/practice/mock-03-answers.md) | **60, gap-targeted.** Same format, built from the repeat-miss list in the log: each fact missed twice appears twice, in different disguises |
+| [**Mock 4** — questions](prep/practice/mock-04-questions.md) · [answers](prep/practice/mock-04-answers.md) | **60, repeat-miss paper.** Same format, built from the facts that survived Mocks 1–3: format normalisation, manifests, Domain 3 grouping read off misleading nouns, and four invented features |
 | [Set 1 — questions](prep/practice/set-01-questions.md) · [answers](prep/practice/set-01-answers.md) | 20, mixed |
+| [Post-Mock-3 set](prep/practice/adhoc-post-mock3-17aug.md) | 20, **not blueprint-weighted.** Aimed only at what Mock 3 missed: eight questions on Domain 3 grouping and the high-confidence sample, twelve to hide them in |
 | [Domain 1 drill](prep/practice/drill-domain-1.md) | 15 |
 | [Domain 2 drill](prep/practice/drill-domain-2.md) | 15 |
 | [Domain 3 drill](prep/practice/drill-domain-3.md) | 15 |
