@@ -16,11 +16,11 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | **Exam date** | Tuesday 25 August 2026 |
 | **Booked?** | ☑ **booked 11 Aug**, for Tue 25 August |
 | **Study period** | Monday 10 August – Monday 24 August (15 days) |
-| **Current day** | Day 9 of 15 — Mon 18 Aug. **Mock 4: 58/60 (97%)**, D1 16/16 · D3 12/12 · D4 12/12 · D5 9/9, and **both misses in D2 — the domain twice declared closed.** Every fact the paper was built to trap came out clean, including format normalisation after four consecutive misses |
-| **Next session** | Tue 19 Aug — Domain 4 drill as planned, but first a short **D2 set**: Grep/Glob/**semantic** and business-vs-permission. Those are the two Mock 4 misses and **neither is tested by Purcell's set** (checked 18 Aug), so 23 Aug will not catch them |
-| **The one thing to change** | **The repair-verb halt and the grouping question both fired on 18 Aug — keep them.** What did not fire is the third member of a triad. Q28 offered Glob, Grep and semantic, and a Grep answer was taken because the word "export" was in the question. **When a question lists two of a three-member set, name the third before answering** (weak point 44) |
+| **Current day** | Day 13 of 15 — Sat 22 Aug. **Mock 7: 70/72 (97%)**, corrected after a transcription error on Q51–53 (all three were actually right) — a special paper covering all six scenarios in one sitting instead of the usual 4-of-6, taken cold in 23 minutes. **D3 14/14 and D4 18/18**, both domains clean on a paper not built from either one's own miss list, plus **select-two 9/9**, a third clean paper running. Only two losses in the whole 72, and both are regressions rather than new gaps: `stop_reason: "refusal"` read as "not `end_turn`" (the weak-point-38 trap, 3rd occurrence), and a 3-week-stale session resumed instead of started fresh (weak point 5's original discriminator, reopened after being closed four times). See weak point 57 |
+| **Next session** | The two regressions from Mock 7 need a specific fix, not more volume: **resume vs fresh is decided by *how much* is stale, not by whether anything is stale** — three weeks plus a renamed package plus a changed build tool is "a lot," full stop. And `stop_reason` has exactly one continue value, `"tool_use"` — name the other six out loud (`end_turn`, `max_tokens`, `stop_sequence`, `pause_turn`, `refusal`, `model_context_window_exceeded`) so "not end_turn" stops feeling like a safe shortcut. Then the Domain 5 drill and Domain 2+3 retakes still on the books from 21–22 Aug |
+| **The one thing to change** | **Two facts came back after being declared closed, which is a sharper signal than a new miss.** Resume-vs-fresh was clean on Mocks 2, 3, and 4 (three sittings) and lost again on Mock 7 — not because the rule is unknown (Q38, the same fact in the same paper, was correct), but because "three weeks and several changes" did not register as *enough* staleness the way "nine days, two narrow facts" correctly did on Q4. The discriminator is a threshold judgement, not a lookup, and that is exactly the kind of fact that decays. Recite it before every resume-or-fresh question: *how much of what I'd carry forward is actually still true?* |
 | **Outstanding** | ~~Regenerate the revision card~~ — **done 17 Aug, verified 18 Aug.** Both the interview pattern and the CI/CLAUDE.md line are in `tools/make-revision-card.py` and in the regenerated PDF; the log had simply not been updated. Next open item: the **D2 set** named under *Next session*, since neither Mock 4 miss is covered by Purcell's 60 |
-| **What is still untested** | **Thirteen facts that appear in Purcell's set and in none of this repo's papers** — `tool_choice` values, **escalation in either direction**, `/compact` as an answer rather than a distractor, severity consistency, plain-text-JSON → tool use, batch resubmission by `custom_id`, re-review duplicate findings, goal-oriented vs rigid subagent prompts, personal command placement, `allowed-tools` as a guarantee, `--resume` in the positive direction, multi-issue single messages, escalation package contents · **whether a deliberate 75-minute pass converts the speed misses** — still unmeasured, no first-pass time was recorded for Mock 4. See weak points 21, 29, 45 |
+| **What is still untested** | **Thirteen facts that appear in Purcell's set and in none of this repo's papers** — `tool_choice` values, **escalation in either direction**, `/compact` as an answer rather than a distractor, severity consistency, plain-text-JSON → tool use, batch resubmission by `custom_id`, re-review duplicate findings, goal-oriented vs rigid subagent prompts, personal command placement, `allowed-tools` as a guarantee, `--resume` in the positive direction, multi-issue single messages, escalation package contents — **ten of the thirteen came out clean on Mock 5**; the three that did not are plain-text-JSON → tool use (now on the cheat sheet), the handoff package and multi-issue handling — **all three were re-tested on Mock 6 the same day and all three came out clean** (Q1, Q59, Q60), so the untested-facts list is now closed · **the two facts that are still live are not on it**: coverage annotations (3 misses, 3 different distractors) and partial-results-vs-false-success. See weak points 47, 55, 56 |
 | **Study time** | About 2 hours per day |
 
 ---
@@ -50,12 +50,15 @@ now* and *Scores*. Keep it short. One or two sentences is enough.
 | 16 Aug | `/cert-exam 60` — still unused as an independent 60 | | Purcell's set stays sealed for 23 Aug |
 | 17 Aug | `/cert-exam 15` — D4 | | |
 | **17 Aug** | **Mock 3 — repo set, 60 questions, gap-targeted** | **49/60 (82%)** | D1 13/16 · D2 10/11 · D3 **8/12** (at the floor) · D4 11/12 · D5 7/9. All five domains at or above the floor. **All four D3 misses were mechanism choice; the memorisation core went 8/8.** See weak points 35–39 |
-| **18 Aug** | **Mock 4 — repo set, 60 questions, built from the repeat-miss list** | **58/60 (97%)** | D1 **16/16** · D2 **9/11** ⚠ · D3 **12/12** · D4 **12/12** · D5 **9/9**. Select-two 10/10. Both misses in D2: Q28 semantic search (**5th time**) and Q52 business-vs-permission (chose *transient*). **No first-pass time recorded** — see weak point 45. Every targeted repeat miss clean: format normalisation, manifests ×2, both noun traps, `stop_reason` ×2. See weak points 44–46 |
+| **18 Aug** | **Mock 4 — repo set, 60 questions, built from the repeat-miss list** | **58/60 (97%)** | D1 **16/16** · D2 **9/11** ⚠ · D3 **12/12** · D4 **12/12** · D5 **9/9**. Select-two 10/10. Both misses in D2: Q28 semantic search (**5th time**) and Q52 business-vs-permission (chose *transient*). First pass 30–40 min, as on every paper — see weak point 53. Every targeted repeat miss clean: format normalisation, manifests ×2, both noun traps, `stop_reason` ×2. See weak points 44–46 |
 | 17 Aug | Post-Mock-3 ad-hoc set (20, D3/D5-skewed) | **16/20** | D3 grouping **4/6** · high-confidence sample **2/2** (closed). Missed Q2 and Q4 (the two swapped mechanisms), Q9 (manifests, 2nd time) and Q15 (post-processing layer, **4th time**). **Q6, which asks for the discriminator itself, was correct** — see weak point 40 |
 | 18 Aug | Domain 1 drill — **retake** | | Compare with 10 Aug (10/15, pre-rebalance). First honest score on these questions |
 | 19 Aug | Domain 4 drill (15) | | |
 | 20 Aug | `/cert-exam 15` — D5 | | |
+| **20 Aug** | **Mock 5 — repo set, 60 questions, built from the *untested*-facts list** | **48/60 (80%)** | D1 14/16 · D2 10/11 · **D3 6/12** ⚠ · D4 10/12 · D5 8/9. **Select-two 5/10** — worst in the repo after four clean sittings, and **five of the twelve misses are select-two questions**, including Q35 left blank. D3 is back to its Mock 2 number with `@import` and `.claude/rules/` swapped inside one scenario again. Of the thirteen ★ untested facts, **ten were clean** — the three that were not are plain-text-JSON → tool use, the handoff package (blank) and multi-issue handling (half). First pass 30–40 min, the same as Mocks 1, 3 and 4 — so pace is a constant, not a variable (weak point 53). See weak points 48–52 |
+| **20 Aug** | **Mock 6 — repo set, 60 questions, reading-discipline paper (D3 block of ten, 10 select-two, 4 inverse-direction)** | **58/60 (97%)** | D1 **16/16** · D2 10/11 · D3 **12/12** · D4 **12/12** · D5 8/9. **Select-two 9/10** — the one loss was half-right, not single-lettered, and no blanks. **All four inverse-direction questions read in the right direction.** Both misses are content: Q14 coverage annotations (**3rd miss**, new distractor — "note the outage in the pipeline log") and Q48 partial-results-vs-empty-result. First pass **18 minutes**. See weak points 54–56 |
 | 21 Aug | Domain 5 drill (15) | | |
+| **22 Aug** | **Mock 7 — new 72-question paper, all six scenarios in one sitting** | **70/72 (97%)**, corrected — Q51–53 were mistranscribed when first reported and are all correct | D1 12/13 · D2 **11/11** · D3 **14/14** · D4 **18/18** · D5 15/16. **Select-two 9/9**, third clean paper running. **D3 and D4 both clean for the first time on a paper not built from their own repeat-miss lists** — all nine grouping questions correct, including the `@import`-vs-skill and `.claude/rules/`-vs-directory-CLAUDE.md traps, and every CI/extraction fact in D4 including the CLAUDE.md-as-CI-context fact that cost a mark on Mock 2. **Only two losses in 72 questions, both regressions:** `stop_reason: "refusal"` generalised as "not `end_turn`" (3rd occurrence of this exact trap), and a 3-week-stale session resumed instead of restarted (weak point 5, reopened after four clean sittings). Finished in **23 minutes**. See weak point 57 |
 | 22 Aug | Domain 2 + 3 drills — **retake** | | |
 | **23 Aug** | **Mock 2 — Purcell's 60, timed** | | The rehearsal. Take it cold |
 
@@ -349,7 +352,9 @@ calls clean (Q6), so weak point 3 is closing.
     unused and the answer written verbatim in cheat sheet §11. The uncertainty signal is accurate;
     it is just not being acted on.
 
-    → **Exam-day plan. Budget 75 minutes for the first pass (75 seconds per question), finishing
+    → **Exam-day plan** *(superseded 20 Aug by weak point 53 — this pace was never once achieved
+    in four attempts, and the replacement is a second-pass sweep instead of a slower first pass).*
+    **Budget 75 minutes for the first pass (75 seconds per question), finishing
     with 45 minutes spare, then a second pass over flagged questions only.** Two mechanical
     triggers:
     1. **Flag and return.** Anything that earns a "?" gets marked and revisited. Never committed on
@@ -547,12 +552,11 @@ calls clean (Q6), so weak point 3 is closing.
     loud before choosing.** Glob / Grep / **semantic**. Transient / validation / business /
     permission — and run the test in order rather than matching the domain of the sentence.
 
-45. **The first-pass time was not recorded, which is the one measurement still missing after four
-    mocks.**
-    Weak point 29 named a 75-minute first pass as the single exam-day fix, and it has now gone
-    unmeasured on Mocks 3 and 4. A 58 says nothing about pacing: it is consistent with a
-    deliberate pass and with a fast one. **On 23 Aug write the start and end time of the first pass
-    before opening the key.** That number, not the score, is what the remaining week is for.
+45. ~~**The first-pass time was not recorded, which is the one measurement still missing after four
+    mocks.**~~ **Corrected 20 Aug: the time is known and has been stable the whole time — every
+    mock ran 30 to 40 minutes.** It was never written into the table, which is why three log
+    entries called it missing. It is not missing; it is **consistent**. See weak point 53, which
+    replaces this one.
 
 46. **What Mock 4 confirms closed — and it was built to test exactly these.**
     - **Format normalisation: clean**, after four consecutive misses (weak point 42), and the
@@ -591,12 +595,230 @@ calls clean (Q6), so weak point 3 is closing.
     rejection, not the healthy-API-plus-valid-token discrimination that Q52 failed on. The real
     value in his set is the thirteen facts listed under *What is still untested*, not the 60.
 
+### Added 20 Aug, from Mock 5 (48/60) — the untested-facts paper
+
+48. **Weak point 6 is reopened, and it is now the single largest cost in the repo: 5 marks in one
+    paper.** It had been clean for four sittings running (10/10, 10/10, 9/10, 10/10) and was treated
+    as learned. Select-two went **5 of 10**:
+
+    | Q | Correct | Given | The failure |
+    |---|---|---|---|
+    | 1 | A, C | **A only** | one letter — the omitted letter was `--output-format json` |
+    | 34 | A, D | **B, C** | answered the **inverse** question — gave the two valid reasons where it asked for the two that are never valid |
+    | 35 | B, C | **nothing** | left blank |
+    | 36 | A, B | B, D | one right letter, second from the wrong family |
+    | 39 | C, D | **C only** | one letter — the omitted letter was "the subagent retries transient failures itself" |
+
+    Note what this is **not**: every omitted letter is a fact that was answered correctly elsewhere
+    in the same paper. Q39's missing half is the subagent-error rule; Q1's is a flag recited
+    correctly on Q2. So this is not weak point 31 (counting concealing a content gap) — it is the
+    counting itself, plus one blank.
+    → **Exam-day rule, unchanged but clearly not automatic: after reading the last sentence, say
+    how many letters you owe before reading the options. If a question is skipped, mark it and
+    return — a blank is a guaranteed lost mark and a guess is not.**
+
+49. **Q34 is a new failure shape: the question was read in the correct direction and answered in the
+    opposite one.** Both lists were known — the three valid reasons and the two forbidden signals
+    are separately correct elsewhere in the paper (Q31, Q32, Q33 all clean). The stem said *never*.
+    → This is the same family as the reverse-direction misses on Q23 (which failure a retry fixes)
+    and Q4. **Three of the twelve misses were direction, not content.** On a question containing
+    *never*, *not*, *except* or *instead*, underline the word before looking at the options.
+
+50. **Domain 3 is not learned. It is now 9/12 · 6/12 · 8/12 · 12/12 · 6/12 across five papers, and
+    the 12/12 was on the paper written from its own miss list.**
+    Six of the twelve went, and the two grouping questions were **swapped inside one scenario**
+    for the third time (Mock 1 Q32/Q33, Mock 3 Q18/Q20, now Q10/Q11):
+
+    | Q | The content governs | Correct | Chose |
+    |---|---|---|---|
+    | 3 | the project, in CI | CLAUDE.md as CI context | `.claude/rules/` + `paths: "**/*.ts"` |
+    | 4 | duplicate tests | supply the existing test files | pass the coverage percentage |
+    | 9 | a noisy skill's output | `context: fork` | `/compact` after each run |
+    | 10 | `**/*.stories.tsx` | `.claude/rules/` + `paths:` | **`@import`** |
+    | 11 | one service, maintainer picks documents | **`@import`** | `.claude/rules/` + globs |
+
+    Q10 and Q11 are each other's answers, and Q3 is `.claude/rules/` as the reflex a third time
+    (weak point 32). Q3 is also the **second** miss of "CLAUDE.md is the CI project context", first
+    lost on Mock 2 Q18 — one of the three facts that were missing from the cheat sheet on 16 Aug and
+    were added that day. So it has now been missed *after* being written down.
+    → The 12/12 on Mock 4 measured a paper built from these exact misses, not the domain. **Treat
+    D3 as the weakest domain again**, and drill it as recitation of the grouping sentence, out loud,
+    before options are read.
+
+51. **The material is nearly complete: ten of the thirteen never-tested facts were clean on first
+    contact.** `tool_choice` in three directions, both escalation directions, `/compact` as a
+    correct answer, severity by concrete examples, `custom_id` resubmission, goal-oriented subagent
+    prompts, `--resume` positive, personal command placement, `allowed-tools`, re-review duplicates
+    — all first-time correct. Only three of the thirteen went, and only **one is a genuine material
+    gap**: plain-text JSON → tool use (Q16, answered with few-shot examples). The cheat sheet said
+    what tool use *does not* fix (semantic errors) and never said it is **the** way to get
+    structured output. Added to §10.
+    The other two are weak point 48, not knowledge.
+
+52. **What Mock 5 confirms closed.**
+    - **Semantic search: clean on its 6th appearance** (Q54), with the two Grep variants and Glob
+      all offered. Missed 5 times before. Weak point 44's first row is closed — but the paper it
+      closed on named the triad in its own preamble, so re-test it cold on 23 Aug.
+    - **Business vs permission: 2 for 2 in adjacent questions** (Q26 business with a healthy API and
+      an authorised caller, Q27 permission on token scope). Weak point 44's second row is closed.
+    - **`required` and nullable both directions, format normalisation, `calculated_total`,
+      manifests, Explore vs `fork_session`, `stop_reason` on `max_tokens`, the `tool_result`
+      protocol, coverage annotations, the stratified high-confidence sample** — all clean.
+    - **D1 14/16 and D5 8/9**, with both misses being weak point 48 rather than content.
+
+53. **THE ONE TO CARRY TO THE EXAM, and it replaces weak points 29 and 45. Every mock has run
+    30–40 minutes of the 120. That is now four data points, and it is not a variable — it is how
+    you answer.**
+
+    | Paper | First pass | Score |
+    |---|---|---|
+    | Mock 1 | under 30 min | 50/60 (83%) |
+    | Mock 3 | 30–40 min | 49/60 (82%) |
+    | Mock 4 | 30–40 min | 58/60 (97%) — paper written from this log, discount it |
+    | Mock 5 | 30–40 min | 48/60 (80%) |
+
+    Two things follow, and the second is the important one.
+
+    **First: 30–40 minutes reliably produces 80–83%.** That passes. The floor is not in danger at
+    this speed; the residue is. So "go slower" is not a rescue plan, it is a marginal-marks plan.
+
+    **Second: the 75-minute first pass has been the named exam-day fix since 16 August and has
+    never once happened, across four attempts.** An instruction that fails four times is not going
+    to start working on 25 August. Stop instructing pace and instruct an **action** instead —
+    something with a start and a finish, which pace does not have:
+
+    > **You will finish the first pass with roughly 80 minutes left. Do not leave. Do two sweeps
+    > before you stop: (1) every question that says *select two* — count your letters; (2) every
+    > question whose last sentence contains *never*, *not*, *except* or *instead* — re-read the
+    > stem, not the options.**
+
+    On Mock 5 those two sweeps alone target **Q1, Q34, Q35, Q36, Q39** — five of the twelve misses,
+    and 53/60 without learning a single new fact. Neither sweep requires slowing the first pass
+    down, which is the reason to prefer them: they are checks, not habits.
+
+    **And 30–40 minutes is not rushing, for this reader.** Stated 20 Aug: a question is read and
+    processed in **6–7 seconds**, so most of the 30–40 minutes is spent on the options and the
+    choice, not on comprehension. The paper agrees: the longest, densest stems on Mock 5 — the two
+    grouping questions, the 97%-accuracy question, the provenance question — were read correctly,
+    and the ones that went wrong went wrong *after* the reading. **Weak point 29's "over-speed"
+    label was inferred from one data point (Mock 1) and is not supported.** What the five
+    multiple-response misses share is not comprehension but **completeness of the answer given**:
+    one letter supplied where two were owed, one question passed over entirely. That is an output
+    check, and it is why the fix is a sweep at the end rather than a slower pass at the start.
+
+    **What the split also proves: the rest is not speed.** Q3, Q4, Q9, Q10, Q11 (D3 mechanisms) and
+    Q16 (a material gap, now fixed) are not recoverable by re-reading. **Six marks of D3 and D4
+    content, five marks of reading discipline, one direction error.** Weak point 29 claimed
+    over-speed was "the whole problem"; on this paper it is under half of it, and the half that is
+    left is Domain 3.
+
+### Added 20 Aug, from Mock 6 (58/60) — the reading-discipline paper
+
+54. **Weak point 48 is closed for the mechanics, and the mechanics were the whole of it.**
+    Ten select-two questions, **9/10, no blanks, no single-letter answers**, and the one loss (Q48)
+    was two letters with one wrong — a content error, not a counting error. Four questions ran in
+    the **inverse** direction (Q25 which two do not exist, Q37 which two are never valid, Q48 which
+    two a tool must never do, Q57 which two must never trigger escalation) and **all four were read
+    in the right direction**, including Q57, where the two *valid* grounds sat in the option list as
+    A and B. That is the exact trap that cost Mock 5 Q34.
+    → The remaining risk on multiple-response is not counting. It is whether the two candidates you
+    keep are both actually on the "never" list.
+
+55. **Coverage annotations is now missed three times, and the distractor is different every time.**
+    16 Aug: "retry until the sources respond" and "summarise more aggressively". 20 Aug (Q14):
+    **"publish the totals and note the outage in the pipeline log"** — the most reasonable-looking
+    version yet, and the first that does not try to remove the gap at all.
+    → Three misses with three different wrong answers means the fact is **absent**, not out-competed
+    (the same signature as manifests, weak point 41). The rule has one shape and it is about
+    **where the gap is declared**: it goes **in the output the reader sees**, next to the findings.
+    A log, a ticket, a monitoring alert and a footnote to the pipeline team are all the same miss.
+    Ask: *would the person reading this report know that two carriers answered where three were
+    expected?* If the answer lives anywhere other than the report, it is wrong.
+
+56. **The error contract is known from the "must return" side and not from the "must never" side.**
+    Q48 offered four behaviours and asked which two a tool must never do. Both letters given were
+    plausible-bad; one was actually **good practice** — *"return the partial results it did obtain,
+    marked as partial"* — which is the subagent report rule (partial results are one of its four
+    required parts). The letter missed was *"return success with an empty result set when the lookup
+    failed"*, which is **hiding the error as success**, the second item on the never list.
+    → Two adjacent facts, one confusable pair: **partial results, labelled as partial, are always
+    correct. A success with no results, when the lookup failed, is always wrong.** The tell is not
+    how much data comes back, it is whether the **status is honest**. Same discriminator as weak
+    point 55 one question apart: an incomplete answer that says so is fine; an incomplete answer
+    that reads as complete is the failure.
+
+    **What Mock 6 confirms — with the same caveat as Mock 4.** D3 **12/12**, all ten grouping
+    questions in one block, with `@import`, `.claude/rules/`, a directory CLAUDE.md, the root
+    CLAUDE.md and a skill live in the same scenario, plus both noun traps from weak point 40
+    ("they exist in all nine packages", "each maintainer decides") answered correctly. D1 **16/16**,
+    D4 **12/12**. The handoff package and multi-issue handling — the two Mock 5 blanks — both clean.
+    **But this paper, like Mock 4, was written from this log**, so it measures retrieval of facts
+    already listed here, not independence. The independent number is still 23 Aug.
+
+### Added 22 Aug, from Mock 7 (70/72, corrected) — the all-six-scenarios paper
+
+57. **Domain 3, Domain 4, and select-two are all genuinely learned, not paper-specific.** First
+    reported as 67/72 with three D4 losses in Scenario E (Q51–53); those three were a transcription
+    error when writing down answers, not exam misses — corrected the same day to 70/72 once the
+    actual answers (51 C, 52 B, 53 C) were confirmed. Read the numbers below as the corrected ones.
+
+    This is the first paper where **D3 (14/14)** and **D4 (18/18)** both went clean without being
+    built from either domain's own miss list — Mock 4 and Mock 6 scored 12/12 on D3 papers written
+    to test exactly those facts, which the log flagged each time as the less convincing kind of
+    evidence. Here the scenarios, the packages, and the documents were all new, and `@import` vs a
+    skill vs `.claude/rules/` vs a directory CLAUDE.md vs the root CLAUDE.md still sorted correctly
+    every time; every CI and extraction fact in D4 held too, including the CLAUDE.md-as-CI-context
+    fact that cost a mark on Mock 2. **Select-two went 9/9** — third clean sitting running, every
+    pair exactly right, no blanks, no single letters. All three of the log's longest-running
+    problems can now be called learned rather than paper-lucky.
+
+    Only two losses survive in the whole 72, and both are regressions rather than new gaps:
+
+    | Q | Correct | Chosen | What this is |
+    |---|---|---|---|
+    | 1 | Stop on `stop_reason: "refusal"` | "continue, not `end_turn`" | Weak point 5/38's trap, **3rd occurrence** — the loop reads one continue value, `"tool_use"`, and everything else stops it, `refusal` included |
+    | 23 | Fresh session, written summary | `--resume`, list every change | Weak point 5's *other* half, reopened after four clean sittings (Mocks 2, 3, 4) |
+
+    **Q23 is the sharper of the two.** Q4, in the same paper, tested the identical discriminator —
+    a returning conversation with most of the earlier context stale — and was answered correctly,
+    with `--resume` correctly rejected in favour of a fresh session. Q23 changed only the surface
+    (three weeks instead of nine days, a renamed package and a changed build tool instead of expired
+    promotions) and the same judgement failed. **The rule itself ("how much is stale") is
+    retrievable; recognising *enough* staleness in an unfamiliar dressing is not yet automatic.**
+    Ask directly, every time: *of what I'd carry forward by resuming, how much is still true?* Three
+    changed facts against a three-week gap is a lot, not a little.
+
+    **Q1 is the stop_reason trap in a costume it has not worn before.** Every earlier occurrence
+    used `max_tokens` as the value that broke the "not `end_turn`" shortcut. This one used `refusal`,
+    and the same shortcut failed the same way — confirming the fix has to be the full list, not a
+    memorised pair. Say all seven values before answering any `stop_reason` question: `end_turn`,
+    `tool_use`, `max_tokens`, `stop_sequence`, `pause_turn`, `refusal`,
+    `model_context_window_exceeded`. Exactly one continues the loop.
+
+    **What this closes:** D3 grouping and D4 (both 14/14 and 18/18, first time on fresh dressing),
+    select-two mechanics (9/9, third clean paper), the handoff package, multi-issue handling, and
+    duplicate-test handling (all clean again), all four `tool_choice` values, the SLA-arithmetic
+    pattern on new numbers, and both directions of required-vs-nullable. **First pass 23 minutes for
+    72 questions** — faster per-question than any prior mock and still 97%. The strongest evidence
+    yet that speed is not the variable: the two remaining losses are both threshold judgements
+    applied to unfamiliar dressing, not comprehension failures, and reading faster would not have
+    touched either one.
+
+    **A second lesson from this entry, independent of the exam material: verify a self-reported
+    answer transcription before logging it as a miss.** The first pass treated Q51–53 as three lost
+    marks and wrote a whole cluster analysis around them; all three were transcription slips. Score
+    corrections happen — the fix is to update the log in place with the correction visible, not to
+    leave the wrong analysis standing next to the right one.
+
 ---
 
 ## Session history
 
 | Date | What happened |
 |---|---|
+| 22 Aug | **Mock 7, requested as a paper covering all six exam scenarios in one sitting rather than the usual 4-of-6: 72 new questions, six fresh scenarios not used in any earlier mock.** First scored as **67/72 (93%)** with three D4 losses in a row (Q51–53); those turned out to be a transcription slip when the answers were written down, not exam misses — **corrected same-day to 70/72 (97%)** once the real answers (51 C, 52 B, 53 C) came back. Finished in 23 minutes. **D3 14/14 and D4 18/18** — the first clean scores for either domain on a paper not built from its own repeat-miss list — and **select-two 9/9**, a third clean sitting running. Only two losses survive, both regressions: `stop_reason: "refusal"` generalised as "not `end_turn`" (the weak-point-38 trap, now in its third costume), and a three-week-stale session `--resume`d instead of restarted fresh (weak point 5, reopened after four clean sittings, on the *identical* discriminator tested correctly earlier in the same paper at Q4). Weak point 57 added, including a note on verifying a self-reported transcription before logging it as a content gap. This closes D3, D4, and select-two as paper-specific results and narrows the live gap to two threshold judgements that decay under unfamiliar dressing. |
+| 20 Aug | **Mock 6, taken the same day as Mock 5: 60 new questions built as a reading-discipline paper — Domain 3 as one unbroken block of ten grouping questions, 10 select-two, and four questions running in the inverse direction. 58/60 (97%).** The paper was designed to reproduce the two Mock 5 failures on purpose, and neither reproduced: **select-two 9/10 with no blanks and no single-letter answers**, and **all four inverse-direction questions answered in the right direction** — including Q57, where the two *valid* escalation grounds were sitting in the option list. **D3 12/12** with `@import`, `.claude/rules/`, a directory CLAUDE.md, the root CLAUDE.md and a skill all live in one scenario, and both weak-point-40 noun traps ("they exist in all nine packages", "each maintainer decides") answered correctly; D1 16/16; D4 12/12. The three facts that failed on Mock 5 — plain-text-JSON → tool use, the handoff package, multi-issue messages — were all clean, which closes the untested-facts list. **Both misses are single absent facts, not habits:** coverage annotations for the third time, with a third different distractor ("note the outage in the pipeline log" — the first version that does not try to remove the gap), and Q48, where the two letters given included *"return partial results, marked as partial"*, which is correct behaviour, instead of *"return success with an empty result set"*, which is hiding the error as success. Weak points 54–56 added; both misses share one discriminator, now the single line to carry to the exam. **Caveat, same as Mock 4: this paper was written from this log**, so it measures retrieval of listed facts, not independence. 23 Aug is still the only independent number. |
+| 20 Aug | **Mock 5: 60 new questions, built from the *untested*-facts list instead of the repeat-miss list** — all thirteen facts that appear in Purcell's set and in no repo paper, each marked ★ in the key, plus both live D2 misses and four invented features. Four scenarios in a pairing not used before; balanced key (A 13 · B 12 · C 13 · D 12 across the singles, each letter 5× across the select-twos). **48/60 (80%)** — on target, every domain above the floor except D3. **The material is close to complete: ten of the thirteen never-tested facts were clean on first contact**, and only one miss is a real gap (plain-text JSON → tool use, added to cheat sheet §10). **The result is not about knowledge.** Five of the twelve misses are select-two questions — one blank, two answered with a single letter, one answered with the *inverse* of what was asked — after four sittings at 10/10. Three more were direction rather than content. And **D3 fell back to 6/12**, with `@import` and `.claude/rules/` swapped inside one scenario for the third time in the repo, so Mock 4's 12/12 measured the paper and not the domain. Weak points 48–52 added; D3 is the weakest domain again and select-two is reopened as the largest single cost. **First pass 30–40 minutes, the same as every previous mock** — which retires weak point 45 (the time was never missing, only never written down) and replaces weak point 29's 75-minute plan with two second-pass sweeps that have a finish line. See weak point 53. |
 | 17 Aug | **Post-Mock-3 set, taken the same day: 20 questions, deliberately not blueprint-weighted** — eight aimed at the two unlearned facts (Q1–Q6 the grouping decision with five different correct answers, Q16 and Q17 the high-confidence sample) and twelve to hide them in. **16/20.** The result settles what kind of gap Domain 3 is: **Q6, which asks for the discriminator itself, was correct**, and two applications of it in the same sitting were not — so the fix is not more recitation. The two misses show the mechanism: the grouping is being read off the question's nouns ("nine packages" → `@import`) and off the word "decides" (→ a skill, the weak-point-13 trap returning for the second time today). Two other facts confirmed absent rather than out-competed: **manifests** (second miss, and with a *different* wrong answer each time) and **format normalisation → the prompt** (fourth miss, same post-processing family every time, and now the leading repeat miss in the repo). Against that, the **high-confidence sample is closed 2 for 2**, including in the select-two position where it was lost three times, and both escalation directions came out clean again. Weak points 40–43 added. No new facts written to the cheat sheet — all four misses were already in it; one retrieval cue added to §2. |
 | 17 Aug | **Mock 3: 60 new questions, written from the repeat-miss list rather than the blueprint alone** — each fact missed twice or more appearing twice, in different disguises, with two fresh scenarios (Multi-Agent Research, Code Generation) so the dressing was unfamiliar. Balanced key (A 12 · B 13 · C 12 · D 13 across the singles, each letter 5× across the select-twos). **49/60 (82%)** — above the 80% target with **every domain at or above the floor** for the first time since Mock 1, and D5 back from 4/9 to 7/9. The gap-targeting worked on four of the five facts: parallel Task calls 2/2, coverage annotations 2/2, `required` clean, error categories 3/3. It did **not** work on the fifth: the stratified high-confidence sample is now missed three times in three papers, always as the second letter. **D3 is the one live problem, and the diagnosis is now precise** — the memorisation core scored 8/8 while all four misses were grouping questions, answered with each other's mechanisms in rotation. Five further misses share one shape: a documented answer displaced by an adjacent mechanism (`/compact` for manifests, post-processing for nullable, an invented "disabled by default" server for `~/.claude.json`, finish-then-escalate for an explicit request). Weak points 35–39 added. **No new material written** — every miss is already in the cheat sheet; the remaining work is the grouping recitation and the two mechanical triggers. |
 | 18 Aug | **Mock 4: 60 new questions, four scenarios not paired before, 10 select-two, balanced key (A 13 · B 12 · C 13 · D 12 across the singles). 58/60 (97%)** — the highest score in the repo, and the least independent number in it: the paper was written *from this log*, targeting the exact facts already missed. Read it that way. **Every trap it was built for came out clean** — format normalisation after four consecutive misses, and its `PostToolUse` counterpart in the same paper; manifests twice; both D3 noun traps, taking D3 from 8/12 to 12/12; `stop_reason` twice including `max_tokens`; select-two 10/10. **Both misses were D2** — semantic search for the fifth time, and business-vs-permission answered *transient*. Weak points 44–46 added; **D2 is downgraded from "confirmed closed" back to active, having now been declared closed twice while wrong.** Then, with approval, opened Purcell's set for a structural comparison: ~45 of his 60 have a counterpart in Mock 4, fifteen closely enough framed to be pre-seen, so 23 Aug is now an upper bound rather than a measure — weak point 47, and the thirteen genuinely untested facts it surfaced are in *What is still untested*. |
@@ -636,7 +858,7 @@ passed CCAR-F, blueprint-weighted, and it includes 11 multiple-response question
 | Resource | What it is | When |
 |---|---|---|
 | `/cert-exam` | 77 community questions by Olivier Legris, installed as a Claude Code skill. Single-answer only | Daily, 15 at a time |
-| `1784098676646.pdf` | Matthew Purcell's 60-question set. Blueprint-weighted 16/11/12/12/9, 11 multiple-response, answer key with rationales. **Structure corrected 18 Aug: 6 scenarios × 10 questions, not 4 × 15** — a lighter reading load than the real exam or the repo mocks. **Cross-checked 11 Aug: zero contradictions with the repo material. Overlap quantified 18 Aug: ~45 of the 60 have a counterpart in Mock 4 alone, 15 of them closely framed** (weak point 47), so treat the score as an upper bound. Its real value is the thirteen facts it tests that no repo paper does — listed under *What is still untested* | **23 Aug** — take it cold, and record the first-pass time |
+| `1784098676646.pdf` | Matthew Purcell's 60-question set. Blueprint-weighted 16/11/12/12/9, 11 multiple-response, answer key with rationales. **Structure corrected 18 Aug: 6 scenarios × 10 questions, not 4 × 15** — a lighter reading load than the real exam or the repo mocks. **Cross-checked 11 Aug: zero contradictions with the repo material. Overlap quantified 18 Aug: ~45 of the 60 have a counterpart in Mock 4 alone, 15 of them closely framed** (weak point 47), so treat the score as an upper bound. Its real value is the thirteen facts it tests that no repo paper does — listed under *What is still untested* | **23 Aug** — take it cold, then do both second-pass sweeps before stopping (weak point 53) |
 | Matthew Purcell's LinkedIn review | He passed all four exams. Confirms: Bedrock/Vertex not tested, Claude 101 and AI Fluency too basic, CCAR-F is the hardest of the four, scenarios are "dressing", finished in 90 of 120 min | Read once |
 | Paul Larionov's GitHub repo | A study guide Purcell recommends. **Not yet evaluated** | Optional |
 

@@ -1,5 +1,35 @@
 """Build a printable A4 revision card for the CCAR-F exam.
 
+Revision 20 Aug 2026, second pass. Changes from Mock 6 (58/60) and weak points 54-56, taken the
+same day as Mock 5:
+  - page 1: the multiple-response box is rewritten. Mock 6 ran 10 select-two and 4 inverse-direction
+    questions and lost nothing to either (9/10, no blanks, no single-letter answers, 4/4 on
+    direction), so the box now states the sweep as a working procedure rather than a warning, and
+    hands the space to the one fact pair that IS still live
+  - page 1 and page 6: the one-sentence discriminator behind both remaining misses - an incomplete
+    answer that says so is correct; an incomplete answer that reads as complete is the failure
+  - page 6: coverage gaps are declared IN THE REPORT THE READER SEES. Third miss, third different
+    distractor (a pipeline log this time), so the box now names where the declaration goes
+  - page 6: partial results labelled partial are correct; success with an empty result set when the
+    lookup failed is not. Missed by naming the good behaviour as forbidden
+
+  NOTE on length: the card is 7 pages, not 6. The Domain 5 section outgrew one page in the 20 Aug
+  revision, before these changes - the HEAD build was already 7. The "every section is exactly one
+  page" claim below is stale for that one section; print on 4 sheets double-sided.
+
+Revision 20 Aug 2026. Changes since 17 Aug, from Mock 5 (48/60) and weak points 48-53:
+  - page 1: the select-two and direction-word box. Five of the twelve Mock 5 misses were
+    multiple-response questions - one blank, two given a single letter, one answered with the
+    inverse of what was asked - after four sittings at 10/10. Largest single loss in the repo
+  - page 3: the grouping swap happened a third time (@import and .claude/rules/ traded inside
+    one scenario), so the box now says so, and D3 is named the weakest domain again
+  - page 6: tool use with a JSON schema is THE way to get structured output. The card, like the
+    cheat sheet, only ever said what tool use does NOT fix
+  - pages 1-2: the never-answer list moved to page 2 so page 1 fits again after the new box. Every
+    section is still exactly one page. Page 1 also carries the second-pass sweep (weak point 53):
+    every mock has run 30-40 min of the 120, and the never-achieved 75-minute first pass is
+    replaced by two checks with a finish line, which do not touch first-pass pace
+
 Revision 17 Aug 2026. Changes since 14 Aug, all from the weak-point list in prep/LOG.md:
   - page 2: the "which mechanism holds which content" grouping table, which was missing entirely,
     plus the grouping cue from weak point 40 (what SET OF FILES does this content govern)
@@ -99,7 +129,7 @@ def header_footer(canvas, doc):
     canvas.drawString(12 * mm, A4[1] - 8 * mm,
                       "CCAR-F  -  Claude Certified Architect, Foundations  -  revision card")
     canvas.drawRightString(A4[0] - 12 * mm, A4[1] - 8 * mm,
-                           "rev 17 Aug  -  exam: Tue 25 Aug 2026")
+                           "rev 20 Aug  -  exam: Tue 25 Aug 2026")
     canvas.setStrokeColor(RULE)
     canvas.setLineWidth(0.4)
     canvas.line(12 * mm, A4[1] - 10 * mm, A4[0] - 12 * mm, A4[1] - 10 * mm)
@@ -135,8 +165,28 @@ S.append(tbl([
 ], [W / 4, W / 4, W / 4, W / 4]))
 sp(2)
 S.append(Paragraph("Each question states <b>how many answers to select</b>  -  read that line. "
-                   "No penalty for guessing, so never leave one blank. If a question takes more "
-                   "than 3 minutes, mark it and come back.", BODY))
+                   "<b>No penalty for guessing: never leave one blank.</b> You will finish the "
+                   "first pass in 30-40 minutes  -  every mock has  -  which leaves ~80 minutes. "
+                   "<b>Do not leave.</b> Sweep twice before you stop: every <i>select two</i>, "
+                   "count your letters; every last sentence containing <i>never, not, except, "
+                   "instead</i>, re-read the stem. Those two sweeps were worth 5 marks on Mock 5 and "
+                   "cost nothing on Mock 6, which went 58/60 with both of them run.", BODY))
+
+sp(4)
+S.append(box("READ THIS FIRST  -  the two checks that hold, and the one fact pair that does not",
+[
+    "<b>Say how many letters you owe before you read the options.</b> Then, for two symptoms, ask "
+    "\"which symptom did this answer solve, and what solves the other?\"",
+    "<b>Underline never, not, except, instead in the last sentence.</b> On an inverse stem the "
+    "correct-sounding options are the wrong ones  -  the valid grounds will be sitting right there.",
+    "These two are working: Mock 6 ran 10 select-two and 4 inverse-direction questions and lost "
+    "<b>nothing</b> to either (9/10, no blank, no single letter, 4/4 on direction), after Mock 5 lost "
+    "5 marks to exactly this. <b>Run them anyway  -  they are checks, not habits.</b>",
+    "<b>What is still live is one sentence, not a habit: an incomplete answer that SAYS SO is "
+    "correct; an incomplete answer that READS AS COMPLETE is the failure.</b> That decides coverage "
+    "gaps (declare them in the report, never in a log) and error status (partial results labelled "
+    "partial are fine; a success with no results is not). Both on page 6.",
+]))
 
 h2("The 30-second method")
 S.append(tbl([
@@ -148,19 +198,17 @@ S.append(tbl([
     ["6", "Ask <b>where the information should have been PRODUCED</b>, not where the failure showed up."],
 ], [8 * mm, W - 8 * mm]))
 sp(2)
-S.append(Paragraph("<b>Two mechanical triggers, both proved necessary on 17 Aug.</b> "
-                   "<b>(1)</b> On a Domain 3 mechanism question, ask <i>what set of files does this "
-                   "content govern</i>  -  never which nouns the question mentions (page 3). "
-                   "<b>(2)</b> <b>Halt on repair verbs</b>  -  post-process, validate, reconcile, "
-                   "re-fetch, reverse. That distractor has taken four marks (page 6).", BODY))
+S.append(Paragraph("<b>Two mechanical triggers.</b> <b>(1)</b> Domain 3: ask <i>what set of files "
+                   "does this content govern</i>  -  never which nouns the question mentions "
+                   "(page 3). <b>(2)</b> <b>Halt on repair verbs</b>  -  post-process, validate, "
+                   "reconcile, re-fetch, reverse (page 6).", BODY))
 sp(2)
-S.append(Paragraph("<b>Step 6 - your one cross-domain weakness.</b> The failure appears late; the "
-                   "fix belongs early. Field missing that the source always has &rarr; <b>required</b>, "
-                   "not nullable-plus-a-null-check. Inconsistent dates and currency &rarr; "
-                   "<b>normalisation rules in the prompt</b>, not a post-processing layer. Synthesis "
-                   "cannot judge a source &rarr; <b>subagents record dates, location and methodology</b>, "
-                   "not re-fetching later. The late fix is defensible engineering - that is why it is "
-                   "the distractor. Which component held the information when it was lost?", BODY))
+S.append(Paragraph("<b>Step 6, the cross-domain trap:</b> the failure appears late, the fix "
+                   "belongs early. Field the source always has &rarr; <b>required</b>. Inconsistent "
+                   "dates or currency &rarr; <b>normalisation rules in the prompt</b>. Synthesis "
+                   "cannot judge a source &rarr; <b>subagents record dates, location, methodology</b>. "
+                   "The late fix is defensible engineering; that is why it is offered. Which "
+                   "component held the information when it was lost?", BODY))
 
 h2("The strength ladder  -  choose the lowest level that meets the requirement")
 S.append(tbl([
@@ -189,6 +237,12 @@ S.append(tbl([
     ["<b>Moves work to people</b>", "Asks developers or customers to do more, or hides real problems"],
 ], [42 * mm, W - 42 * mm]))
 
+S.append(PageBreak())
+
+# ---------------------------------------------------------------- PAGE 2
+sec("2  -  Never-answers, signal words and file paths",
+    "Pure memorisation, and the cheapest points on the exam. This half has been clean 8 for 8.")
+
 h2("Never the right answer")
 S.append(tbl([
     ["Self-reported confidence used to decide when to <b>escalate</b>"],
@@ -201,12 +255,6 @@ S.append(tbl([
     ["<b>Stopping the whole workflow</b> because one subagent failed"],
     ["<b>Guessing</b> when a tool returns several matches  -  ask for another identifier"],
 ], [W]))
-
-S.append(PageBreak())
-
-# ---------------------------------------------------------------- PAGE 2
-sec("2  -  Signal words and file paths",
-    "Pure memorisation, and the cheapest points on the exam. This half has been clean 8 for 8.")
 
 h2("Signal words in the question")
 S.append(tbl([
@@ -247,7 +295,8 @@ S.append(PageBreak())
 
 # ---------------------------------------------------------------- PAGE 3
 sec("3  -  Domain 3: choosing the mechanism",
-    "Every Domain 3 miss on 16 and 17 August was on this page. None was a forgotten path.")
+    "The weakest domain again  -  6/12 on 20 Aug, after 12/12 on a paper written from its own "
+    "miss list. Every miss on 16, 17 and 20 August was on this page. None was a forgotten path.")
 
 h2("Which mechanism holds which content  -  choose by the GROUPING, nothing else")
 S.append(tbl([
@@ -263,7 +312,11 @@ S.append(tbl([
 
 sp(4)
 S.append(box("Ask ONE question: what SET OF FILES does this content govern?", [
-    "This is the single most expensive decision on the paper  -  four marks on 16 Aug, four more on 17 Aug.",
+    "This is the single most expensive decision on the paper  -  four marks on 16 Aug, four more on "
+    "17 Aug, six on 20 Aug.",
+    "<b>@import and .claude/rules/ have now been traded for each other inside ONE scenario three "
+    "times</b> (16, 17 and 20 Aug). Both mechanisms are known; each is being handed to the other's "
+    "question. Recite the grouping sentence before reading the options, every time.",
     "Do <b>not</b> read the grouping off the nouns in the question. \"They exist in nine packages\" is "
     "still a <b>file pattern</b> if the content governs *.stories.tsx. \"Each lead <b>decides</b> which "
     "apply\" is still <b>@import</b>, not a skill, because after the decision they govern ALL work there.",
@@ -473,6 +526,10 @@ S.append(tbl([
      "Never \"nullable + reject null\" - that fails documents and still does not stop fabrication"],
     ["Enum + <b>\"other\"</b> + a detail string, for categories that may grow"],
     ["Enum value <b>\"unclear\"</b> for ambiguous cases"],
+    ["<b>Tool use with a JSON schema is THE way to get structured output.</b> Prompt asks for JSON "
+     "in the response <b>text</b> and some replies will not parse &rarr; declare the schema as a "
+     "<b>tool input schema</b> and return the record through <b>tool use</b>. Not more examples of "
+     "well-formed JSON, not a lenient parser, not a lower temperature  <i>(missed 20 Aug)</i>"],
     ["Tool use + schema removes <b>SYNTAX</b> errors. It does NOT remove <b>SEMANTIC</b> errors"],
     ["<b>calculated_total</b> next to <b>stated_total</b>  -  catches totals that do not add up"],
     ["<b>conflict_detected</b>  -  boolean for contradictory source data"],
@@ -580,8 +637,22 @@ S.append(tbl([
     ["<b>Never</b>: hiding the error by returning empty results as success"],
     ["<b>Never</b>: stopping the whole workflow because one agent failed"],
     ["<b>Never</b>: treating an access failure and a valid empty result as the same thing"],
-    ["Synthesis output should mark which topics have <b>coverage gaps</b>"],
+    ["<b>Partial results, LABELLED as partial, are always correct.</b> A <b>success with an empty "
+     "result set</b> when the lookup failed is always wrong  -  that is hiding the error as success. "
+     "The tell is not how much data comes back, it is whether the <b>status is honest</b>"],
 ], [W]))
+sp(3)
+S.append(box("Coverage gaps  -  missed three times, three different wrong answers", [
+    "The output must state <b>which findings are well supported and which topics have gaps</b>  -  "
+    "in <b>the report the reader sees</b>, next to the findings.",
+    "<b>A log line, a ticket, a monitoring alert or a note to the pipeline team are all the same "
+    "miss.</b> So are \"retry until the sources respond\" and \"summarise more aggressively\": a gap "
+    "is <b>declared</b>, never removed.",
+    "Ask: <b>would the person reading this report know that two sources answered where three were "
+    "expected?</b>",
+    "Same sentence as the error status above: <b>an incomplete answer that says so is correct; an "
+    "incomplete answer that reads as complete is the failure.</b>",
+]))
 
 h2("Four mechanisms that all sound like \"keep the context clean\". They are NOT interchangeable")
 S.append(tbl([

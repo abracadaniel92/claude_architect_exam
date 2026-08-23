@@ -8,7 +8,8 @@ Every fact you need from memory, in one file.
 > PDF is awkward.
 >
 > **[`CCAR-F-revision-card.pdf`](../CCAR-F-revision-card.pdf) is the paper version.** Same facts,
-> laid out for A4 and printed double-sided on 3 sheets. It also adds the exam-attack strategy
+> laid out for A4 and printed double-sided on 4 sheets (7 pages — Domain 5 outgrew one page on
+> 20 Aug). It also adds the exam-attack strategy
 > from [`01-answer-patterns.md`](01-answer-patterns.md) — the strength ladder, the five kinds of
 > wrong answer, and the signal-word table — which this file does not contain.
 >
@@ -155,6 +156,12 @@ apply, or must load automatically. If a question says "automatic" or "always", s
 **Four wrong ways to stop:** reading the text · a loop counter as the main method · checking if
 text exists · a `task_complete` tool.
 
+> ⚠️ **"Not `end_turn`" has now cost a mark three times (17 Aug, 22 Aug ×1), each time with a
+> different value standing in for the ones it misses** — first plain omission, then `max_tokens`,
+> now `refusal`. The loop reads for exactly **one** continue value. Say all seven before answering:
+> `end_turn`, `tool_use`, `max_tokens`, `stop_sequence`, `pause_turn`, `refusal`,
+> `model_context_window_exceeded`. Only `tool_use` continues it.
+
 ---
 
 ## 6. Subagents (Domain 1)
@@ -172,6 +179,14 @@ text exists · a `task_complete` tool.
 **Resume or start fresh?** Decided by **how much** is stale. A few known files changed →
 `--resume` and name the changed files. Most of the earlier context stale → **new** session with a
 written summary.
+
+> ⚠️ **22 Aug: reopened after four clean sittings.** A returning conversation with nine days gone
+> and two narrow facts still live was correctly sent to `--resume` in the same paper — but three
+> weeks gone, plus a rename and a changed build tool, was *also* sent to `--resume` instead of a
+> fresh session. The rule was retrievable; recognising *enough* staleness in an unfamiliar dressing
+> was not. Ask directly: **of what I'd carry forward by resuming, how much of it is still true?**
+> A handful of named changes → resume. A renamed structure, a changed tool, and weeks of drift →
+> fresh, every time, no matter how the question dresses it.
 
 ---
 
@@ -191,6 +206,17 @@ written summary.
 
 **Before answering ANY question:** does it say **select two**? If yes, count the symptoms in the
 scenario and check you have one answer per symptom. Mechanical step, every time.
+
+> ⚠️ **20 Aug: this went 5 of 10 in one paper, after four sittings at 10/10 — 5 marks, the largest
+> single loss in the repo.** Three separate failures, none of them knowledge:
+> - **Two questions answered with one letter.** Both omitted letters were facts answered correctly
+>   elsewhere in the same paper.
+> - **One left blank.** A blank is a guaranteed lost mark; a guess is not. Never leave one.
+> - **One answered in the inverse direction** — the stem said which two signals are **never** valid,
+>   and the two *valid* reasons were given.
+>
+> **Say how many letters you owe out loud before you read the options. Underline *never*, *not*,
+> *except* and *instead* in the last sentence.**
 
 ---
 
@@ -232,6 +258,23 @@ sources never answered is the same failure as hiding an error.
 > ⚠️ **Missed twice in one paper (16 Aug), and it was on the revision card but not here.** The two
 > wrong answers were *"retry until the sources respond"* and *"summarise more aggressively"* —
 > both treat a coverage gap as something to remove rather than something to **declare**.
+>
+> ⚠️ **Third miss, 20 Aug (Mock 6 Q14), with a third different distractor: "publish the totals and
+> note the outage in the pipeline log."** Three misses with three different wrong answers means the
+> fact is absent, not out-competed. **The gap is declared in the output the reader sees**, next to
+> the findings. A log line, a ticket, a monitoring alert or a note to the pipeline team are all the
+> same miss. Ask: *would the person reading this report know that two sources answered where three
+> were expected?*
+
+**Partial results vs a false success — one confusable pair.** Returning the partial results you did
+obtain, **labelled as partial**, is always correct (partial results are one of the four parts of a
+subagent report). Returning **success with an empty result set** when the lookup failed is always
+wrong — that is *hiding the error as success*. The tell is not how much data comes back, it is
+whether the **status is honest**. ⚠ **Missed 20 Aug (Mock 6 Q48)** by naming the good behaviour as
+one of the two forbidden ones.
+
+**One sentence covers both this and coverage annotations:** *an incomplete answer that says so is
+correct; an incomplete answer that reads as complete is the failure.*
 
 **Subagents fix transient failures themselves.** They only report what they cannot fix.
 
@@ -303,6 +346,11 @@ workflows.
 
 - Enum + `"other"` + a detail string, for categories that may grow.
 - `"unclear"` for ambiguous cases.
+- **Tool use with a JSON schema is *the* way to get structured output.** If a prompt asks for "JSON
+  in the response text" and some responses will not parse, the answer is to declare the schema as a
+  tool input schema and return the record through tool use — **not** more examples of well-formed
+  JSON, not a lenient parser, not a lower temperature. ⚠ **Missed 20 Aug (Mock 5 Q16), answered with
+  few-shot examples.** This file previously said only what tool use *does not* fix.
 - Tool use + schema removes **syntax** errors. It does **not** remove **semantic** errors.
 - `calculated_total` next to `stated_total` — to catch totals that do not add up.
 - `conflict_detected` — a boolean for contradictory source data.
@@ -361,7 +409,7 @@ A 24-hour window and a 30-hour SLA means submitting every **4 hours**.
 - **In CI, CLAUDE.md is how Claude Code learns the project:** testing standards, fixture
   conventions, review criteria. Writing them there is what stops low-value test suggestions —
   not appending them to the prompt in the pipeline script. To stop duplicate tests, **supply the
-  existing test files.**
+  existing test files.** Clean again on 22 Aug, including the CLAUDE.md-as-CI-context row.
 
 ---
 
