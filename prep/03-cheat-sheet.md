@@ -228,10 +228,41 @@ Ask one question first: **do I know the shape of the work before I start?**
 |---|---|
 | **Yes** — the file list is known, the criteria are fixed | **Prompt chaining.** Large review = one pass per file + one pass across files |
 | **No** — the structure is unknown, each step depends on the last | **Dynamic decomposition.** Map first, then a plan that adapts |
+| The shape is known, but the **output quality varies run to run** | **Evaluator–optimiser.** The agent drafts, then checks its own draft against named criteria and revises |
 
 The words "audit", "large" and "comprehensive" do **not** decide this. A 900-file audit where you
 do not know where the relevant code lives is **dynamic**. A 22-file review with a known list is
 **chaining**. Same size, opposite answers.
+
+**Evaluator–optimiser (the self-critique stage).** A second pass in which the agent evaluates its
+own draft against stated criteria — *does this resolve the issue, carry the policy context, give a
+timeline, answer the obvious follow-up?* — then rewrites. Use it when the work is **correct but
+inconsistently complete**, and the missing piece is **different every time**.
+
+**That last clause is the whole discriminator.** Few-shot examples fix a **format** that varies —
+the same fields are missing every time, so you show the shape you want. Self-critique fixes
+**completeness** that varies — the gap is a different one in each case, so no set of examples
+covers it. Read the failure description, not the fix: *"sometimes omits the policy detail,
+sometimes the timeline, sometimes the next step"* is self-critique. *"Sometimes detailed, sometimes
+vague, in the same field"* is few-shot.
+
+**Do not confuse it with the independent second reviewer.** Self-critique is the *same* agent
+checking its own draft, and it works for completeness. When the failure is the agent **rationalising
+its own reasoning** — it considered the edge case and talked itself out of it — no amount of
+self-review helps, because the confirmation bias is the thing you are asking to check itself. That
+needs a **second independent instance with no access to the first one's reasoning.** Own output,
+own gaps → self-critique. Own output, own blind spot → fresh eyes.
+
+**It needs a signal to iterate against.** If there is no quality criterion the agent can actually
+evaluate — no tests, no schema, no stated checklist — evaluator–optimiser is the wrong pattern and
+appears as a distractor. A summary step that merely *ranks* the previous steps' findings is
+prompt chaining, not evaluation.
+
+> ⚠️ **Added 24 Aug. Never tested in this repo — the pattern table had two rows for fifteen days.**
+> Found by checking the two public community sets against these papers: one keys a self-critique
+> stage as the **correct** answer for inconsistent explanation completeness, the other uses
+> evaluator–optimiser as a **named distractor** that fails for want of an objective quality signal.
+> Both directions are live, so learn the discriminators above, not just the name.
 
 ---
 
@@ -245,6 +276,33 @@ For business rules, add `isRetryable: false` and a customer-friendly explanation
 
 **An access failure is not an empty result.** A timeout may need a retry. Zero matches is a
 success.
+
+**A retry is only safe if the action is idempotent.** Classifying the error tells you *whether* to
+retry. It does **not** make the retry safe. The failure case: the request reached the server, the
+server processed it, the **response** timed out. The retry is a second charge. The customer is
+billed twice and every log says "transient failure, retried correctly".
+
+**Both halves are required, and either alone leaves a hole:**
+
+| Fix | What it prevents | What it still allows |
+|---|---|---|
+| Error classification alone | Retrying a permanent failure forever | **Double-charging** on a retry after a lost response |
+| Idempotency keys alone | The server processing the same operation twice | A permanent failure being retried, or a safe retry never happening |
+| **Both** | Both | — |
+
+**The key is generated on the first attempt and reused on every retry** — a hash or UUID over
+`{operation + customer + amount}`. Generating a new key per attempt is the same bug with extra
+steps. Longer backoff is **not** a fix: it shortens the window, it does not close it.
+
+**When the exam asks "which fix addresses this completely", and one option says *both X and Y are
+required*, that phrasing is usually the answer** — an option that names one half is describing half
+a fix. Money, charges, refunds and orders are the flag: *if this ran twice, would the customer
+notice?*
+
+> ⚠️ **Added 24 Aug. Absent from every file in this repo until today** — the retry taxonomy above
+> was complete on *whether* to retry and silent on whether retrying is safe. Found in a public
+> community set that keys the paired fix, and named as a core Domain 1 topic there. Domain 1 is
+> 27% of the paper and this is shaped like a **select two**.
 
 **Subagent error report contains four things:** failure type · what was tried · partial results ·
 possible alternatives.
